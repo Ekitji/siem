@@ -10,9 +10,11 @@ Meanwhile check out this outstanding webinar about windows local privilege escal
 ### Webinar - Windows Client Privilege Escalation
 https://www.youtube.com/watch?v=EG2Mbw2DVnU&t=2411s
 
-### Other related to Windows Privilege escalation.
-
+### Other related to Windows Privilege Escalation.
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
+https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_windows.html
+https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
+
 * weak passwords in command_line - that are not following best practices / policies
 * weak password in registry  - that are not following best practices / policies
 * AlwaysInstallElevated in Registry
