@@ -24,4 +24,5 @@ https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
 ### Other types of vulnerabilties to search for
 * Search in webserver logs for parameters (language=en.html) that shows file inclusion to test for LFI/RFI
 * Search for application logs for SQL related errors that shows errors on bad charachters..
+* AD attributes (example event.code:"5136" and Attribute:"msDS-KeyCredentialLink") that are commonly abused. Find misconfigurations and harden AD. 
 etc.. etc..
