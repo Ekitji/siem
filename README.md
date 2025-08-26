@@ -30,7 +30,13 @@ https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
 etc.. etc..
 
 
-#### Schedule taks
-Gives you and idea of which event codes to use and what you will se in the event code it self.
+
+#### Services - use offensive mindset
+Gives you an idea of which event codes to use what you will see in the event code it self.
+https://detect.fyi/threat-hunting-suspicious-windows-service-names-2f0dceea204c
+
+#### Schedule taks - use offensive mindset
+Gives you and idea of which event codes to use and what you will see in the event code it self.
 https://www.thedfirspot.com/post/evil-on-schedule-investigating-malicious-windows-tasks
+
 
