@@ -12,11 +12,13 @@ https://www.youtube.com/watch?v=EG2Mbw2DVnU&t=2411s
 
 ### Other related to Windows Privilege Escalation.
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
+
 https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_windows.html
+
 https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
 
 * weak passwords in command_line - that are not following best practices / policies
-* weak password in registry  - that are not following best practices / policies
+* weak passwords in registry  - that are not following best practices / policies
 * AlwaysInstallElevated in Registry
 * Windows Privileges - Look at 4672 (logon with special privileges) And 4704/4705 (assignment/removal of rights)
 * etc..
@@ -26,3 +28,9 @@ https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
 * Search for application logs for SQL related errors that shows errors on bad charachters..
 * AD attributes (example event.code:"5136" and Attribute:"msDS-KeyCredentialLink") that are commonly abused. Find misconfigurations and harden AD. 
 etc.. etc..
+
+
+#### Schedule taks
+Gives you and idea of which event codes to use and what you will se in the event code it self.
+https://www.thedfirspot.com/post/evil-on-schedule-investigating-malicious-windows-tasks
+
