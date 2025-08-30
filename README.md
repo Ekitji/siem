@@ -1,5 +1,3 @@
-# sec_t
-
 # Offensive SIEM
 ## Coming soon
 
