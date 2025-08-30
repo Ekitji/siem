@@ -33,8 +33,9 @@ etc.. etc..
 Make a process creation query using event.code 1 from SYSMON OR event.code 4688 (or the event.codes for services, schedule tasks)
 Look for applications that are installed in C:\ root drive
 ##### example: 
-               C:\myapplication\myaplication.exe
+               C:\myapplication\myapplication.exe
                C:\myapp\subfolder\myapp.exe
+               C:\SoftwareCompany\software.exe
 
 The issue with applications that are installed in C-root folder has per default incorrect ACL permissions which allows Authenticated Users to modify the folder and its files.
 Its likely a privilege escalaion (confirm it) if a service or another process is spawning a high privileged process (myapplication.exe OR myapp.exe) from one of the installation paths i C-root.
