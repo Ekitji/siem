@@ -32,7 +32,8 @@ etc.. etc..
 #### Software installed in C-root drive. (not covered in presentation)
 Make a process creation query using event.code 1 from SYSMON OR event.code 4688 (or the event.codes for services, schedule tasks)
 Look for applications that are installed in C:\ root drive
-##### example: C:\myapplication\myaplication.exe
+##### example: 
+               C:\myapplication\myaplication.exe
                C:\myapp\subfolder\myapp.exe
 
 The issue with applications that are installed in C-root folder has per default incorrect ACL permissions which allows Authenticated Users to modify the folder and its files.
