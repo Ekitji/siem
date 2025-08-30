@@ -27,7 +27,7 @@ https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
 * AD attributes (example event.code:"5136" and Attribute:"msDS-KeyCredentialLink") that are commonly abused. Find misconfigurations and harden AD. 
 etc.. etc..
 
-#### Software installed in C-root drive. (not covered in presentation)
+### Software installed in C-root drive. (not covered in presentation)
 Make a process creation query using event.code 1 from SYSMON OR event.code 4688 (or the event.codes for services, schedule tasks)
 Look for applications that are installed in C:\ root drive
 ##### example: 
@@ -37,6 +37,7 @@ Look for applications that are installed in C:\ root drive
 
 The issue with applications that are installed in C-root folder has per default incorrect ACL permissions which allows Authenticated Users to modify the folder and its files.
 Its likely a privilege escalaion (confirm it) if a service or another process is spawning a high privileged process (myapplication.exe OR myapp.exe) from one of the installation paths i C-root.
+#### Missed the chance of a Microsoft CVE - someone claimed it before: https://neodyme.io/en/advisories/cve-2025-47962/
 
 
 
