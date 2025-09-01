@@ -44,11 +44,11 @@ If so - you will likely have a privilege escalation (confirm it) if a service or
 
 ### Services - use offensive mindset ⭐
 Gives you an idea of which event codes to use what you will see in the event code it self.
-https://detect.fyi/threat-hunting-suspicious-windows-service-names-2f0dceea204c
+- https://detect.fyi/threat-hunting-suspicious-windows-service-names-2f0dceea204c
 
 ### Schedule taks - use offensive mindset (we only covered SYSTEM user execution but Admin users are also of interest) ⭐
 Gives you and idea of which event codes to use and what you will see in the event code it self.
-https://www.thedfirspot.com/post/evil-on-schedule-investigating-malicious-windows-tasks
+- https://www.thedfirspot.com/post/evil-on-schedule-investigating-malicious-windows-tasks
 
 ## Prerequisites
 Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11.
