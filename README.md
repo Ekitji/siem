@@ -59,6 +59,7 @@ Enabled Advanced auditing for some of the Windows events.
 For an example, process creation 4688 will likely need it tuning to catch parent process and not only the parent pid.
 
 
+## ACL
 ### 🔹 Some Common ACL Principals Covering Logged-In Users
 
 | Principal               | Description                                                                 |
