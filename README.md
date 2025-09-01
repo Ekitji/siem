@@ -59,4 +59,18 @@ Enabled Advanced auditing for some of the Windows events.
 For an example, process creation 4688 will likely need it tuning to catch parent process and not only the parent pid.
 
 
+### 📑 ACL Attributes (some of the interesting to look into)
+
+Access Control List (ACL) attributes define what actions a user or group can perform on files or folders.  
+Here are some key ones worth noting:
+
+| Attribute | Name / Meaning           | Why It’s Interesting                                                                 |
+|-----------|--------------------------|--------------------------------------------------------------------------------------|
+| **F**     | Full Access              | Grants **all possible rights** (read, write, execute, delete, change permissions, take ownership). Equivalent to "owner-level" control. |
+| **M**     | Modify Access            | Allows reading, writing, and deleting files/folders, but **not changing ACLs** or ownership. Most common for regular users. |
+| **W**     | Write-Only Access        | User can **create or modify content** but cannot read it back. Rare, but useful in "drop box" scenarios (e.g., secure file submissions). |
+| **WD**    | Write Data / Add File    | Specifically allows **creating or writing to files in a directory**. Essential for being able to add or overwrite files inside a folder. |
+
+
+
 
