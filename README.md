@@ -19,7 +19,7 @@ https://www.youtube.com/watch?v=EG2Mbw2DVnU&t=2411s
 * etc..
 * Do not assume that Program Files and similar admin-protected directories always have correct ACLs (Access Control Lists). It does happen that applications set incorrect default permissions and are far too permissive. CWE-732, CWE-284, CWE-276
 
-### Other types of vulnerabilties
+### Other types of vulnerabilities
 * Search in webserver logs for parameters (language=en.html) that shows file inclusion to test for LFI/RFI
 * Search for application logs for SQL related errors that shows errors on bad charachters..
 * AD attributes (example event.code:"5136" and Attribute:"msDS-KeyCredentialLink") that are commonly abused. Find misconfigurations and harden AD. 
@@ -38,8 +38,8 @@ Look for applications that are installed in C:\ root drive
                C:\SoftwareCompany\software.dll
                
 
-The issue with applications that are installed in C-root folder is that it has per default incorrect ACL permissions which allows Authenticated Users to modify the folder and its files. If the Software installation does not change the ACL in the installation process,
-Its likely a privilege escalation (confirm it) if a service or another process is spawning a high privileged process (myapplication.exe OR myapp.exe) from one of the installation paths in C-root.
+The issue with applications that are installed in C-root folder is that it has per default incorrect ACL permissions which allows Authenticated Users to modify (M) the folder and its files. If the Software installation does not correct the ACL in the installation process,
+If so - you will likely have a privilege escalation (confirm it) if a service or another process is spawning a high privileged process (ex. myapplication.exe OR myapp.exe) from one of the installation paths in C-roots subfolder.
 #### Missed the chance of a Microsoft CVE - someone found it before: https://neodyme.io/en/advisories/cve-2025-47962/
 
 ### Services - use offensive mindset
