@@ -7,11 +7,9 @@ Meanwhile check out this outstanding webinar about windows local privilege escal
 https://www.youtube.com/watch?v=EG2Mbw2DVnU&t=2411s
 
 ### Other related to Windows Privilege Escalation.
-https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
-
-https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_windows.html
-
-https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
+- https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_windows.html  
+- https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/ 
 
 ### Example of interesting areas to look into that we have not covered.
 * weak passwords in command_line - that are not following best practices / policies
