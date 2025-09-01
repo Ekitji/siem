@@ -3,7 +3,7 @@
 Release of some of the presentation material and queries will happen after 12 september 2025.
 Meanwhile check out this outstanding webinar about windows local privilege escalation which will assist you further on.
 
-### Webinar - Windows Client Privilege Escalation - a must to watch, specially the ACL parts.
+### Webinar - Windows Client Privilege Escalation - a must to watch, specially the ACL parts. ⭐
 https://www.youtube.com/watch?v=EG2Mbw2DVnU&t=2411s
 
 ### Other related to Windows Privilege Escalation.
@@ -25,7 +25,7 @@ https://www.youtube.com/watch?v=EG2Mbw2DVnU&t=2411s
 * AD attributes (example event.code:"5136" and Attribute:"msDS-KeyCredentialLink") that are commonly abused. Find misconfigurations and harden AD. 
 etc.. etc..
 
-### Software installed in C-root drive. (not covered in presentation)
+### Software installed in C-root drive. (not covered in presentation) ⭐
 Make a process creation query using event.code 1 from SYSMON OR event.code 4688 (or the event.codes for services, schedule tasks, DLL load from C-root subfolders)
 Look for applications that are installed in C:\ root drive
 
@@ -42,11 +42,11 @@ The issue with applications that are installed in C-root folder is that it has p
 If so - you will likely have a privilege escalation (confirm it) if a service or another process is spawning a high privileged process (ex. myapplication.exe OR myapp.exe) from one of the installation paths in C-roots subfolder.
 #### Missed the chance of a Microsoft CVE - someone found it before: https://neodyme.io/en/advisories/cve-2025-47962/
 
-### Services - use offensive mindset
+### Services - use offensive mindset ⭐
 Gives you an idea of which event codes to use what you will see in the event code it self.
 https://detect.fyi/threat-hunting-suspicious-windows-service-names-2f0dceea204c
 
-### Schedule taks - use offensive mindset (we only covered SYSTEM user execution but Admin users are also of interest)
+### Schedule taks - use offensive mindset (we only covered SYSTEM user execution but Admin users are also of interest) ⭐
 Gives you and idea of which event codes to use and what you will see in the event code it self.
 https://www.thedfirspot.com/post/evil-on-schedule-investigating-malicious-windows-tasks
 
@@ -57,7 +57,7 @@ Enabled Advanced auditing for some of the Windows events.
 For an example, process creation 4688 will likely need it to catch parent process and not only the parent pid.
 
 
-## ACL
+## ACL ⭐
 ### 🔹 Some Common ACL Principals Covering Logged-In Users
 
 | Principal               | Description                                                                 |
