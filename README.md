@@ -87,10 +87,10 @@ Here are some key ones worth noting:
 ## Whitelisting
 You will likely need to whitelist the queries. Make your hunt, fine tune the queries and make alerts of them to catch new events that you have not looked into.
 ##### Will likely need whitelisting:
-C:\ProgramData\Microsoft
-C:\ProgramData\Package Cache
-C:\ProgramData\Packages
-etc.
+        C:\ProgramData\Microsoft
+        C:\ProgramData\Package Cache
+        C:\ProgramData\Packages
+        etc.
 
 
 
