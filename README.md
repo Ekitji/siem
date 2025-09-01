@@ -85,5 +85,15 @@ Here are some key ones worth noting:
 | **WD**    | Write Data / Add File    | Specifically allows **creating or writing to files in a directory**. Essential for being able to add or overwrite files inside a folder. |
 
 
+## Whitelisting
+You will likely need to whitelist the queries. Make your hunt, fine tune the queries and make alerts of them to catch new events that you have not looked into.
+##### Will likely need whitelisting:
+C:\ProgramData\Microsoft
+C:\ProgramData\Package Cache
+C:\ProgramData\Packages
+etc.
+
+
+
 
 
