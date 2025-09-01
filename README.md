@@ -59,7 +59,19 @@ Enabled Advanced auditing for some of the Windows events.
 For an example, process creation 4688 will likely need it tuning to catch parent process and not only the parent pid.
 
 
-### 📑 ACL Attributes (some of the interesting to look into)
+### 🔹 Some Common ACL Principals Covering Logged-In Users
+
+| Principal               | Description                                                                 |
+|--------------------------|-----------------------------------------------------------------------------|
+| **Everyone**             | All users, including Guests (and in older Windows versions, even Anonymous Logon). Very broad, usually restricted to read access. |
+| **Authenticated Users**  | Any account that has successfully logged in (local or domain). Excludes anonymous users. |
+| **BUILTIN\Users**        | The local **Users** group on the machine. Includes all standard (non-admin) local accounts. |
+| **INTERACTIVE**          | Any user logged in **locally at the console** (keyboard/session). Useful for differentiating local vs. remote access. |
+| **COMPUTERNAME\\Username** | A specific **local account** on that computer (e.g., `LAPTOP01\Bob`). Permissions apply only when that user logs on locally. |
+| **DOMAIN\\Username**     | A specific **domain account** (e.g., `CORP\Alice`). Permissions follow the user across all domain-joined machines. |
+
+
+### 📑 ACL Attributes (Some Of The Interesting To Look Into)
 
 Access Control List (ACL) attributes define what actions a user or group can perform on files or folders.  
 Here are some key ones worth noting:
