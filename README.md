@@ -56,7 +56,7 @@ https://www.thedfirspot.com/post/evil-on-schedule-investigating-malicious-window
 Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11.
 
 Enabled Advanced auditing for some of the Windows events.
-For an example, process creation 4688 will likely need it tuning to catch parent process and not only the parent pid.
+For an example, process creation 4688 will likely need it to catch parent process and not only the parent pid.
 
 
 ## ACL
