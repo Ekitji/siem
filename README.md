@@ -30,12 +30,12 @@ Make a process creation query using event.code 1 from SYSMON OR event.code 4688 
 Look for applications that are installed in C:\ root drive
 
 ##### example: 
-               C:\myapplication\myapplication.exe
-               C:\myapp\subfolder\myapp.exe
-               C:\SoftwareCompany\software.exe
-               C:\myapplication\myapplication.dll
-               C:\myapp\subfolder\myapp.dll
-               C:\SoftwareCompany\software.dll
+          C:\myapplication\myapplication.exe
+          C:\myapp\subfolder\myapp.exe
+          C:\SoftwareCompany\software.exe
+          C:\myapplication\myapplication.dll
+          C:\myapp\subfolder\myapp.dll
+          C:\SoftwareCompany\software.dll
                
 
 The issue with applications that are installed in C-root folder is that it has per default incorrect ACL permissions which allows Authenticated Users to modify (M) the folder and its files. If the Software installation does not correct the ACL in the installation process,
@@ -87,11 +87,15 @@ Here are some key ones worth noting:
 ## Whitelisting
 You will likely need to whitelist the queries. Make your hunt, fine tune the queries and make alerts of them to catch new events that you have not looked into.
 ##### Will likely need whitelisting:
-        C:\ProgramData\Microsoft
-        C:\ProgramData\Package Cache
-        C:\ProgramData\Packages
-        etc.
+      C:\ProgramData\Microsoft
+      C:\ProgramData\Package Cache
+      C:\ProgramData\Packages
+      etc.
 
+
+## Tips & Tricks
+If a binary replacement is not possible because of correct ACL. Check folder permissions and if you have permissions to write files
+check if the executable tries to load any dlls that do not exist. If so, create them and you have your code execution.
 
 
 
