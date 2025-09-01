@@ -41,7 +41,7 @@ Look for applications that are installed in C:\ root drive
                
 
 The issue with applications that are installed in C-root folder is that it has per default incorrect ACL permissions which allows Authenticated Users to modify the folder and its files. If the Software installation does not change the ACL in the installation process,
-Its likely a privilege escalaion (confirm it) if a service or another process is spawning a high privileged process (myapplication.exe OR myapp.exe) from one of the installation paths i C-root.
+Its likely a privilege escalation (confirm it) if a service or another process is spawning a high privileged process (myapplication.exe OR myapp.exe) from one of the installation paths i C-root.
 #### Missed the chance of a Microsoft CVE - someone found it before: https://neodyme.io/en/advisories/cve-2025-47962/
 
 ### Services - use offensive mindset
