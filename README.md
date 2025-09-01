@@ -98,70 +98,25 @@ If a binary replacement is not possible because of correct ACL. Check folder per
 check if the executable tries to load any dlls that do not exist. If so, create them and you have your code execution.
 
 
-## Windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
-CVE	App / Vendor	Windows path involved (as documented)	What loads/runs as SYSTEM	CWE (per source)	Notes & sources
-CVE-2025-42598	Epson Printer Drivers (multiple models)	Path not disclosed by vendor (driver-managed DLLs). Typical printer DLLs live under C:\Windows\System32\spool\drivers\...; many Epson installs also use C:\ProgramData\Epson\...	Printer driver DLLs are loaded by the print stack (spoolsv.exe/PrintIsolationHost.exe)	CWE-276 (JVN)	Official advisories confirm DLL overwrite → SYSTEM code exec on non-English installs; JVN tags CWE-276. Vendor/JVN do not publish an exact path. Example write-ups show DLL placement under spool driver dirs. 
-Epson
-jvn.jp
-NVD
-Epson Download 4
-Ameeba
-
-CVE-2019-19363	Ricoh printer drivers	C:\ProgramData\RICOH_DRV\ (DLL overwrite)	PrintIsolationHost.exe (SYSTEM) loads vendor DLL	(permissions flaw)	Public exploit shows DLL planted in ProgramData and loaded by PrintIsolationHost, yielding SYSTEM. 
-Rapid7
-Exploit Database
-pentagrid.ch
-
-CVE-2020-13885	Citrix Workspace App (Windows)	%PROGRAMDATA%\Citrix\Citrix Workspace ####\webio.dll	SYSTEM service during uninstall/repair loads DLL	(insecure perms)	NVD notes insecure perms for this ProgramData path enabling DLL planting. 
-NVD
-
-CVE-2024-34474	Clario for Desktop (Windows)	%PROGRAMDATA%\Clario\ and %PROGRAMDATA%\Clario\Engines\	ClarioService.exe (SYSTEM) attempts DLL loads from ProgramData	(weak perms)	NVD and the PoC repo state weak perms + DLL load from ProgramData as SYSTEM. 
-NVD
-GitHub
-
-CVE-2022-34043	NoMachine for Windows	C:\ProgramData\NoMachine\var\uninstall\	Uninstaller path abused for DLL hijacking	(permissions)	Incorrect folder permissions allow DLL hijack → code exec. 
-NVD
-Incibe
-
-CVE-2020-15145	Composer-Setup for Windows	C:\ProgramData\ComposerSetup\bin\ (e.g., malicious DLL in this folder)	SYSTEM context during maintenance actions	(permissions / planting)	NVD notes attacker-controlled DLL in this ProgramData bin → SYSTEM. 
-NVD
-
-CVE-2019-14935	3CX Phone for Windows	%PROGRAMDATA%\3CXPhone for Windows\PhoneApp\	Startup link / elevated context	(insecure perms)	Folder grants Everyone full control → LPE. 
-NVD
-CVE Details
-
-CVE-2024-54131	Kolide Launcher (Windows agent)	ProgramData (launcher “root directory” after 1.5.3)	Launcher (SYSTEM)	(weak perms)	Moving upgraded binaries to ProgramData introduced lax ACLs enabling LPE. 
-NVD
-
-CVE-2021-28098	Forescout SecureConnector	%PROGRAMDATA%\ForeScout SecureConnector\ log file	SecureConnector service (admin/SYSTEM) follows symlink	(permissions / link)	Writable log path + symlink → write into privileged location → LPE. 
-NVD
-
-CVE-2022-31262	GOG Galaxy 2.x (Windows)	%ProgramData%\GOG.com\ service files	Galaxy service (SYSTEM) EXE replacement	(insufficient folder perms)	Writable ProgramData lets replacing service executable → SYSTEM. 
-NVD
-
-CVE-2019-15752	Docker Desktop (Windows)	%ProgramData%\DockerDesktop\version-bin\docker-credential-wincred.exe	Elevated Docker auth flow executes planted EXE	(permissions / planting)	Low-priv user can drop trojan wincred.exe in ProgramData → elevation. 
-NVD
-
-CVE-2022-39959	Panini Everest Engine	%PROGRAMDATA%\Panini\Everest Engine\EverestEngine.exe (unquoted path); attacker can create %PROGRAMDATA%\Panini\Everest.exe	Engine service (SYSTEM)	(unquoted path → EXE planting)	Service path & perms allow ProgramData EXE pre-loading → SYSTEM. 
-NVD
-
-CVE-2018-10204	PureVPN (Windows)	%PROGRAMDATA%\purevpn\config\config.ovpn	openvpn.exe runs with service context; plugin path in writable config → DLL load	(insecure perms)	Everyone-writable config lets attacker force a plugin DLL load with elevated rights. 
-NVD
-
-CVE-2020-27643	1E Client (Windows)	%PROGRAMDATA%\1E\Client\	Client service (SYSTEM)	(CWE remapped; path exploitation)	Writable ProgramData directory → LPE per vendor/NVD advisory. 
-NVD
-
-CVE-2020-1985	Palo Alto Networks Secdo (Windows)	C:\ProgramData\Secdo\Logs\	Secdo components (SYSTEM)	CWE-276	Vendor & NVD: incorrect default perms allow overwrites → LPE. 
-security.paloaltonetworks.com
-NVD
-
-CVE-2024-36495	Faronics WINSelect	C:\ProgramData\WINSelect\WINSelect.wsd and C:\ProgramData\Faronics\StorageSpace\WS\WINSelect.wsd	WINSelect runs with elevated privileges	(weak perms)	Everyone R/W to config → abuse to neutralize protection and pivot; NVD lists precise paths. 
-NVD
-SEC Consult
-
-CVE-2024-20656	Visual Studio Setup WMI provider (Windows)	C:\ProgramData\Microsoft\VisualStudio\SetupWMI\MofCompiler.exe	Repair action runs as SYSTEM	(permissions / replace binary)	Blog PoC swaps MofCompiler.exe under ProgramData to get SYSTEM. 
-MDSec
-
-CVE-2025-3224	Docker Desktop for Windows (update)	C:\ProgramData\Docker\config\	Updater (high priv) deletes under this path	(permissions / create-then-abuse)	ProgramData is user-creatable; updater’s high-priv ops can be abused → SYSTEM. 
-NVD
+## Example of some public windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
+| CVE           | Vendor / Product           | Path(s) / File(s)                                | Loads as SYSTEM                  | CWE     | Notes                          |
+|---------------|----------------------------|--------------------------------------------------|----------------------------------|---------|--------------------------------|
+| CVE-2025-42598| Epson Printer Drivers      | (path not disclosed; typical ProgramData\Epson or spool driver dirs) | spoolsv.exe / PrintIsolationHost.exe | CWE-276 | DLL overwrite → SYSTEM         |
+| CVE-2019-19363| Ricoh Printer Drivers      | C:\ProgramData\RICOH_DRV\                        | PrintIsolationHost.exe           | CWE-264*| DLL planting → SYSTEM           |
+| CVE-2020-13885| Citrix Workspace App       | %PROGRAMDATA%\Citrix\Citrix Workspace ####\webio.dll | Citrix services / uninstall     | CWE-276 | DLL planting → SYSTEM           |
+| CVE-2024-34474| Clario for Desktop         | C:\ProgramData\Clario\                           | ClarioService.exe                | CWE-276 | Loads DLLs from ProgramData     |
+| CVE-2022-34043| NoMachine (Windows)        | C:\ProgramData\NoMachine\var\uninstall\          | Uninstaller                      | CWE-732 | DLL hijack in uninstall folder  |
+| CVE-2020-15145| Composer-Setup (Windows)   | C:\ProgramData\ComposerSetup\bin\composer.bat (+ DLLs) | Maintenance/repair actions     | CWE-276 | Writable bin → LPE              |
+| CVE-2019-14935| 3CX Phone for Windows      | %PROGRAMDATA%\3CXPhone for Windows\PhoneApp\     | Startup / elevated context       | CWE-732 | Everyone:Full Control           |
+| CVE-2024-54131| Kolide Launcher            | C:\ProgramData\Kolide\Launcher-[ID]\data\        | Launcher service                 | CWE-276 | Weak perms → DLL load           |
+| CVE-2021-28098| Forescout SecureConnector  | %PROGRAMDATA%\ForeScout SecureConnector\         | SecureConnector service          | CWE-264*| Writable log → symlink → SYSTEM |
+| CVE-2022-31262| GOG Galaxy (Windows)       | %ProgramData%\GOG.com\                           | Galaxy service                   | CWE-276 | Service EXE replacement         |
+| CVE-2019-15752| Docker Desktop (Windows)   | %ProgramData%\DockerDesktop\version-bin\docker-credential-wincred.exe | Docker auth flow              | CWE-276 | EXE planting → SYSTEM           |
+| CVE-2022-39959| Panini Everest Engine      | %PROGRAMDATA%\Panini\Everest Engine\EverestEngine.exe | Engine service (SYSTEM)        | CWE-276 | Unquoted path → EXE planting    |
+| CVE-2018-10204| PureVPN (Windows)          | %PROGRAMDATA%\purevpn\config\config.ovpn         | openvpn.exe (service)            | CWE-276 | Writable config → DLL load      |
+| CVE-2020-27643| 1E Client (Windows)        | %PROGRAMDATA%\1E\Client\                         | Client service                   | CWE-276 | Writable dir → LPE              |
+| CVE-2020-1985 | Palo Alto Secdo Agent      | C:\ProgramData\Secdo\Logs\                       | Secdo service                    | CWE-276 | Incorrect default perms          |
+| CVE-2024-36495| Faronics WINSelect         | C:\ProgramData\WINSelect\WINSelect.wsd / Faronics\StorageSpace\WS\WINSelect.wsd | WINSelect service            | CWE-276 | Config writable → LPE            |
+| CVE-2024-20656| Visual Studio Setup WMI    | C:\ProgramData\Microsoft\VisualStudio\SetupWMI\MofCompiler.exe | Repair action (SYSTEM)      | CWE-276 | Replace binary → SYSTEM          |
+| CVE-2025-3224 | Docker Desktop (Windows)   | C:\ProgramData\Docker\config\                    | Updater (high priv)              | CWE-276 | Creatable/deletable path → LPE   |
 
