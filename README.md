@@ -96,6 +96,7 @@ You will likely need to whitelist the queries. Make your hunt, fine tune the que
 If a binary replacement is not possible because of correct ACL. Check folder permissions and if you have permissions to write files
 check if the executable tries to load any dlls that do not exist. If so, create them and you have your code execution.
 
+If a service is spawning the process and if its not possible to replace binary, the binary does not try to load any missing DLLs. Dont give up - maybe the path is unquoted and you can use that? 
 
 ## Example of some public windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
 | CVE           | Vendor / Product           | Path(s) / File(s)                                | Loads as SYSTEM                  | CWE     | Notes                          |
