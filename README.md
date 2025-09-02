@@ -101,7 +101,7 @@ check if the executable tries to load any dlls that do not exist. If so, create 
 ## Example of some public windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
 | CVE           | Vendor / Product           | Path(s) / File(s)                                | Loads as SYSTEM                  | CWE     | Notes                          |
 |---------------|----------------------------|--------------------------------------------------|----------------------------------|---------|--------------------------------|
-| CVE-2025-42598| Epson Printer Drivers      | (path not disclosed; typical ProgramData\Epson or spool driver dirs) | spoolsv.exe / PrintIsolationHost.exe | CWE-276 | DLL overwrite → SYSTEM         |
+| CVE-2025-42598| Epson Printer Drivers      | C:\ProgramData\EPSON\EPSON <serie> Series Dlls        | spoolsv.exe / PrintIsolationHost.exe | CWE-276 | DLL overwrite → SYSTEM      |
 | CVE-2019-19363| Ricoh Printer Drivers      | C:\ProgramData\RICOH_DRV\                        | PrintIsolationHost.exe           | CWE-264*| DLL planting → SYSTEM           |
 | CVE-2025-1729 | Lenovo TrackPoint          | C:\ProgramData\Lenovo\TPQM\Assistant             | TPQMAssistant.exe                |         | DLL Hijacking, Schtasks         |
 | CVE-2020-13885| Citrix Workspace App       | %PROGRAMDATA%\Citrix\Citrix Workspace ####\webio.dll | Citrix services / uninstall     | CWE-276 | DLL planting → SYSTEM           |
