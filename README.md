@@ -3,8 +3,12 @@
 Release of some of the presentation material and queries will happen after 12 september 2025.
 Meanwhile check out this outstanding webinar about windows local privilege escalation which will assist you further on.
 
-### Webinar - Windows Client Privilege Escalation - a must to watch, specially the ACL parts. ⭐
+### Webinar
+#### Windows Client Privilege Escalation - a must to watch, specially the ACL file/folder parts. ⭐
 - https://www.youtube.com/watch?v=EG2Mbw2DVnU&t=2411s
+#### Spencers Windows Endpoint Misconfigs ⭐
+Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And Tasks) - passsword P3yGQ+1y
+- https://go.spenceralessi.com/windowsmisconfigsreplay
 
 ### Other related to Windows Privilege Escalation.
 - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
@@ -22,7 +26,8 @@ Meanwhile check out this outstanding webinar about windows local privilege escal
 ### Other types of vulnerabilities
 * Search in webserver logs for parameters (language=en.html) that shows file inclusion to test for LFI/RFI
 * Search for application logs for SQL related errors that shows errors on bad charachters..
-* AD attributes (example event.code:"5136" and Attribute:"msDS-KeyCredentialLink") that are commonly abused. Find misconfigurations and harden AD. 
+* AD attributes (example event.code:"5136" and Attribute:"msDS-KeyCredentialLink") that are commonly abused. Find misconfigurations and harden AD.
+* Linux
 etc.. etc..
 
 ### Software installed in C-root drive. (not covered in presentation) ⭐
