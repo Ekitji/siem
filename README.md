@@ -1,7 +1,7 @@
 # Offensive SIEM
 ## Coming soon
 Release of some of the presentation material and queries will happen after 12 september 2025.
-Meanwhile check out this outstanding webinar about windows local privilege escalation which will assist you further on.
+Meanwhile check out the outstanding webinars about windows local privilege escalation and windows endpoint misconfigurations which will assist you further on.
 
 ### Webinar
 #### Windows Client Privilege Escalation - a must to watch, specially the ACL file/folder parts. ⭐
