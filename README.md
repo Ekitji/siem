@@ -104,6 +104,7 @@ check if the executable tries to load any dlls that do not exist. If so, create 
 If a service is spawning the process and if its not possible to replace binary, the binary does not try to load any missing DLLs. Dont give up - maybe the path is unquoted and you can use that? 
 
 ## Example of some public windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
+To show you how common it is with misconfigured third party software.
 | CVE           | Vendor / Product           | Path(s) / File(s)                                | Loads as SYSTEM                  | CWE     | Notes                          |
 |---------------|----------------------------|--------------------------------------------------|----------------------------------|---------|--------------------------------|
 | CVE-2025-42598| Epson Printer Drivers      | C:\ProgramData\EPSON\EPSON <serie> Series Dlls        | spoolsv.exe / PrintIsolationHost.exe | CWE-276 | DLL overwrite → SYSTEM      |
