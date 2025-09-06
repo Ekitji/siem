@@ -31,7 +31,7 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 * Linux
 etc.. etc..
 
-### Software installed in C-root drive. (not covered in presentation) ⭐
+### Software installed in C-root drive. ⭐
 Make a process creation query using event.code 1 from SYSMON OR event.code 4688 (or the event.codes for services, schedule tasks, DLL load from C-root subfolders)
 Look for applications that are installed in C:\ root drive
 
