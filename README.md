@@ -8,7 +8,7 @@ Meanwhile check out the outstanding webinars about windows local privilege escal
 a must to watch, specially the ACL for binaries, services and schedule tasks. 
 - https://www.youtube.com/watch?v=EG2Mbw2DVnU&t=2411s
 #### Spencers Windows Endpoint Misconfigs ⭐
-Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And Tasks) - passsword P3yGQ+1y
+Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And Tasks) - passsword: P3yGQ+1y
 - https://go.spenceralessi.com/windowsmisconfigsreplay
 
 ### Other related to Windows Privilege Escalation.
