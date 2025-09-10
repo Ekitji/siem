@@ -44,6 +44,7 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 # Centralized Application Deployment
 
 ## Potential Local Privilege Escalation - Process Creation by SYSTEM in User-Writable Paths ⭐
+### Catches also none Centralized application deployments, its more a generic query that also catches schtasks or services as parent process.
 ```
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*))
 OR
