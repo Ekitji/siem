@@ -24,16 +24,16 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
 
-# DLL Sideloading
+# DLL Hijacking
+
+## Potential Local Privilege Escalation - Generic DLL Load from User-Writable Paths ⭐
+```
+(event.provider: Microsoft-Windows-Sysmon AND event.code: 7 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\*) AND file.extension: (dll OR DLL))
+```
 
 ## Potential Local Privilege Escalation - Printer DLL Load from User-Writable Paths
 ```
 ((event.provider: Microsoft-Windows-Sysmon AND event.code: 7 AND user.name: SYSTEM AND process.name: (PrintIsolationHost.exe OR spoolsv.exe)) AND NOT file.path: (C\:\\Windows\\System32\\* OR  C\:\\Program\ Files*))
-```
-
-## Potential Local Privilege Escalation - Generic DLL Load from User-Writable Paths
-```
-(event.provider: Microsoft-Windows-Sysmon AND event.code: 7 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\*) AND file.extension: (dll OR DLL))
 ```
 
 ## Potential Local Privilege Escalation - DLL Load from Temp Directory
@@ -43,7 +43,7 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 
 # Centralized Application Deployment
 
-## Potential Local Privilege Escalation - Process Creation by SYSTEM in User-Writable Paths
+## Potential Local Privilege Escalation - Process Creation by SYSTEM in User-Writable Paths ⭐
 ```
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*))
 OR
@@ -63,7 +63,7 @@ process.name: unins*
 AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\*) AND file.extension: (cmd OR bat OR ps1 OR vbs))
 ```
 
-## Potential Local Privilege Escalation - BAT Files Executed from ProgramData
+## Potential Local Privilege Escalation - BAT Files Executed from ProgramData ⭐
 ```
 (event.provider: Microsoft-Windows-Sysmon AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.command_line: *ProgramData* AND process.command_line: /.*[Bb][Aa][Tt].*/ AND process.name: cmd.exe)
 (event.code: 4688 AND winlog.event_data.TokenElevationType: "%%1936" AND process.command_line: *ProgramData* AND process.command_line: /.*[Bb][Aa][Tt].*/ AND process.name: cmd.exe)
@@ -71,7 +71,7 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 
 # C-Root Folder
 
-## Potential local Privilege escalation vulnerability found - Process Creation by SYSTEM in C-Root subfolder
+## Potential local Privilege escalation vulnerability found - Process Creation by SYSTEM in C-Root subfolder ⭐
 ```
 ((event.code: 4688 AND winlog.event_data.TokenElevationType: "%%1936" AND winlog.event_data.MandatoryLabel: "S-1-16-16384") OR
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System))
