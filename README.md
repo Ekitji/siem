@@ -113,6 +113,24 @@ check if the executable tries to load any dlls that do not exist. If so, create 
 
 If a service is spawning the process and if its not possible to replace binary, the binary does not try to load any missing DLLs. Dont give up - maybe the path is unquoted and you can use that? 
 
+## Uninstall processes
+Its likely that if a user can trigger an installation, they can also trigger a uninstallation. Uninstall processes are of interest regardles of where the filepath is.
+If the ACL is not correct - a binary replacement will likely cause trouble.
+
+### Example of uninstall process names
+We are only covering unins*
+#### Common Generic Names
+´´´
+uninstall.exe – Most generic and widely used.
+unins000.exe, unins001.exe – Common with Inno Setup installers.
+unwise.exe – Often used by older Wise Installer packages.
+uninst.exe – Shortened version, often found in legacy software.
+uninstaller.exe – Slightly longer, descriptive variant.
+remove.exe – Sometimes used for minimal installers.
+setup.exe (with /uninstall or /remove parameter) – Some apps reuse the installer executable for uninstallation.
+appname_uninstall.exe (e.g., chrome_uninstall.exe)
+´´´
+
 ## Example of some public windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
 To show you how common it is with misconfigured third party software.
 | CVE           | Vendor / Product           | Path(s) / File(s)                                | Loads as SYSTEM                  | CWE     | Notes                          |
