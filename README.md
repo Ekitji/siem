@@ -4,7 +4,8 @@ See above - queries.md file
 
 ### General information
 We hope that you liked the presentation. Ping us if you (i would say when you) find vulnerabilities by using this method. A simple message like "one of your queries cathed good stuff".. is more then enough :)
-The repo will assist you in having offensive mindset.
+The repo will assist you in having offensive mindset. We have included the most interesting ACL related parts and have tips & tricks.
+
 Check out the outstanding webinars about windows local privilege escalation and windows endpoint misconfigurations which will assist you further on. There are more areas to look into.. This is only the starting point. If you build good queries in other areas - please share it with us so more in the community can use them.
 
 The queries with ⭐ mark is extra highly relevant.
