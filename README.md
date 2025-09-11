@@ -118,6 +118,7 @@ If a service is spawning the process and if its not possible to replace binary, 
 ## Uninstall processes
 Its likely that if a user can trigger an installation, they can also trigger a uninstallation. Uninstall processes are of interest regardles of where the filepath is.
 If the ACL is not correct - a binary replacement will likely cause trouble.
+query also for file creation of typical uninstall files by using Sysmon event.code:11. 
 
 ### Example of uninstall process names
 We are only covering unins*
