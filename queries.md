@@ -53,6 +53,7 @@ OR
 ```
 
 ## Potential Local Privilege Escalation - Uninstall Process Creation
+### add other typical uninstall process.names to the query, you can read the README.MD to get more examples.
 ```
 process.name: unins*
 ```
