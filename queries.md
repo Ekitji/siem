@@ -65,6 +65,7 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 ```
 
 ## Potential Local Privilege Escalation - BAT Files Executed from ProgramData ⭐
+### Dont forget to create the query for ps1 and other script files
 ```
 (event.provider: Microsoft-Windows-Sysmon AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.command_line: *ProgramData* AND process.command_line: /.*[Bb][Aa][Tt].*/ AND process.name: cmd.exe)
 (event.code: 4688 AND winlog.event_data.TokenElevationType: "%%1936" AND process.command_line: *ProgramData* AND process.command_line: /.*[Bb][Aa][Tt].*/ AND process.name: cmd.exe)
