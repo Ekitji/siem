@@ -7,6 +7,7 @@
 ```
 
 ## Potential Local Privilege Escalation - Service Created in User-Writable Path
+### Event.code 7045 query catches also none SYSTEM services. 
 ```
 (event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4697 AND winlog.logon.id: 0x3e7 AND winlog.event_data.ServiceFileName: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\Windows\\Temp\\*)) OR (event.provider: "Service Control Manager" AND event.code: 7045 AND winlog.event_data.ImagePath: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\Windows\\Temp\\*))
 ```
