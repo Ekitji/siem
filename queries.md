@@ -24,6 +24,10 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
+## Potential Local Privilege Escalation - Scheduled Task Binaries from User-Writable Path
+```
+(event.provider: ”Microsoft-Windows-TaskScheduler” AND event.code: 20*  AND  winlog.event_data.ActionName: (*ProgramData* OR *C\:\\Users\\*) AND NOT winlog.event_data.TaskName: \\Microsoft\\*)
+```
 
 # DLL Hijacking
 
