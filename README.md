@@ -28,7 +28,7 @@ a must to watch, specially the ACL for binaries, services and schedule tasks.
 #### Spencers Windows Endpoint Misconfigs ⭐
 Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And Tasks)
 - https://go.spenceralessi.com/windowsmisconfigsreplay
-##### passsword: P3yGQ+1y
+##### password: P3yGQ+1y
 
 ### Other related to Windows Privilege Escalation.
 - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
