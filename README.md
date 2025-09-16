@@ -134,21 +134,21 @@ query also for file creation of typical uninstall files by using Sysmon event.co
 We are only covering unins*
 #### Common Generic Names
 
-                    uninstall.exe – Most generic and widely used.
-                    unins000.exe, unins001.exe – Common with Inno Setup installers.
-                    unwise.exe – Often used by older Wise Installer packages.
-                    uninst.exe – Shortened version, often found in legacy software.
-                    uninstaller.exe – Slightly longer, descriptive variant.
-                    remove.exe – Sometimes used for minimal installers.
-                    setup.exe (with /uninstall or /remove parameter) – Some apps reuse the installer executable for uninstallation.
-                    appname_uninstall.exe (e.g., chrome_uninstall.exe)
-                    update.exe (with --uninstall) – Seen with apps like Slack or Discord using Squirrel installers.
+          uninstall.exe – Most generic and widely used.
+          unins000.exe, unins001.exe – Common with Inno Setup installers.
+          unwise.exe – Often used by older Wise Installer packages.
+          uninst.exe – Shortened version, often found in legacy software.
+          uninstaller.exe – Slightly longer, descriptive variant.
+          remove.exe – Sometimes used for minimal installers.
+          setup.exe (with /uninstall or /remove parameter) – Some apps reuse the installer executable for uninstallation.
+          appname_uninstall.exe (e.g., chrome_uninstall.exe)
+          update.exe (with --uninstall) – Seen with apps like Slack or Discord using Squirrel installers.
 
 #### Patterns Worth Considering
 
-                    *_uninstall.exe – Many apps prepend the app name, e.g., teams_uninstall.exe, zoom_uninstall.exe.
-                    *_cleanup.exe – Removal tools often have cleanup variants, e.g., driver_cleanup.exe.
-                    *_remover.exe – Another common AV/vendor naming style.
+          *_uninstall.exe – Many apps prepend the app name, e.g., teams_uninstall.exe, zoom_uninstall.exe.
+          *_cleanup.exe – Removal tools often have cleanup variants, e.g., driver_cleanup.exe.
+          *_remover.exe – Another common AV/vendor naming style.
 
 
 ## Example of some public windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
