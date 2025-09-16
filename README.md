@@ -120,7 +120,10 @@ You will likely need to whitelist the queries. Make your hunt, fine tune the que
 If a binary replacement is not possible because of correct ACL. Check folder permissions and if you have permissions to write files
 check if the executable tries to load any dlls that do not exist. If so, create them and you have your code execution.
 
-If a service is spawning the process and if its not possible to replace binary, the binary does not try to load any missing DLLs. Dont give up - maybe the path is unquoted and you can use that? 
+If a service is spawning the process and if its not possible to replace binary, the binary does not try to load any missing DLLs. Dont give up - maybe the path is unquoted and you can use that?
+
+Build your queries layer on layer.. so check for service/schedule task creations, check for the process creation with parent as services or schtasks. Its possible that some system creates the service or schedule task but
+the binary path etc does not exist and the process creation never happens. But the vulnerability is still there.
 
 ## Uninstall processes
 Its likely that if a user can trigger an installation, they can also trigger a uninstallation. Uninstall processes are of interest regardles of where the filepath is.
