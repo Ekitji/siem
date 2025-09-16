@@ -10,7 +10,7 @@ The repo will assist you in having offensive mindset.
 
 Repo is to share the material and queries that we talked about in our presentation:
 
-
+#### Offensive SIEM - When The Blue Team Switches Perspective
 ⭐ https://www.youtube.com/watch?v=5nfL_4ek4dY
 
 We have included the most interesting ACL related parts and have tips & tricks.
