@@ -119,7 +119,8 @@ You will likely need to whitelist the queries. Make your hunt, fine tune the que
 
 ## Tips & Tricks
 If a binary replacement is not possible because of correct ACL. Check folder permissions and if you have permissions to write files
-check if the executable tries to load any dlls that do not exist. If so, create them and you have your code execution.
+check if the executable tries to load any dlls that do not exist. If so, create them and you have your code execution. If binary replacement is not possible because its a running process. Check possible DLL sideloading or check if you as a regular user
+have permissions to restart the service it self. Another way is to check if you as a regular user can perform a "shutdown" that you escape in last second. A shutdown initiation stops processes and if you break out from it, you may be able to replace the binary.
 
 If a service is spawning the process and if its not possible to replace binary, the binary does not try to load any missing DLLs. Dont give up - maybe the path is unquoted and you can use that?
 
