@@ -40,8 +40,9 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 * weak passwords in registry  - that are not following best practices / policies
 * AlwaysInstallElevated in Registry
 * Windows Privileges - Look at 4672 (logon with special privileges) And 4704/4705 (assignment/removal of rights)
-* etc..
+* Event code 5136 and 5137, AD objects.. look in to the fields: description, info and adminComment, if they have any plaintext passwords.
 * Do not assume that Program Files and similar admin-protected directories always have correct ACLs (Access Control Lists). It does happen that applications set incorrect default permissions and are far too permissive. CWE-732, CWE-284, CWE-276
+* etc..
 
 ### Other types of vulnerabilities
 * Search in webserver logs for parameters (language=en.html) that shows file inclusion to test for LFI/RFI
@@ -130,6 +131,8 @@ If a service is spawning the process and if its not possible to replace binary, 
 
 Build your queries layer on layer.. so check for service/schedule task creations, check for the process creation with parent as services or schtasks. Its possible that some system creates the service or schedule task but
 the binary path etc does not exist and the process creation never happens. But the vulnerability is still there.
+
+To reduce query load and probably whitelisting.. it may be a good idea to have queries separated for clients/servers. So a set of queries only used for the cliend endpoints and same set used for server endpoints.
 
 ## Uninstall processes
 Its likely that if a user can trigger an installation, they can also trigger a uninstallation. Uninstall processes are of interest regardles of where the filepath is.
