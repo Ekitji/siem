@@ -53,6 +53,11 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 * Linux
 etc.. etc..
 
+## Other links ⭐
+- https://www.securit360.com/blog/securing-windows-common-misconfigurations-that-give-attackers-the-advantage/
+- https://offsec.blog/hidden-danger-how-to-identify-and-mitigate-insecure-windows-services/
+
+
 ### Software installed in C-root drive. ⭐
 Make a process creation query using event.code 1 from SYSMON OR event.code 4688 (or the event.codes for services, schedule tasks, DLL load from C-root subfolders)
 Look for applications that are installed in C:\ root drive
@@ -161,6 +166,23 @@ We are only covering unins*
           *_cleanup.exe – Removal tools often have cleanup variants, e.g., driver_cleanup.exe.
           *_remover.exe – Another common AV/vendor naming style.
 
+## Script files
+### Consider query for the ones in the list
+| Extension | Language / Type           | Purpose / Usage                                         | Execution Context                                          |
+|-----------|---------------------------|---------------------------------------------------------|------------------------------------------------------------|
+| .bat      | Batch Script               | Legacy command-line automation tasks, simple scripts     | `cmd.exe` (Command Prompt)                                  |
+| .cmd      | Batch Script (NT style)    | Similar to `.bat`, preferred on NT-based systems         | `cmd.exe` (Command Prompt)                                  |
+| .vbs      | VBScript                   | Automation tasks, logon scripts, admin scripts           | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
+| .vbe      | VBScript (encoded)         | Encrypted version of `.vbs` for obfuscation              | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
+| .ps1      | PowerShell Script          | Modern Windows automation and configuration tasks       | PowerShell (`powershell.exe`, `pwsh.exe`)                   |
+| .js       | JScript                    | Microsoft’s version of JavaScript for WSH tasks          | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
+| .jse      | JScript (encoded)          | Encrypted version of `.js` for obfuscation               | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
+| .wsf      | Windows Script File (XML)  | Mix VBScript, JScript, other scripts in XML format       | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
+| .wsh      | Windows Script Host Settings | Configuration settings for WSH scripts                  | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
+| .jar      | Java Archive               | Java applications packaged as a single file             | `java.exe` (console) / `javaw.exe` (no console window)       |
+
+
+
 
 ## Example of some public windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
 To show you how common it is with misconfigured third party software.
@@ -188,6 +210,3 @@ To show you how common it is with misconfigured third party software.
 | CVE-2025-3224 | Docker Desktop (Windows)   | C:\ProgramData\Docker\config\                    | Updater (high priv)              | CWE-276 | Creatable/deletable path → LPE   |
 
 
-## Other links ⭐
-- https://www.securit360.com/blog/securing-windows-common-misconfigurations-that-give-attackers-the-advantage/
-- https://offsec.blog/hidden-danger-how-to-identify-and-mitigate-insecure-windows-services/
