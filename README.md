@@ -29,6 +29,8 @@ a must to watch, specially the ACL for binaries, services and schedule tasks.
 Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And Tasks)
 - https://go.spenceralessi.com/windowsmisconfigsreplay
 ##### password: P3yGQ+1y
+- https://www.youtube.com/watch?v=JWopwNVP_to
+
 
 ### Other related to Windows Privilege Escalation.
 - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
@@ -186,3 +188,6 @@ To show you how common it is with misconfigured third party software.
 | CVE-2025-3224 | Docker Desktop (Windows)   | C:\ProgramData\Docker\config\                    | Updater (high priv)              | CWE-276 | Creatable/deletable path → LPE   |
 
 
+## Other links ⭐
+- https://www.securit360.com/blog/securing-windows-common-misconfigurations-that-give-attackers-the-advantage/
+- https://offsec.blog/hidden-danger-how-to-identify-and-mitigate-insecure-windows-services/
