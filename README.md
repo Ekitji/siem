@@ -76,9 +76,12 @@ Gives you and idea of which event codes to use and what you will see in the even
 
 ## Prerequisites
 Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11.
+ - https://github.com/SwiftOnSecurity/sysmon-config
+ - https://github.com/olafhartong/sysmon-modular
 
 Enabled Advanced auditing for some of the Windows events.
 For an example, process creation 4688 will likely need it to catch parent process name and not only the parent pid.
+
 Scheduled task - 4698 is not enabled by default.
 
 
