@@ -131,15 +131,13 @@ You will likely need to whitelist the queries. Make your hunt, fine tune the que
 
 ## Tips & Tricks
 If a binary replacement is not possible because of correct ACL. Check folder permissions and if you have permissions to write files
-check if the executable tries to load any dlls that do not exist. If so, create them and you have your code execution. If binary replacement is not possible because its a running process. Check possible DLL sideloading or check if you as a regular user
-have permissions to restart the service it self. Another way is to check if you as a regular user can perform a "shutdown" that you escape in last second. A shutdown initiation stops processes and if you break out from it, you may be able to replace the binary.
+check if the executable tries to load any dlls that do not exist. If so, create them and you have your code execution. If binary replacement is not possible because its a running process. Check possible DLL sideloading or check if you as a regular user have permissions to restart the service it self. Another way is to check if you as a regular user can perform a "shutdown" that you escape in last second. A shutdown initiation stops processes and if you break out from it, you may be able to replace the binary of the terminated process. If the service is in Autostart mode and you dont have permissions to start/stop the service, what you can check is if you have SeShutdownPrivilege and if so initiate a reboot with shutdown /r /t 0.
 
-If a service is spawning the process and if its not possible to replace binary, the binary does not try to load any missing DLLs. Dont give up - maybe the path is unquoted and you can use that?
+If a service is spawning the process and if its not possible to replace binary, the binary does not try to load any missing DLLs. Dont give up - maybe the path is unquoted and you have write permissions and you can use that?
 
-Build your queries layer on layer.. so check for service/schedule task creations, check for the process creation with parent as services or schtasks. Its possible that some system creates the service or schedule task but
-the binary path etc does not exist and the process creation never happens. But the vulnerability is still there.
+Build your queries layer on layer.. so check for service/schedule task creations, check for the process creation with parent as services or schtasks. Its possible that some system creates the service or schedule task but the binary path etc does not exist and the process creation never happens. But the vulnerability is still there.
 
-To reduce query load and probably whitelisting.. it may be a good idea to have queries separated for clients/servers. So a set of queries only used for the cliend endpoints and same set used for server endpoints.
+To reduce query load (performance) and probably whitelisting.. it may be a good idea to have queries separated for clients/servers. So a set of queries only used for the client endpoints and same set used for server endpoints.
 
 ## Uninstall processes
 Its likely that if a user can trigger an installation, they can also trigger a uninstallation. Uninstall processes are of interest regardles of where the filepath is.
