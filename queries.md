@@ -65,7 +65,12 @@ OR
 ## Potential Local Privilege Escalation - Uninstall Process Creation
 ### add other typical uninstall process.names to the query, you can read the README.MD to get more examples.
 ```
-process.name: unins*
+process.name: (uninstall.exe OR unins.exe OR unins000.exe OR unins001.exe OR unwise.exe OR uninst.exe OR uninstaller.exe OR remove.exe OR *_uninstall.exe OR *_cleanup.exe OR *_remover.exe)
+```
+
+## Potential Local Privilege Escalation - Uninstall File Creation by SYSTEM user
+```
+event.provider: "Microsoft-Windows-Sysmon" AND event.code: 11 AND user.name: SYSTEM AND file.name: uninstall.exe OR file.name: (Uninstall.exe OR unins.exe OR unins000.exe OR unins001.exe OR unwise.exe OR uninst.exe OR uninstaller.exe OR remove.exe OR *_uninstall.exe OR *_cleanup.exe OR *_remover.exe)
 ```
 
 # Scripts
