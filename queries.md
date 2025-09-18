@@ -13,7 +13,7 @@
 ```
 
 ## Potential Local Privilege Escalation - Unquoted Service Path
-#### check file.path if it contains spaces and if so, check ACL for the folders if you can write files to them.
+#### Check file path if it contains spaces and if so, check ACL for the folders if you can write files to them.
 ```
 ((event.provider: "Service Control Manager" AND event.code: 7045 AND winlog.event_data.ImagePath:*\ * AND NOT winlog.event_data.ImagePath:\"* ) OR (event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4697 AND winlog.event_data.ServiceFileName:*\ * AND NOT winlog.event_data.ServiceFileName:\"*)) AND NOT winlog.event_data.ServiceFileName: (C\:\\WINDOWS\\system32\\* OR C\:\\WINDOWS\\System32\\* OR C\:\\Windows\\system32\\* OR C\:\\Windows\\System32\\* OR C\:\\windows\\system32\\* OR \%SystemRoot\%\\System32\\* OR 
 C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\system32\\* OR \%SystemRoot\%\\System32\\* OR C\:\\windows\\system32\\*)
