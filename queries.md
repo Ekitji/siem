@@ -7,7 +7,7 @@
 ```
 
 ## Potential Local Privilege Escalation - Service Created in User-Writable Path
-### Event.code 7045 query catches also none SYSTEM services. 
+#### Event.code 7045 query catches also none SYSTEM services. 
 ```
 (event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4697 AND winlog.logon.id: 0x3e7 AND winlog.event_data.ServiceFileName: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\Windows\\Temp\\*)) OR (event.provider: "Service Control Manager" AND event.code: 7045 AND winlog.event_data.ImagePath: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\Windows\\Temp\\*))
 ```
@@ -21,7 +21,7 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 # Schedule Tasks
 
 ## Potential Local Privilege Escalation - Scheduled Task from User-Writable Path Created as SYSTEM
-### User-Writable Paths in the Arguments
+#### User-Writable Paths in the Arguments
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
@@ -30,7 +30,7 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
 ## Potential Local Privilege Escalation - Scheduled Task Binaries from User-Writable Path
-### Use event.code 101 to get User Context → the account under which the task is actually running as (if its the SYSTEM user)
+#### Use event.code 101 to get User Context → the account under which the task is actually running as (if its the SYSTEM user)
 ```
 (event.provider: "Microsoft-Windows-TaskScheduler" AND event.code: 20*  AND  winlog.event_data.ActionName: (*ProgramData* OR *C\:\\Users\\*) AND NOT winlog.event_data.TaskName: \\Microsoft\\*)
 ```
@@ -55,7 +55,7 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 # Centralized Application Deployment
 
 ## Potential Local Privilege Escalation - Process Creation by SYSTEM in User-Writable Paths ⭐
-### Catches also none Centralized application deployments, its more a generic query that also catches schtasks or services as parent process.
+#### Catches also none Centralized application deployments, its more a generic query that also catches schtasks or services as parent process.
 ```
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*))
 OR
@@ -63,7 +63,7 @@ OR
 ```
 
 ## Potential Local Privilege Escalation - Uninstall Process Creation
-### add other typical uninstall process.names to the query, you can read the README.MD to get more examples.
+#### add other typical uninstall process.names to the query, you can read the README.MD to get more examples.
 ```
 process.name: (uninstall.exe OR unins.exe OR unins000.exe OR unins001.exe OR unwise.exe OR uninst.exe OR uninstaller.exe OR remove.exe OR *_uninstall.exe OR *_cleanup.exe OR *_remover.exe)
 ```
@@ -82,7 +82,7 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 ```
 
 ## Potential Local Privilege Escalation - BAT Files Executed from ProgramData ⭐
-### Dont forget to create the query for powershell + ps1 and other script engines/files, will likely also catch logon scripts.
+#### Dont forget to create the query for powershell + ps1 and other script engines/files, will likely also catch logon scripts.
 ```
 (event.provider: Microsoft-Windows-Sysmon AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.command_line: *ProgramData* AND process.command_line: /.*[Bb][Aa][Tt].*/ AND process.name: cmd.exe)
 (event.code: 4688 AND winlog.event_data.TokenElevationType: "%%1936" AND process.command_line: *ProgramData* AND process.command_line: /.*[Bb][Aa][Tt].*/ AND process.name: cmd.exe)
