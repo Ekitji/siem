@@ -147,7 +147,6 @@ If the ACL is not correct - a binary replacement will likely cause trouble.
 query also for file creation of typical uninstall files by using Sysmon event.code:11. 
 
 ### Example of uninstall process names
-We are only covering unins*
 #### Common Generic Names
 
           uninstall.exe – Most generic and widely used.
