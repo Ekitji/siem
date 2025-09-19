@@ -32,11 +32,7 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
-## Potential Local Privilege Escalation - Scheduled Task Binaries from User-Writable Path
-#### Use event.code 101 to get User Context → the account under which the task is actually running as (if its the SYSTEM user)
-```
-(event.provider: "Microsoft-Windows-TaskScheduler" AND event.code: 20*  AND  winlog.event_data.ActionName: (*ProgramData* OR *C\:\\Users\\*) AND NOT winlog.event_data.TaskName: \\Microsoft\\*)
-```
+
 ## Potential Local Privilege Escalation - Scheduled Task from User-Writable Path Created as Administrator
 #### User-Writable Paths in the Arguments (Administrator User)
 ```
