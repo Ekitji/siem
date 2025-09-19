@@ -1,16 +1,17 @@
 
 # Services
 
-## Potential Local Privilege Escalation - Service Executables in User-Writable Paths
-```
-(event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.MandatoryLabel: "S-1-16-16384" AND process.parent.name: services.exe AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*)) OR (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.parent.name: services.exe AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*))
-```
-
 ## Potential Local Privilege Escalation - Service Created in User-Writable Path
 #### Event.code 7045 query catches also none SYSTEM services. 
 ```
 (event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4697 AND winlog.logon.id: 0x3e7 AND winlog.event_data.ServiceFileName: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\Windows\\Temp\\*)) OR (event.provider: "Service Control Manager" AND event.code: 7045 AND winlog.event_data.ImagePath: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\Windows\\Temp\\*))
 ```
+
+## Potential Local Privilege Escalation - Service Executables in User-Writable Paths
+```
+(event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.MandatoryLabel: "S-1-16-16384" AND process.parent.name: services.exe AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*)) OR (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.parent.name: services.exe AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*))
+```
+
 
 ## Potential Local Privilege Escalation - Unquoted Service Path
 #### Check file path if it contains spaces and if so, check ACL for the folders if you can write files to them.
