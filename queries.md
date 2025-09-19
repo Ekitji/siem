@@ -34,6 +34,7 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 ```
 
 ## Potential Local Privilege Escalation - Scheduled Task from User-Writable Path Created as Administrator
+### “Highest available” only elevates if the task’s run-as account is an Administrator. If the run-as account is a standard user, there’s no higher integrity to elevate to, so the task runs at the user’s normal Medium integrity—regardless of the “Run with highest privileges” checkbox
 #### User-Writable Paths in the Arguments (Administrator User)
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
