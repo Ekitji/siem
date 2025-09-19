@@ -1,6 +1,9 @@
 # Offensive SIEM
 ## Queries
-See above - queries.md file
+See above - queries.md file.
+We dont spare any queries and are releasing all so
+some new queries added ~ 18 september 2025.
+Schtasks related with split for binary/argument and other event code for Schtasks.
 
 ## Ping us if/when you find something 
 We hope that you liked the presentation. Ping us if you (i would say when you) find vulnerabilities by using this method. A simple message like "one of your queries cathed good stuff".. is more then enough :) do it by commiting to the ping.md file or contact us in alternative ways! We would be happy to share your success!
