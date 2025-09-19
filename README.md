@@ -1,6 +1,7 @@
 # Offensive SIEM
 ## Queries
 See above - queries.md file.
+
 We dont spare any queries and are releasing all so
 some new queries added ~ 18 september 2025.
 Schtasks related with split for binary/argument and other event code for Schtasks.
