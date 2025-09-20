@@ -84,7 +84,8 @@ The issue with applications that are installed in C-root folder is that it has p
 Gives you an idea of which event codes to use what you will see in the event code it self.
 - https://detect.fyi/threat-hunting-suspicious-windows-service-names-2f0dceea204c
 
-### Schedule taks - use offensive mindset (we only covered SYSTEM user execution but Admin users are also of interest) ⭐
+### Schedule taks - use offensive mindset ⭐
+#### Look for tasks running as SYSTEM or Administrator
 Gives you and idea of which event codes to use and what you will see in the event code it self.
 - https://www.thedfirspot.com/post/evil-on-schedule-investigating-malicious-windows-tasks
 
