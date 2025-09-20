@@ -1,4 +1,6 @@
 # Offensive SIEM
+Practical techniques for leveraging SIEM as an offensive discovery tool, helping defenders think like attackers to strengthen security from within.
+
 ## Queries
 See above - queries.md file.
 
