@@ -143,6 +143,10 @@ Build your queries layer on layer.. so check for service/schedule task creations
 
 To reduce query load (performance) and probably whitelisting.. it may be a good idea to have queries separated for clients/servers. So a set of queries only used for the client endpoints and same set used for server endpoints.
 
+The generic process creation by SYSTEM is high value query. It catches alot of scenarios.. besides of services and schtask spawning child processes it also catches msiexec.exe spawning a child process. It also caches if a executable from c:\windows\ccmcache is spawning a child process from a userwritable path. If we where to order executables in vulnerability i would still say that services.exe is related to software misconfigurations and schtasks is more a administrator misconfiguration..
+
+If you have tried all queries and not got success.ful. if you want to hunt deeper, and do a litte bit more work - go for every child process of services.exe and schtasks.exe, regardles of where. Enumerate the enterprise and look for the ones in typical admin protected paths also (Program Files & Program Files (x86)). Its more common than you think that software vendors mess up the ACL even in typical protected paths.
+
 ## Uninstall processes
 Its likely that if a user can trigger an installation, they can also trigger a uninstallation. Uninstall processes are of interest regardles of where the filepath is.
 If the ACL is not correct - a binary replacement will likely cause trouble.
