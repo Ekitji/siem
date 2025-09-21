@@ -121,7 +121,7 @@ process.executable.wildcard: (C\:\\Program\ Files* OR C\:\\Windows* OR C\:\\User
 event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYSTEM AND NOT file.path.wildcard: (C\:\\Program\ Files* OR C\:\\Windows* OR C\:\\Users* OR C\:\\ProgramData*)
 ```
 
-# Other Queires - Layer on Layer
+# Other Queries - Layer on Layer coverage
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
 ```
 event.provider: "Microsoft-Windows-Sysmon" AND event.code: 5 AND user.name: SYSTEM AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*)
