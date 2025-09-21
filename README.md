@@ -45,8 +45,9 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 
 ### Example of interesting areas to look into that we have not covered.
 * weak passwords in command_line - that are not following best practices / policies
+* weak passwords or sensitive information in powershell admin scripts scriptblock event code: 4104. Search for strings"SecureString","PSCredential","Password", "passwd"......
 * weak passwords in registry  - that are not following best practices / policies
-* AlwaysInstallElevated in Registry
+* AlwaysInstallElevated in Registry, Autologons
 * Windows Privileges - Look at 4672 (logon with special privileges) And 4704/4705 (assignment/removal of rights)
 * Event code 5136 and 5137, AD objects.. look in to the fields: description, info and adminComment, if they have any plaintext passwords.
 * Do not assume that Program Files and similar admin-protected directories always have correct ACLs (Access Control Lists). It does happen that applications set incorrect default permissions and are far too permissive. CWE-732, CWE-284, CWE-276
