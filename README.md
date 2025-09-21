@@ -63,6 +63,7 @@ etc.. etc..
 ## Other links ⭐
 - https://www.securit360.com/blog/securing-windows-common-misconfigurations-that-give-attackers-the-advantage/
 - https://offsec.blog/hidden-danger-how-to-identify-and-mitigate-insecure-windows-services/
+- https://www.youtube.com/watch?v=EG78PbCMWpY
 
 
 ### Software installed in C-root drive. ⭐
