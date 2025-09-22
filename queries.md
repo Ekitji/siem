@@ -23,7 +23,7 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 ## Potential Local Privilege Escalation - Registry Service Executables in User-Writable Paths
 #### You need to identify what user the service is running as
 ```
-event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND winlog.event_data.TargetObject: HKLM\\System\\CurrentControlSet\\Services\\* AND winlog.event_data.Details: (*ProgramData OR *Users*) AND winlog.event_data.Details: *.\exe*
+event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND winlog.event_data.TargetObject: HKLM\\System\\CurrentControlSet\\Services\\* AND winlog.event_data.Details: (*ProgramData* OR *C\:\\Users*) AND winlog.event_data.Details: *.\exe*
 ```
 
 ## Potential Local Privilege Escalation - Registry Unquoted Service Path
