@@ -32,6 +32,8 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND winlog.event_data.TargetObject: HKLM\\System\\CurrentControlSet\\Services\\* AND winlog.event_data.Details: (*Program \Files*) AND NOT winlog.event_data.Details: \"*
 ```
 
+
+
 # Schedule Tasks
 
 ## Potential Local Privilege Escalation - Scheduled Task from User-Writable Path Created as SYSTEM
@@ -61,6 +63,8 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ```
 
 
+
+
 # DLL Hijacking
 
 ## Potential Local Privilege Escalation - Generic DLL Load from User-Writable Paths ⭐
@@ -77,6 +81,8 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ```
 (event.provider: Microsoft-Windows-Sysmon AND event.code: 7 AND user.name: SYSTEM AND file.path: (C\:\\Windows\\Temp\\*) AND file.extension: (dll OR DLL))
 ```
+
+
 
 
 # Centralized Application Deployment
@@ -101,6 +107,8 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 11 AND user.name: SYS
 ```
 
 
+
+
 # Scripts
 
 ## Potential Local Privilege Escalation - Script Files Created by SYSTEM in User-Writable Paths
@@ -117,6 +125,8 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 ```
 
 
+
+
 # C-Root Folder
 
 ## Potential local Privilege escalation vulnerability found - Process Creation by SYSTEM in C-Root subfolder ⭐
@@ -131,6 +141,8 @@ process.executable.wildcard: (C\:\\Program\ Files* OR C\:\\Windows* OR C\:\\User
 ```
 event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYSTEM AND NOT file.path.wildcard: (C\:\\Program\ Files* OR C\:\\Windows* OR C\:\\Users* OR C\:\\ProgramData*)
 ```
+
+
 
 # Other Queries - Layer on Layer coverage
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
