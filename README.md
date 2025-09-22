@@ -129,6 +129,12 @@ Here are some key ones worth noting:
 | **AD**    | Append Data / Add Subdirectory | On files: append data to the end of a file (cannot overwrite). On folders: create new subdirectories inside. |
 
 
+## False Positives
+#### Do your queries, fine tune them and in the end make alerts of them. 
+You may do some whitelisting (see below for typical paths in ProgramData). The idea is to query typical user writable paths but it happens that the (files or folders) have correct ACL set. If offensive mindset does not help to escalate privileges - whitelist them.
+Filter out the less interesting ones: the ones with correct ACL, randomized file.names (filter out the folder). We want to reduce the noice and have a baseline. Its important to do this after verifying that its not a vulnerability. So you dont miss a Scheduled task that is vulnerable on every client.
+
+
 ## Whitelisting
 You will likely need to whitelist the queries. Make your hunt, fine tune the queries and make alerts of them to catch new events that you have not looked into.
 ##### Will likely need whitelisting:
