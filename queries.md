@@ -29,7 +29,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ## Potential Local Privilege Escalation - Registry Unquoted Service Path
 #### You need to identify what user the service is running as and if there is spaces in the path
 ```
-event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND winlog.event_data.TargetObject: HKLM\\System\\CurrentControlSet\\Services\\* AND winlog.event_data.Details: (*Program \Files*
+event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND winlog.event_data.TargetObject: HKLM\\System\\CurrentControlSet\\Services\\* AND winlog.event_data.Details: (*Program \Files*) AND NOT winlog.event_data.Details: \"*
 ```
 
 # Schedule Tasks
