@@ -20,6 +20,17 @@
 C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\system32\\* OR \%SystemRoot\%\\System32\\* OR C\:\\windows\\system32\\*)
 ```
 
+## Potential Local Privilege Escalation - Registry Service Executables in User-Writable Paths
+#### You need to identify what user the service is running as
+```
+event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND winlog.event_data.TargetObject: HKLM\\System\\CurrentControlSet\\Services\\* AND winlog.event_data.Details: (*ProgramData OR *Users*) AND winlog.event_data.Details: *.\exe*
+```
+
+## Potential Local Privilege Escalation - Registry Unquoted Service Path
+#### You need to identify what user the service is running as and if there is spaces in the path
+```
+event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND winlog.event_data.TargetObject: HKLM\\System\\CurrentControlSet\\Services\\* AND winlog.event_data.Details: (*Program \Files*
+```
 
 # Schedule Tasks
 
@@ -34,7 +45,7 @@ C\:\\windows\\System32\\*) AND NOT winlog.event_data.ImagePath: (C\:\\WINDOWS\\s
 ```
 
 ## Potential Local Privilege Escalation - Scheduled Task from User-Writable Path Created as Administrator
-### “Highest available” only elevates if the task’s run-as account is an Administrator. If the run-as account is a standard user, there’s no higher integrity to elevate to, so the task runs at the user’s normal Medium integrity—regardless of the “Run with highest privileges” checkbox
+### "Highest available" only elevates if the task’s run-as account is an Administrator. If the run-as account is a standard user, there’s no higher integrity to elevate to, so the task runs at the user’s normal Medium integrity—regardless of the “Run with highest privileges” checkbox
 #### User-Writable Paths in the Arguments (Administrator User)
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
