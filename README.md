@@ -164,7 +164,8 @@ If you have tried all queries and not got successful. if you want to hunt deeper
 ## Uninstall processes
 Its likely that if a user can trigger an installation, they can also trigger a uninstallation. Uninstall processes are of interest regardles of where the filepath is.
 If the ACL is not correct - a binary replacement will likely cause trouble.
-query also for file creation of typical uninstall files by using Sysmon event.code:11. 
+Query also for file creation of typical uninstall files by using Sysmon event.code:11.
+We want to do this to catch every uninstaller without trusting the process creation events. This is because its not common that users actually do uninstallation of installed applications.. They just dont care about that and therefor it will be easier to miss some uninstall events that exists but never are triggered.
 
 ### Example of uninstall process names
 #### Common Generic Names
