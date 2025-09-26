@@ -146,6 +146,20 @@ You will likely need to whitelist the queries. Make your hunt, fine tune the que
       C:\ProgramData\Packages
       etc.
 
+Other ones that may need whitelisting, which may be common, is hardware related stuff that has randomized names..
+      
+
+## Methodology
+Dont forget to query in the timespan of your "Log retention period".
+A good Methodology is to query in the beginning a short time frime which i progressivly increasing.
+1) 1 day
+2) 1 week
+3) 2 weeks
+4) 1 month
+5) 2 months
+6) etc..
+
+Do you hunt and check the interesting ones and fine tune and whitelist.. in the end make alerts of them to catch new events..
 
 ## Tips & Tricks
 If a binary replacement is not possible because of correct ACL. Check folder permissions and if you have permissions to write files
