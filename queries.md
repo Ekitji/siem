@@ -151,7 +151,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 event.provider: "Microsoft-Windows-Sysmon" AND event.code: 5 AND user.name: SYSTEM AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*)
 ```
 ## Potential Local Privilege Escalation - Applocker Events by SYSTEM in User-Writable Paths
-#### Could be used if you dont have SYSMON set but will likely miss alots of DLL events. But is also good for catching DLL/EXE events in Program Files which SYSMON will likely miss.
+#### Depending on your Applocker configuration - Could be used to catch events related to DLL/EXE etc...alternative if you dont have SYSMON set but will likely miss alots of DLL events. Applocker could also be good for catching DLL/EXE events in Program Files which SYSMON will likely miss.
 ```
 event.provider: "Microsoft-Windows-AppLocker" AND event.code: [8000 TO 8005] AND (user.name: SYSTEM OR *\$) AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\*)
 ```
