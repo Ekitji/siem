@@ -134,7 +134,7 @@ Here are some key ones worth noting:
 
 ## False Positives
 #### Do your queries, fine tune them and in the end make alerts of them. 
-You may do some whitelisting (see below for typical paths in ProgramData). The idea is to query typical user writable paths but it happens that the (files or folders) have correct ACL set. If offensive mindset does not help to escalate privileges - whitelist them.
+You may need to do some whitelisting (see below for typical paths in ProgramData). The idea is to query typical user writable paths but it happens that the (files or folders) have correct ACL set. If offensive mindset does not help to escalate privileges - whitelist them.
 Filter out the less interesting ones: the ones with correct ACL, randomized file.names (filter out the folder). We want to reduce the noice and have a baseline. Its important to do this after verifying that its not a vulnerability. So you dont miss a Scheduled task that is vulnerable on every client.
 
 
@@ -146,12 +146,12 @@ You will likely need to whitelist the queries. Make your hunt, fine tune the que
       C:\ProgramData\Packages
       etc.
 
-Other ones that may need whitelisting, which may be common, is hardware related stuff that has randomized names..
+Other ones that may need whitelisting, which may be common, is hardware related drivers and similar stuff that has randomized names..
       
 
 ## Methodology
 Dont forget to query in the timespan of your "Log retention period".
-A good Methodology is to query in the beginning a short time frime which i progressivly increasing.
+A good Methodology is to query in the beginning a short time frame which is progressivly increasing.
 1) 1 day
 2) 1 week
 3) 2 weeks
@@ -173,7 +173,7 @@ To reduce query load (performance) and probably whitelisting.. it may be a good 
 
 The generic process creation by SYSTEM is high value query. It catches alot of scenarios.. besides of services and schtask spawning child processes it also catches msiexec.exe spawning a child process. It also caches if a executable from c:\windows\ccmcache is spawning a child process from a userwritable path. If we where to order executables in vulnerability i would still say that services.exe is related to software misconfigurations and schtasks is more a administrator misconfiguration..
 
-If you have tried all queries and not got successful. if you want to hunt deeper, and do a litte bit more work - go for every child process of services.exe and schtasks.exe, regardles of where. Enumerate the enterprise and look for the ones in typical admin protected paths also (Program Files & Program Files (x86)). Its more common than you think that software vendors mess up the ACL even in typical protected paths. Use the process creation events and the events for services and schedule tasks. For Schedule tasks - query every Command field and Argument field. The argument field may be pointing to a script file in user writable path or C-root. The command fields may be pointing to a binary that has insecure ACL.
+If you have tried all queries and did not got successful. if you want to hunt deeper, and do a litte bit more work - go for every child process of services.exe and schtasks.exe, regardless of where. Enumerate the enterprise and look for the ones in typical admin protected paths also (Program Files & Program Files (x86)). Its more common than you think that software vendors mess up the ACL even in typical protected paths. Use the process creation events and the events for services and schedule tasks. For Schedule tasks - query every Command field and Argument field. The argument field may be pointing to a script file in user writable path or C-root. The command fields may be pointing to a binary that has insecure ACL.
 
 ## Uninstall processes
 Its likely that if a user can trigger an installation, they can also trigger a uninstallation. Uninstall processes are of interest regardles of where the filepath is.
