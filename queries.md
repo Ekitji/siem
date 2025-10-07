@@ -146,7 +146,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 
 # Other Queries - Layer on Layer coverage
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
-#### Will also give you an idea if the process creation event query for the same process terminates and when
+#### Will also give you an idea for the process creation query when that process is terminated/exit.
 ```
 event.provider: "Microsoft-Windows-Sysmon" AND event.code: 5 AND user.name: SYSTEM AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*)
 ```
