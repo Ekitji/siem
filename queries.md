@@ -57,7 +57,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
 ## Potential Local Privilege Escalation - Scheduled Task Binaries from User-Writable Path
-#### Use event.code 101 to get User Context → the account under which the task is actually running as (if its the SYSTEM user)
+#### Use event.code (101 OR 102 OR 106) AND winlog.event_data.UserContext → the account under which the task is actually running as (if its the SYSTEM user)
 ```
 (event.provider: "Microsoft-Windows-TaskScheduler" AND event.code: 20*  AND  winlog.event_data.ActionName: (*ProgramData* OR *C\:\\Users\\*) AND NOT winlog.event_data.TaskName: \\Microsoft\\*)
 ```
