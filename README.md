@@ -30,7 +30,7 @@ The queries with ⭐ mark is extra highly relevant.
 The topics down below with ⭐ is really good content.
 
 
-### Webinara
+### Webinars
 #### Oddvar Moes Windows Client Privilege Escalation ⭐
 a must to watch, specially the ACL for binaries, services and schedule tasks. 
 - https://www.youtube.com/watch?v=EG2Mbw2DVnU
