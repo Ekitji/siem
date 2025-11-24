@@ -57,7 +57,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
 ## Potential Local Privilege Escalation - Scheduled Task executed in a elevated state (Administrator)
-#### Uses Sysmons event.code 1 to catch High integrity events, checking command_line will catch binar & arguments pointing to user writeable paths. May be also interesting to catch events in C:\ roots subfolders.
+#### Uses Sysmons event.code 1 to catch High integrity events, checking command_line will catch binary & arguments pointing to user writeable paths. May be also interesting to query and catch events in C:\ roots subfolders.
 ```
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND process.parent.name: svchost.exe AND process.parent.args: Schedule AND winlog.event_data.IntegrityLevel: High AND process.command_line: (*ProgramData* OR *Users* OR *Temp* OR *Tmp*))
 ```
