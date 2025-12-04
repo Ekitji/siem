@@ -44,7 +44,9 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 ### Other related to Windows Privilege Escalation.
 - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
 - https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_windows.html  
-- https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/ 
+- https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
+#### DLL Hijacking
+- https://itm4n.github.io/windows-dll-hijacking-clarified/
 
 ### Example of interesting areas to look into that we have not covered.
 * weak passwords in command_line - that are not following best practices / policies
