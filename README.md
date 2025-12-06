@@ -47,6 +47,8 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
 #### DLL Hijacking
 - https://itm4n.github.io/windows-dll-hijacking-clarified/
+#### SCCM / Software Center
+- https://blog.nviso.eu/2022/05/31/cve-farming-through-software-center-a-group-effort-to-flush-out-zero-day-privilege-escalations/
 
 ### Example of interesting areas to look into that we have not covered.
 * weak passwords in command_line - that are not following best practices / policies
@@ -69,6 +71,7 @@ etc.. etc..
 - https://www.securit360.com/blog/securing-windows-common-misconfigurations-that-give-attackers-the-advantage/
 - https://offsec.blog/hidden-danger-how-to-identify-and-mitigate-insecure-windows-services/
 - https://www.youtube.com/watch?v=EG78PbCMWpY
+- https://cloud.google.com/blog/topics/threat-intelligence/privileges-third-party-windows-installers/
 
 
 ### Software installed in C-root drive. ⭐
