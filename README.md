@@ -172,7 +172,7 @@ check if the executable tries to load any dlls that do not exist. If so, create 
 
 If a service is spawning the process and if its not possible to replace binary, the binary does not try to load any missing DLLs. Dont give up - maybe the path is unquoted and you have write permissions and you can use that?
 
-Build your queries layer on layer.. so check for service/schedule task creations, check for the process creation with parent as services or schtasks. Its possible that some system creates the service or schedule task but the binary path etc does not exist and the process creation never happens. But the vulnerability is still there and different events can be created related to it.
+Build your queries layer on layer.. so check for service/schedule task creations, check for the process creation with parent as services or schedule task related process (svchost with Schedule argument). Its possible that some system creates the service or schedule task but the binary path etc does not exist and the process creation never happens. But the vulnerability is still there and different events can be created related to it.
 
 To reduce query load (performance) and probably whitelisting.. it may be a good idea to have queries separated for clients/servers. So a set of queries only used for the client endpoints and same set used for server endpoints.
 
