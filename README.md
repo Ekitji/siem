@@ -228,6 +228,7 @@ To show you how common it is with misconfigured third party software.
 | CVE           | Vendor / Product           | Path(s) / File(s)                                | Loads as SYSTEM                  | CWE     | Notes                          |
 |---------------|----------------------------|--------------------------------------------------|----------------------------------|---------|--------------------------------|
 | CVE-2025-42598| Epson Printer Drivers      | C:\ProgramData\EPSON\EPSON <serie> Series Dlls        | spoolsv.exe / PrintIsolationHost.exe | CWE-276 | DLL overwrite → SYSTEM      |
+| CVE-2025-64669| Windows Admin Center       | C:\ProgramData\WindowsAdminCenter\Updater        | WindowsAdminCenterUpdater.exe    | CWE-276 | DLL Hijacking         |
 | CVE-2019-19363| Ricoh Printer Drivers      | C:\ProgramData\RICOH_DRV\                        | PrintIsolationHost.exe           | CWE-264*| DLL planting → SYSTEM           |
 | CVE-2025-1729 | Lenovo TrackPoint          | C:\ProgramData\Lenovo\TPQM\Assistant             | TPQMAssistant.exe                |         | DLL Hijacking, Schtasks         |
 | CVE-2025-47962 | Microsoft Windows SDK     | C:\Microsoft Shared\Phone Tools\CoreCon\11.0\bin  | cryptsp.dll                     | CWE-284  | DLL Hijacking, Service         |
@@ -238,8 +239,7 @@ To show you how common it is with misconfigured third party software.
 | CVE-2019-14935| 3CX Phone for Windows      | %PROGRAMDATA%\3CXPhone for Windows\PhoneApp\     | Startup / elevated context       | CWE-732 | Everyone:Full Control           |
 | CVE-2024-54131| Kolide Launcher            | C:\ProgramData\Kolide\Launcher-[ID]\data\        | Launcher service                 | CWE-276 | Weak perms → DLL load           |
 | CVE-2021-28098| Forescout SecureConnector  | %PROGRAMDATA%\ForeScout SecureConnector\         | SecureConnector service          | CWE-264*| Writable log → symlink → SYSTEM |
-| CVE-2022-31262| GOG Galaxy (Windows)       | %ProgramData%\GOG.com\                           | Galaxy service                   | CWE-276 | Service EXE replacement         |
-| CVE-2019-15752| Docker Desktop (Windows)   | %ProgramData%\DockerDesktop\version-bin\docker-credential-wincred.exe | Docker auth flow              | CWE-276 | EXE planting → SYSTEM           |
+| CVE-2019-15752| Docker Desktop (Windows)   | %ProgramData%\DockerDesktop\version-bin\docker-credential-wincred.exe | Docker auth flow      | CWE-276 | EXE planting → SYSTEM           |
 | CVE-2022-39959| Panini Everest Engine      | %PROGRAMDATA%\Panini\Everest Engine\EverestEngine.exe | Engine service (SYSTEM)        | CWE-276 | Unquoted path → EXE planting    |
 | CVE-2018-10204| PureVPN (Windows)          | %PROGRAMDATA%\purevpn\config\config.ovpn         | openvpn.exe (service)            | CWE-276 | Writable config → DLL load      |
 | CVE-2020-27643| 1E Client (Windows)        | %PROGRAMDATA%\1E\Client\                         | Client service                   | CWE-276 | Writable dir → LPE              |
