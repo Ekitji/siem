@@ -144,17 +144,17 @@ process.executable.wildcard: (C\:\\Program\ Files* OR C\:\\Windows* OR C\:\\User
 
 ## Potential local Privilege escalation vulnerability found - DLL Load by SYSTEM in C-Root subfolder
 ```
-event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYSTEM AND NOT file.path.wildcard: (C\:\\Program\ Files* OR C\:\\Windows* OR C\:\\Users* OR C\:\\ProgramData*)
+event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYSTEM AND NOT file.path.wildcard: (C\:\\Program\ Files* OR C\:\\Windows* OR C\:\\Users* OR C\:\\ProgramData\\*)
 ```
 
 # Arbitrary File delete
 ## Potential Arbitrary File delete by SYSTEM in User writable paths
 ```
-(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: 23 AND file.path: (C\:\\Users* OR C\:\\ProgramData*)
+(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: 23 AND file.path: (C\:\\Users* OR C\:\\ProgramData* OR C\:\\Windows\\Temp\*)
 ```
 ## Potential Arbitrary File delete by SYSTEM in C-Root subfolder
 ```
-(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: 23 AND file.path: (C\:\\*) AND NOT file.path: (C\:\\Users* OR C\:\\ProgramData* OR C\:\\Program\ Files*)
+(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: 23 AND file.path: (C\:\\*) AND NOT file.path: (C\:\\Users* OR C\:\\ProgramData\\* OR C\:\\Program\ Files* OR C\:\\Windows\\Temp\*)
 ```
 
 # Other Queries - Layer on Layer coverage
