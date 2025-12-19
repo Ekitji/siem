@@ -154,7 +154,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 ```
 ## Potential Arbitrary File delete by SYSTEM in C-Root subfolder
 ```
-(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: 23 AND file.path: (C\:\\*) AND NOT file.path: (C\:\\Users* OR C\:\\ProgramData\\* OR C\:\\Program\ Files* OR C\:\\Windows\\Temp\*)
+(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: 23 AND file.path: (C\:\\*) AND NOT file.path: (C\:\\Users* OR C\:\\ProgramData\\* OR C\:\\Program\ Files* OR C\:\\Windows\\*)
 ```
 
 # Other Queries - Layer on Layer coverage
