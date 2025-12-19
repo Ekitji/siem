@@ -56,7 +56,7 @@ https://xmcyber.com/blog/jumpshot-xm-cyber-uncovers-critical-local-privilege-esc
 * weak passwords in command_line - that are not following best practices / policies
 * weak passwords or sensitive information in powershell admin scripts scriptblock event code: 4104. Search for strings: "SecureString","PSCredential","Password", "passwd"......
 * weak passwords in registry  - that are not following best practices / policies
-* file deletions (Sysmon 23) events by SYSTEM user in world writable paths. Arbitrary file delete --> local privilege escalation
+* file deletions (Sysmon event.code 23 and 26) events by SYSTEM user in world writable paths. Arbitrary file delete --> local privilege escalation
 * AlwaysInstallElevated in Registry, Autologons
 * Windows Privileges - Look at 4672 (logon with special privileges) And 4704/4705 (assignment/removal of rights)
 * Event code 5136 and 5137, AD objects.. look in to the fields: description, info and adminComment, if they have any plaintext passwords.
