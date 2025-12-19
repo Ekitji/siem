@@ -149,11 +149,13 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 
 # Arbitrary File delete
 ## Potential Arbitrary File delete by SYSTEM in User writable paths
+```
 (event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: 23 AND file.path: (C\:\\Users* OR C\:\\ProgramData*)
-
+```
 ## Potential Arbitrary File delete by SYSTEM in C-Root subfolder
+```
 (event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: 23 AND file.path: (C\:\\*) AND NOT file.path: (C\:\\Users* OR C\:\\ProgramData* OR C\:\\Program\ Files*)
-
+```
 
 # Other Queries - Layer on Layer coverage
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
