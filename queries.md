@@ -139,22 +139,22 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 ((event.code: 4688 AND winlog.event_data.TokenElevationType: "%%1936" AND winlog.event_data.MandatoryLabel: "S-1-16-16384") OR
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System))
 AND process.executable.wildcard: (C\:\\*) AND NOT
-process.executable.wildcard: (C\:\\Program\ Files* OR C\:\\Windows* OR C\:\\Users* OR C\:\\ProgramData* )
+process.executable.wildcard: (C\:\\Program\ Files* OR C\:\\Windows\\* OR C\:\\Users\\* OR C\:\\ProgramData\\* )
 ```
 
 ## Potential local Privilege escalation vulnerability found - DLL Load by SYSTEM in C-Root subfolder
 ```
-event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYSTEM AND NOT file.path.wildcard: (C\:\\Program\ Files* OR C\:\\Windows* OR C\:\\Users* OR C\:\\ProgramData\\*)
+event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYSTEM AND NOT file.path.wildcard: (C\:\\Program\ Files* OR C\:\\Windows\\* OR C\:\\Users\\* OR C\:\\ProgramData\\*)
 ```
 
 # Arbitrary File delete
 ## Potential Arbitrary File delete by SYSTEM in User writable paths
 ```
-(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: (23 OR 26) AND file.path: (C\:\\Users* OR C\:\\ProgramData* OR C\:\\Windows\\Temp\*)
+(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: (23 OR 26) AND file.path: (C\:\\Users\\* OR C\:\\ProgramData\\* OR C\:\\Windows\\Temp\\*)
 ```
 ## Potential Arbitrary File delete by SYSTEM in C-Root subfolder
 ```
-(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: (23 OR 26) AND file.path: (C\:\\*) AND NOT file.path: (C\:\\Users* OR C\:\\ProgramData\\* OR C\:\\Program\ Files* OR C\:\\Windows\\*)
+(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: (23 OR 26) AND file.path: (C\:\\*) AND NOT file.path: (C\:\\Users\\* OR C\:\\ProgramData\\* OR C\:\\Program\ Files* OR C\:\\Windows\\*)
 ```
 
 # Other Queries - Layer on Layer coverage
