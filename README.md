@@ -59,6 +59,7 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 * weak passwords in registry  - that are not following best practices / policies
 * file deletions (Sysmon event.code 23 and 26) events by SYSTEM user in world writable paths. Arbitrary file delete --> local privilege escalation
 * AlwaysInstallElevated in Registry, Autologons
+* Misconfigured Attack Surface Reduction rules (event.code 5007)
 * Windows Privileges - Look at 4672 (logon with special privileges) And 4704/4705 (assignment/removal of rights)
 * Event code 5136 and 5137, AD objects.. look in to the fields: description, info and adminComment, if they have any plaintext passwords.
 * Do not assume that Program Files and similar admin-protected directories always have correct ACLs (Access Control Lists). It does happen that applications set incorrect default permissions and are far too permissive. CWE-732, CWE-284, CWE-276
