@@ -50,7 +50,9 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 #### SCCM / Software Center
 - https://blog.nviso.eu/2022/05/31/cve-farming-through-software-center-a-group-effort-to-flush-out-zero-day-privilege-escalations/
 #### Arbitrary File deletion --> Local privilege escalation
+- https://cicada-8.medium.com/were-going-the-wrong-way-how-to-abuse-symlinks-and-get-lpe-in-windows-0c598b99125b
 - https://cloud.google.com/blog/topics/threat-intelligence/arbitrary-file-deletion-vulnerabilities/
+- https://github.com/ZeroMemoryEx/CVE-2025-68921
 - https://xmcyber.com/blog/jumpshot-xm-cyber-uncovers-critical-local-privilege-escalation-cve-2025-34352-in-jumpcloud-agent/
 
 ### Example of interesting areas to look into that we have not covered.
