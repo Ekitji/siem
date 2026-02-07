@@ -56,11 +56,17 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
-## Potential Local Privilege Escalation - Scheduled Task executed in a elevated state (Administrator)
+## Potential Local Privilege Escalation - Scheduled Task executed in a elevated state (Administrator) - Sysmon
 #### Uses Sysmons event.code 1 to catch High integrity events, checking command_line will catch binary & arguments pointing to user writeable paths. May be also interesting to query and catch events in C:\ roots subfolders.
 ```
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND process.parent.name: svchost.exe AND process.parent.args: Schedule AND winlog.event_data.IntegrityLevel: High AND process.command_line: (*ProgramData* OR *Users* OR *Temp* OR *Tmp*))
 ```
+## Potential Local Privilege Escalation - Scheduled Task executed in a elevated state (Administrator)
+#### checking command_line will catch binary & arguments pointing to user writeable paths. May be also interesting to query and catch events in C:\ roots subfolders.
+```
+(event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.MandatoryLabel: "S-1-16-12288" AND process.parent.name: svchost.exe AND process.parent.args: Schedule AND process.command_line: (*ProgramData* OR *Users* OR *Temp* OR *Tmp*))
+```
+
 ## Potential Local Privilege Escalation - Scheduled Task Binaries from User-Writable Path
 #### Use event.code (101 OR 102 OR 106) AND winlog.event_data.UserContext → the account under which the task is actually running as (if its the SYSTEM user)
 ```
