@@ -54,6 +54,7 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://cloud.google.com/blog/topics/threat-intelligence/arbitrary-file-deletion-vulnerabilities/
 - https://github.com/ZeroMemoryEx/CVE-2025-68921
 - https://xmcyber.com/blog/jumpshot-xm-cyber-uncovers-critical-local-privilege-escalation-cve-2025-34352-in-jumpcloud-agent/
+- https://www.youtube.com/watch?v=EG2Mbw2DVnU  from minute: 34.45 (Intel Trusted Connect Service client)
 
 ### Example of interesting areas to look into that we have not covered.
 * weak passwords in command_line - that are not following best practices / policies
