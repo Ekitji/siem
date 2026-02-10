@@ -37,30 +37,30 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 # Schedule Tasks
 
 ## Potential Local Privilege Escalation - Scheduled Task from User-Writable Path Created as SYSTEM
-#### User-Writable Paths in the Arguments (SYSTEM User)
+#### User-Writable Paths in the Arguments (SYSTEM User) - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
-#### User-Writable Paths in the Binary path (SYSTEM User)
+#### User-Writable Paths in the Binary path (SYSTEM User) - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
-#### C-Root Paths in the Arguments (SYSTEM User) -  may also be interesting to query fo D:\, E:\ etc.
+#### C-Root Paths in the Arguments (SYSTEM User) -  may also be interesting to query fo D:\, E:\ etc. - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\*) AND NOT winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR *C\:\\Program\ Files* OR C\:\\Users\\* OR C\:\\Windows\\*) AND message: *HighestAvailable*)
 ```
 
 ## Potential Local Privilege Escalation - Scheduled Task from User-Writable Path Created as Administrator
 ### "Highest available" only elevates if the task’s run-as account is an Administrator. If the run-as account is a standard user, there’s no higher integrity to elevate to, so the task runs at the user’s normal Medium integrity—regardless of the “Run with highest privileges” checkbox
-#### User-Writable Paths in the Arguments (Administrator User)
+#### User-Writable Paths in the Arguments (Administrator User) - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
-#### User-Writable Paths in the Binary path (Administrator User)
+#### User-Writable Paths in the Binary path (Administrator User) - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
-#### C-Root Paths in the Arguments (Administrator User) -  may also be interesting to query for D:\, E:\ etc.
+#### C-Root Paths in the Arguments (Administrator User) -  may also be interesting to query for D:\, E:\ etc. - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\*) AND NOT winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR *C\:\\Program\ Files* OR C\:\\Users\\* OR C\:\\Windows\\*) AND message: *HighestAvailable*)
 ```
