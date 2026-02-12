@@ -227,7 +227,7 @@ We want to do this to catch every uninstaller without trusting the process creat
 | .wsf      | Windows Script File (XML)  | Mix VBScript, JScript, other scripts in XML format       | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
 | .wsh      | Windows Script Host Settings | Configuration settings for WSH scripts                  | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
 | .jar      | Java Archive               | Java applications packaged as a single file             | `java.exe` (console) / `javaw.exe` (no console window)       |
-
+| .hta      | HTML Application (HTA)     | GUI-based Windows scripts using HTML, CSS, and JScript/VBScript | mshta.exe (Microsoft HTML Application Host)          |
 
 
 
