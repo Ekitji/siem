@@ -4,9 +4,7 @@ Practical techniques for leveraging SIEM as an offensive discovery tool, helping
 ## Queries
 See above - queries.md file.
 
-We dont spare any queries and are releasing all so
-some new queries added ~ 18-19 september 2025.
-Schtasks related with split for binary/argument, and system/administrator user and other event code for Schtasks.
+Will keep getting updated when needed. The idea is to have layer on layer coverage using different event.codes/event.providers.
 
 ### Vulnerability Management
 Queries added for Vulnerability Management in file: vulnerabilitymanagement.md
