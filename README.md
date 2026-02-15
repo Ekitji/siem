@@ -111,16 +111,12 @@ GroupId where S-1-5-32-544 is for local Administrators group.
 
 RunLevel where HighestAvailable will run the task as highest possible privilege for specified user. LeastPrivilege will run the task as lower set privilege (Medium integrity) but if the user is Administrator, a UAC bypass shall help you escalate privileges.
 
-Check winlog.event_data.TaskContent in event.code 4698 for more context which contains the full XML definition of the scheduled task, and it gives you the true context of:
+Check winlog.event_data.TaskContent in event.code 4698 for more context which contains the full XML definition of the scheduled task, and it gives you the true context of
 
 - Which account it runs as
-
 - Privilege level
-
 - Logon method
-
 - Trigger
-
 - Executed command
 
 ## Prerequisites
