@@ -103,9 +103,13 @@ Gives you an idea of which event codes to use what you will see in the event cod
 - https://detect.fyi/threat-hunting-suspicious-windows-service-names-2f0dceea204c
 
 ### Schedule task - use offensive mindset ⭐
-#### Look for tasks running as SYSTEM or Administrator
+#### Look for tasks running as SYSTEM, Administrator user or "Domain admin" accounts or other high privileged accounts.
 Gives you and idea of which event codes to use and what you will see in the event code it self.
 - https://www.thedfirspot.com/post/evil-on-schedule-investigating-malicious-windows-tasks
+##### Interesting fields/keys:
+<UserId> where S-1-5-18 is for the SYSTEM user.
+<GroupId> where S-1-5-32-544 is for local Administrators group.
+<RunLevel> where HighestAvailable will run the task as highest possible privilege for specified user. LeastPrivilege will run the task as lower set privilege but if the user is Administrator, a UAC bypass shall help you escalate privileges.
 
 ## Prerequisites
 Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11.
