@@ -107,7 +107,7 @@ Gives you and idea of which event codes to use and what you will see in the even
 ##### Interesting fields/keys:
 <UserId> where S-1-5-18 is for the SYSTEM user.
 <GroupId> where S-1-5-32-544 is for local Administrators group.
-<RunLevel> where HighestAvailable will run the task as highest possible privilege for specified user. LeastPrivilege will run the task as lower set privilege but if the user is Administrator, a UAC bypass shall help you escalate privileges.
+<RunLevel> where HighestAvailable will run the task as highest possible privilege for specified user. LeastPrivilege will run the task as lower set privilege (Medium integrity) but if the user is Administrator, a UAC bypass shall help you escalate privileges.
 
 ## Prerequisites
 Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11.
