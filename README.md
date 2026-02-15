@@ -106,7 +106,9 @@ Gives you and idea of which event codes to use and what you will see in the even
 - https://www.thedfirspot.com/post/evil-on-schedule-investigating-malicious-windows-tasks
 ##### Interesting fields/keys:
 <UserId> where S-1-5-18 is for the SYSTEM user.
+
 <GroupId> where S-1-5-32-544 is for local Administrators group.
+
 <RunLevel> where HighestAvailable will run the task as highest possible privilege for specified user. LeastPrivilege will run the task as lower set privilege (Medium integrity) but if the user is Administrator, a UAC bypass shall help you escalate privileges.
 
 ## Prerequisites
