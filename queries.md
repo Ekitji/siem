@@ -86,7 +86,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 #### Generic query to only catch when Working Directory is set to a User-Writable path. Check winlog.event_data.TaskContent for more context and if its a privilege escalation path.
 ##### This query will show you scheduled tasks that has for an example powershell as the binary, and the command is "Start-Process -WindowsStyle Hidden task.bat" Where task.bat is a batch file and the location of it is set in the schedule task by using "Start in" to set the "WorkingDirectory"
 ```
-((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND message: *WorkingDirectory*) AND message: (*ProgramData* OR C\:\\Users\\* OR *Temp*))
+((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND message: *WorkingDirectory*) AND message: (*ProgramData* OR *C\:\\Users\\* OR *Temp*))
 ```
 
 
