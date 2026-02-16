@@ -45,7 +45,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
-#### C-Root Paths in the Arguments (SYSTEM User) -  may also be interesting to query fo D:\, E:\ etc. - check winlog.event_data.TaskContent for more context
+#### C-Root Paths in the Arguments (SYSTEM User) -  may also be interesting to query fo D:\, E:\, Network shares etc. - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\*) AND NOT winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR *C\:\\Program\ Files* OR C\:\\Users\\* OR C\:\\Windows\\*) AND message: *HighestAvailable*)
 ```
@@ -60,7 +60,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: *HighestAvailable*)
 ```
-#### C-Root Paths in the Arguments (Administrator User) -  may also be interesting to query for D:\, E:\ etc. - check winlog.event_data.TaskContent for more context
+#### C-Root Paths in the Arguments (Administrator User) -  may also be interesting to query for D:\, E:\, Network shares etc. - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\*) AND NOT winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR *C\:\\Program\ Files* OR C\:\\Users\\* OR C\:\\Windows\\*) AND message: *HighestAvailable*)
 ```
