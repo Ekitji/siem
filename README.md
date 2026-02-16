@@ -45,6 +45,9 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
 #### DLL Hijacking
 - https://itm4n.github.io/windows-dll-hijacking-clarified/
+#### PATH entries and User-writable directories in the system PATH --> DLL Hijacking
+- https://www.expressvpn.com/blog/cybersecurity-lessons-a-path-vulnerability-in-windows/
+- https://www.praetorian.com/blog/red-team-local-privilege-escalation-writable-system-path-privilege-escalation-part-1/
 #### SCCM / Software Center
 - https://blog.nviso.eu/2022/05/31/cve-farming-through-software-center-a-group-effort-to-flush-out-zero-day-privilege-escalations/
 #### Arbitrary File deletion --> Local privilege escalation
