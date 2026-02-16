@@ -121,8 +121,10 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 
 ## System (machine-level) PATH environment variable in the registry
 ### Look for PATHS pointing to User-Writable ones like C:\ProgramData\* OR C\:Users\* OR TEMP in winlog.event_data.Details field.
+#### HKU\S-1-5-18\Environment may also be interesting to look at, can also be useful to look at Sysmons event.code 14
 ```
-(event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13) AND registry.hive: HKLM AND registry.path: HKLM\\System\\CurrentControlSet\\Control\\Session\ Manager\\Environment\\Path)
+(event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13) AND registry.hive: HKLM AND registry.path: HKLM\\System\\CurrentControlSet\\Control\\Session\ Manager\\Environment\\Path) OR
+(event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13) AND registry.path: HKU\\S-1-5-21\\Environment\\*)
 ```
 
 # Centralized Application Deployment
