@@ -194,13 +194,6 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 (event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: (23 OR 26) AND file.path: (C\:\\*) AND NOT file.path: (C\:\\Users\\* OR C\:\\ProgramData\\* OR C\:\\Program\ Files* OR C\:\\Windows\\*)
 ```
 
-# MSHTA running .hta files from User-Writable Paths
-## Checks when SYSTEM or Administrator is executing mshta which points to a .hta file in User-Writable Paths. 
-```
-(event.provider: "Microsoft-Windows-Security-Auditing" AND process.name: mshta.exe AND winlog.event_data.TokenElevationType: (%%1936 OR
-%%1937) AND process.command_line: (*ProgramData* OR *Users* OR *Temp* OR *Tmp*)) OR (event.provider: "Microsoft-Windows-Sysmon" AND process.name: mshta.exe AND winlog.event_data.IntegrityLevel: (High OR System) AND process.command_line.text: (*ProgramData* OR *Users* OR *Temp* OR *Tmp*))
-```
-
 # Other Queries - Layer on Layer coverage
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
 #### Will also give you an idea for the process creation query when that process is terminated/exit.
@@ -211,4 +204,11 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 5 AND user.name: SYST
 #### Depending on your Applocker configuration - Could be used to catch events related to DLL/EXE etc...alternative if you dont have SYSMON set but will likely miss alots of DLL events. Applocker could also be good for catching DLL/EXE events in Program Files which SYSMON will likely miss.
 ```
 event.provider: "Microsoft-Windows-AppLocker" AND event.code: [8000 TO 8005] AND (user.name: SYSTEM OR *\$) AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\*)
+```
+
+## MSHTA running .hta files from User-Writable Paths
+#### Checks when SYSTEM or Administrator is executing mshta which points to a .hta file in User-Writable Paths. 
+```
+(event.provider: "Microsoft-Windows-Security-Auditing" AND process.name: mshta.exe AND winlog.event_data.TokenElevationType: (%%1936 OR
+%%1937) AND process.command_line: (*ProgramData* OR *Users* OR *Temp* OR *Tmp*)) OR (event.provider: "Microsoft-Windows-Sysmon" AND process.name: mshta.exe AND winlog.event_data.IntegrityLevel: (High OR System) AND process.command_line.text: (*ProgramData* OR *Users* OR *Temp* OR *Tmp*))
 ```
