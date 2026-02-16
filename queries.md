@@ -108,7 +108,15 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 (event.provider: Microsoft-Windows-Sysmon AND event.code: 7 AND user.name: SYSTEM AND file.path: (C\:\\Windows\\Temp\\*) AND file.extension: (dll OR DLL))
 ```
 
-
+# Enviromental PATHS in SYSTEM user context
+## Detection for SYSTEM-level environment variable targeting SYSTEM context and /M machine-level changes
+### Look for PATHS pointing to User-Writable ones like C:\ProgramData\* OR C\:Users\* OR TEMP
+```
+((event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND user.name: SYSTEM AND process.name: setx.exe) OR 
+(event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND process.name: setx.exe AND process.args: \/M) OR 
+(event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4688 AND winlog.event_data.SubjectUserSid: "S-1-5-18" AND process.name: setx.exe) OR 
+(event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4688 AND process.name: setx.exe AND process.args: \/M))
+```
 
 
 # Centralized Application Deployment
