@@ -119,7 +119,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 (event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4688 AND process.name: setx.exe AND process.args: \/M))
 ```
 
-## System (machine-level) PATH environment variable is located in the registry
+## System (machine-level) PATH environment variable in the registry
 ### Look for PATHS pointing to User-Writable ones like C:\ProgramData\* OR C\:Users\* OR TEMP in winlog.event_data.Details field.
 ```
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13) AND registry.hive: HKLM AND registry.path: HKLM\\System\\CurrentControlSet\\Control\\Session\ Manager\\Environment\\Path)
