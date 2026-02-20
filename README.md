@@ -48,8 +48,9 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 #### PATH entries and User-writable directories in the system PATH --> DLL Hijacking
 - https://www.expressvpn.com/blog/cybersecurity-lessons-a-path-vulnerability-in-windows/
 - https://www.praetorian.com/blog/red-team-local-privilege-escalation-writable-system-path-privilege-escalation-part-1/
-#### SCCM / Software Center
+#### SCCM / Software Center ⭐
 - https://blog.nviso.eu/2022/05/31/cve-farming-through-software-center-a-group-effort-to-flush-out-zero-day-privilege-escalations/
+##### Interesting read about how many misconfigured software where found and you will likely find same ratio using Offensive SIEM!
 #### Arbitrary File deletion --> Local privilege escalation
 - https://cicada-8.medium.com/were-going-the-wrong-way-how-to-abuse-symlinks-and-get-lpe-in-windows-0c598b99125b
 - https://cloud.google.com/blog/topics/threat-intelligence/arbitrary-file-deletion-vulnerabilities/
