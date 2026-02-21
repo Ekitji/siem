@@ -245,7 +245,22 @@ We want to do this to catch every uninstaller without trusting the process creat
 | .jar      | Java Archive               | Java applications packaged as a single file             | `java.exe` (console) / `javaw.exe` (no console window)       |
 | .hta      | HTML Application (HTA)     | GUI-based Windows scripts using HTML, CSS, and JScript/VBScript | mshta.exe (Microsoft HTML Application Host)          |
 
+## MSIEXEC / MSI Repairs
+#### Our testing did not give any result in escalating privileges in scenarios where we could spawn edge and break out to cmd prompt. This is probably because chromium based browsers is impersonating the user and does not allow internet explorer/edge to spawn cmd or other processes as the SYSTEM user. We believe that if none chromium based browser is installed (like firefox). An privilege escalation could be possible if you could spawn such process and break out from that to a command prompt.
 
+If you want to enumerate possible events happening is to query for msiexec.exe with child process (cmd.exe OR conhost.exe OR powershell.exe OR pwsh.exe)
+Contact the users you get results from and ask them what they installed/repaired. You could also try this your self in Software Center and install the applications and look for command prompts 
+which you can pause before they dissapear by marking a section in the window. Then break out using same techniques mentioned in the link below.
+
+You can also look for the powershell processes which does not load any profile and see if you can make it load your custom profile (-NoProfile flag is not used). We have not tried this and believe that it could be mitigated.
+
+##### Example query
+```
+(event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.parent.name: msiexec.exe AND process.name: (cmd.exe OR conhost.exe OR powershell.exe OR pwsh.exe))
+OR
+(event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.TokenElevationType: "%%1936" AND winlog.event_data.MandatoryLabel: "S-1-16-16384" AND process.parent.name: msiexec.exe AND process.name: (cmd.exe OR conhost.exe OR powershell.exe OR pwsh.exe))
+```
+- https://cloud.google.com/blog/topics/threat-intelligence/privileges-third-party-windows-installers/
 
 ## Example of some public windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
 To show you how common it is with misconfigured third party software.
