@@ -255,8 +255,6 @@ If you want to enumerate possible events happening is to query for msiexec.exe w
 Contact the users you get results from and ask them what they installed/repaired. You could also try this your self in Software Center and install the applications and look for command prompts 
 which you can pause before they dissapear by marking a section in the window. Then break out using same techniques mentioned in the link below.
 
-You can also look for the powershell processes which does not load any profile and see if you can make it load your custom profile (-NoProfile flag is not used). We have not tried this and believe that it could be mitigated.
-
 ##### Example query
 ```
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.parent.name: msiexec.exe AND process.name: (cmd.exe OR conhost.exe OR powershell.exe OR pwsh.exe))
