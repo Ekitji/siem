@@ -60,7 +60,6 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://www.zerodayinitiative.com/blog/2022/3/16/abusing-arbitrary-file-deletes-to-escalate-privilege-and-other-great-tricks
 ##### Other file operations
 - https://troopers.de/downloads/troopers19/TROOPERS19_AD_Abusing_privileged_file_operations.pdf
-- 
 
 ### Example of interesting areas to look into that we have not covered in presentation but we have queries for some of them.
 * weak passwords in command_line - that are not following best practices / policies
