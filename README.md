@@ -8,6 +8,10 @@ Will keep getting updated when needed. The idea is to have layer on layer covera
 
 ### Vulnerability Management
 Queries added for Vulnerability Management in file: vulnerabilitymanagement.md
+#### Gives you an idea how you can enumerate
+- Windows OS version and build status
+- Attack Surface Reduction (ASR) Rules and find misconfigurations 
+- Windows Defender exclusions misconfigurations
 
 ## Ping us if/when you find something 
 We hope that you liked the presentation. Ping us if you (i would say when you) find vulnerabilities by using this method. A simple message like "one of your queries cathed good stuff".. is more then enough :) do it by commiting to the ping.md file or contact us in alternative ways! We would be happy to share your success!
@@ -65,6 +69,7 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 * weak passwords in command_line - that are not following best practices / policies
 * weak passwords or sensitive information in powershell admin scripts scriptblock event code: 4104. Search for strings: "SecureString","PSCredential","Password", "passwd"......
 * weak passwords in registry  - that are not following best practices / policies
+* file creations/deletions of typical files holding sensitive files like passwords.txt, passwords.xslx, unattend.xml 
 * file deletions (Sysmon event.code 23 and 26) events by SYSTEM user in world writable paths. Arbitrary file delete --> local privilege escalation
 * AlwaysInstallElevated in Registry, Autologons (look if passwords is set)
 * Misconfigured Attack Surface Reduction rules (event.code 5007) 
