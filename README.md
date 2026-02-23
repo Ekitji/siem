@@ -74,6 +74,7 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 * AlwaysInstallElevated in Registry, Autologons (look if passwords is set)
 * Windows Privileges - Look at 4672 (logon with special privileges) And 4704/4705 (assignment/removal of rights)
 * Event code 5136 and 5137, AD objects.. look in to the fields: description, info and adminComment, if they have any plaintext passwords.
+* Using process creation events and look for sc.exe setting services security descriptor using sdset or sysmons registry event code 13 and checking the ACL value (in binary format) and converting it to readable ACL looking for weak ACL permissions set on services.
 * Do not assume that Program Files and similar admin-protected directories always have correct ACLs (Access Control Lists). It does happen that applications set incorrect default permissions and are far too permissive. CWE-732, CWE-284, CWE-276
 * etc..
 
