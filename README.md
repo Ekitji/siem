@@ -17,7 +17,7 @@ Queries added for Vulnerability Management in file: vulnerabilitymanagement.md
 ## Ping us if/when you find something 
 We hope that you liked the presentation. Ping us if you (i would say when you) find vulnerabilities by using this method. A simple message like "one of your queries cathed good stuff".. is more then enough :) do it by commiting to the ping.md file or contact us in alternative ways! We would be happy to share your success!
 
-### General information
+## General information
 The repo will assist you in having offensive mindset. 
 
 Repo is to share the material and queries that we talked about in our presentation:
