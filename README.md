@@ -244,7 +244,7 @@ We want to do this to catch every uninstaller without trusting the process creat
 | .bat      | Batch Script               | Legacy command-line automation tasks, simple scripts     | `cmd.exe` (Command Prompt)                                  |
 | .cmd      | Batch Script (NT style)    | Similar to `.bat`, preferred on NT-based systems         | `cmd.exe` (Command Prompt)                                  |
 | .vbs      | VBScript                   | Automation tasks, logon scripts, admin scripts           | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
-| .vbe      | VBScript (encoded)         | Encrypted version of `.vbs` for obfuscation              | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
+| .vbe      | VBScript (encoded)         | Encoded version of `.vbs` for obfuscation              | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
 | .ps1      | PowerShell Script          | Modern Windows automation and configuration tasks       | PowerShell (`powershell.exe`, `pwsh.exe`)                   |
 | .js       | JScript                    | Microsoft’s version of JavaScript for WSH tasks          | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
 | .jse      | JScript (encoded)          | Encrypted version of `.js` for obfuscation               | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
