@@ -137,7 +137,7 @@ Well configured SYSMON config to catch events that are of interest, like event.c
  - https://github.com/olafhartong/sysmon-modular
 
 Enabled Advanced auditing for some of the Windows events.
-For an example, process creation 4688 will likely need it to catch parent process name and not only the parent pid.
+Event ID 4688 (process creation) must be explicitly enabled to log newly created processes. By default, it does not capture the command line used to start the process; this feature must be specifically enabled in the security policy.
 
 Scheduled task - 4698 is not enabled by default.
 
