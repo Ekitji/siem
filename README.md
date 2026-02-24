@@ -258,9 +258,11 @@ We want to do this to catch every uninstaller without trusting the process creat
 ## Startup/Logon scripts
 
 Startup and Logon Scripts (and Shutdown or Logoff) are automation scripts that run (gpscript.exe) automatically on domain-joined computers or when users sign in, and they are commonly deployed using Group Policy Objects (GPOs) from a domain controller in a Windows Active Directory environment.
-Startup and Shutdown
+
+Startup/Shutdown
 - Run as: Local System account (high privileges).
-Logon and Logoff
+
+Logon/Logoff
 - Run as: Current user (high privileges if administrator).
 ### Common uses:
 - Mapping network drives for all users
