@@ -255,7 +255,7 @@ We want to do this to catch every uninstaller without trusting the process creat
 | .jar      | Java Archive               | Java applications packaged as a single file             | `java.exe` (console) / `javaw.exe` (no console window)       |
 | .hta      | HTML Application (HTA)     | GUI-based Windows scripts using HTML, CSS, and JScript/VBScript | mshta.exe (Microsoft HTML Application Host)          |
 
-##StartUp/Logon scripts
+## StartUp/Logon scripts
 
 Startup and Logon Scripts (and ShutDown or Logoff) are automation scripts that run (gpscript.exe) automatically on domain-joined computers or when users sign in, and they are commonly deployed using Group Policy Objects (GPOs) from a domain controller in a Windows Active Directory environment.
 - Run as: Local System account (high privileges).
