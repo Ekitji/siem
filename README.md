@@ -255,6 +255,18 @@ We want to do this to catch every uninstaller without trusting the process creat
 | .jar      | Java Archive               | Java applications packaged as a single file             | `java.exe` (console) / `javaw.exe` (no console window)       |
 | .hta      | HTML Application (HTA)     | GUI-based Windows scripts using HTML, CSS, and JScript/VBScript | mshta.exe (Microsoft HTML Application Host)          |
 
+##StartUp/Logon scripts
+
+Startup and Logon Scripts (and ShutDown or Logoff) are automation scripts that run (gpscript.exe) automatically on domain-joined computers or when users sign in, and they are commonly deployed using Group Policy Objects (GPOs) from a domain controller in a Windows Active Directory environment.
+- Run as: Local System account (high privileges).
+### Common uses:
+- Mapping network drives for all users
+- Installing software
+- Applying system-wide settings
+- Starting or configuring services
+- Running scripts or executables
+#### Look for User-writable paths for scripts and executables in the child process of gpscript.exe, or writable network shares. Look for possible used passwords or other sensitive information.
+
 ## MSIEXEC / MSI Repairs
 ##### Our testing did not give any result in escalating privileges in scenarios where we could spawn edge and break out to a cmd prompt. This is probably because chromium based browsers is impersonating the user/restricting rendering process to run as SYSTEM and does not allow internet explorer/edge to spawn cmd or other processes as the SYSTEM user. We believe that if none chromium based browser is installed (like firefox) or older versions. An privilege escalation could be possible if you could spawn such process and break out from that to a command prompt.
 
