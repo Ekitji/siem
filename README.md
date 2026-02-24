@@ -65,6 +65,9 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://www.zerodayinitiative.com/blog/2022/3/16/abusing-arbitrary-file-deletes-to-escalate-privilege-and-other-great-tricks
 ##### Other file operations
 - https://troopers.de/downloads/troopers19/TROOPERS19_AD_Abusing_privileged_file_operations.pdf
+##### Logon scripts
+- https://offsec.blog/hidden-menace-how-to-identify-misconfigured-and-dangerous-logon-scripts/
+- https://cyberthreatperspective.buzzsprout.com/1731753/episodes/13343207-episode-54-misconfigured-and-dangerous-logon-scripts
 
 ### Example of interesting areas to look into that we have not covered in presentation but we have queries for some of them.
 * weak passwords in command_line - that are not following best practices / policies
@@ -270,7 +273,8 @@ Logon/Logoff
 - Applying system-wide settings
 - Starting or configuring services
 - Running scripts or executables
-#### Look for User-writable paths for scripts and executables in the child process of gpscript.exe, or writable network shares. Look for possible used passwords or other sensitive information.
+#### Look for User-writable paths for scripts and executables in the child process of gpscript.exe, or writable network shares. 
+Look for possible used passwords (net use z: \\server\share /user:domain\username password) or other sensitive information. Read the scripts that are run and look if there is any misconfigurations like other User-Writable paths or paths that does not exist.
 
 ## MSIEXEC / MSI Repairs
 ##### Our testing did not give any result in escalating privileges in scenarios where we could spawn edge and break out to a cmd prompt. This is probably because chromium based browsers is impersonating the user/restricting rendering process to run as SYSTEM and does not allow internet explorer/edge to spawn cmd or other processes as the SYSTEM user. We believe that if none chromium based browser is installed (like firefox) or older versions. An privilege escalation could be possible if you could spawn such process and break out from that to a command prompt.
