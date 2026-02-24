@@ -168,14 +168,14 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 
 ## Potential Local Privilege Escalation - StartUp scripts as SYSTEM used
 #### Startup/Shutdown scripts - Look for User-writable paths in binary path or command line, networks shares that are in User-writable location, sensitive information like passwords etc.
-##### Generic query If needed add ProgramData, Users, C-root etc to the query to narrow it down.
+##### Generic query - If needed add ProgramData, Users, C-root etc to the query to narrow it down.
 ```
 ((event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.MandatoryLabel: "S-1-16-16384" AND process.parent.name: gpscript.exe AND NOT process.args: (\/Startup OR \/Shutdown)) OR (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.parent.name: gpscript.exe.exe AND NOT process.args: (\/Startup OR \/Shutdown))
 ```
 
 ## Potential Local Privilege Escalation - Logon scripts as Administrator used
 #### Logon/Logoff scripts - Look for User-writable paths in binary path or command line, networks shares that are in User-writable location, sensitive information like passwords etc.
-##### Generic query If needed add ProgramData, Users, C-root etc to the query to narrow it down. Could also be interesting to query for none-admin executed scripts. It could be that no admin has still not logged in where that GPO is set and it could be a vulnerability when high privileged user logs in.
+##### Generic query - If needed add ProgramData, Users, C-root etc to the query to narrow it down. Could also be interesting to query for none-admin executed scripts. It could be that no admin has still not logged in where that GPO is set and it could be a vulnerability when high privileged user logs in.
 ```
 ((event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.MandatoryLabel: "S-1-16-12288" AND process.parent.name: gpscript.exe AND NOT process.args: (\/Logon OR \/Logoff)) OR (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: High AND process.parent.name: gpscript.exe.exe AND NOT process.args: (\/Logon OR \/Logoff))
 ```
