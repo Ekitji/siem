@@ -166,7 +166,7 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 (event.code: 4688 AND winlog.event_data.TokenElevationType: "%%1936" AND process.command_line: *ProgramData* AND process.command_line: /.*[Bb][Aa][Tt].*/ AND process.name: cmd.exe)
 ```
 
-## Potential Local Privilege Escalation - StartUp scripts as SYSTEM used
+## Potential Local Privilege Escalation - Startup scripts as SYSTEM used
 #### Startup/Shutdown scripts - Look for User-writable paths in binary path or command line, networks shares that are in User-writable location, sensitive information like passwords etc.
 ##### Generic query - If needed add ProgramData, Users, C-root etc to the query to narrow it down.
 ```
