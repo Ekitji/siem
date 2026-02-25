@@ -288,7 +288,7 @@ When a startup/logon script runs via GPO:
 | HKLM\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown | Shutdown scripts info. |
 
 #### Look for User-writable paths for scripts and executables in the child process of gpscript.exe, or writable network shares. 
-Look for possible used passwords (net use z: \\server\share /user:domain\username password) or other sensitive information. Read the scripts that are run and look if there is any misconfigurations like other User-Writable paths or paths that does not exist.
+Look for possible used passwords (net use z: \\server\share /user:domain\username password) or other sensitive information. Read the scripts that are run and look if there is any misconfigurations like other User-Writable paths or paths that does not exist or sensitive information.
 
 ## MSIEXEC / MSI Repairs
 ##### Our testing did not give any result in escalating privileges in scenarios where we could spawn edge and break out to a cmd prompt. This is probably because chromium based browsers is impersonating the user/restricting rendering process to run as SYSTEM and does not allow internet explorer/edge to spawn cmd or other processes as the SYSTEM user. We believe that if none chromium based browser is installed (like firefox) or older versions. An privilege escalation could be possible if you could spawn such process and break out from that to a command prompt.
