@@ -13,6 +13,7 @@ Queries added for Vulnerability Management in file: vulnerabilitymanagement.md
 - Windows OS version and build status
 - Attack Surface Reduction (ASR) Rules and find misconfigurations 
 - Windows Defender exclusions and find misconfigurations
+- Windows Applocker rules and find misconfigurations
   
 ## Ping us if/when you find something 
 We hope that you liked the presentation. Ping us if you (i would say when you) find vulnerabilities by using this method. A simple message like "one of your queries cathed good stuff".. is more then enough :) do it by commiting to the ping.md file or contact us in alternative ways! We would be happy to share your success!
