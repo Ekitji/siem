@@ -275,6 +275,18 @@ Logon/Logoff
 - Applying system-wide settings
 - Starting or configuring services
 - Running scripts or executables
+
+### Registry Hives Affected
+
+When a startup/logon script runs via GPO:
+
+| Hive / Path | Purpose |
+|-------------|---------|
+| HKCU\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Logon | Tracks user logon scripts, their execution order, status, last run time, and parameters. |
+| HKCU\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Logoff | Similar tracking for logoff scripts. |
+| HKLM\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup | Startup scripts (applies to all users) tracking info. |
+| HKLM\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown | Shutdown scripts info. |
+
 #### Look for User-writable paths for scripts and executables in the child process of gpscript.exe, or writable network shares. 
 Look for possible used passwords (net use z: \\server\share /user:domain\username password) or other sensitive information. Read the scripts that are run and look if there is any misconfigurations like other User-Writable paths or paths that does not exist.
 
