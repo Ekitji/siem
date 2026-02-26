@@ -108,10 +108,11 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 (event.provider: Microsoft-Windows-Sysmon AND event.code: 7 AND user.name: SYSTEM AND file.path: (C\:\\Windows\\Temp\\*) AND file.extension: (dll OR DLL))
 ```
 
-# PATH entries and writable directories in the system PATH
-## Detection with process creation events for SYSTEM-level environment variable targeting SYSTEM context and /M machine-level changes
-### Look for PATHS pointing to User-Writable ones like C:\ProgramData\* OR C\:Users\* OR TEMP
-#### If a PATH entry is world-writable (meaning any local user can alter it), then an attacker can place malicious executables or DLLs there. Because Windows searches PATH entries in order, this allows search order hijacking — where the attacker’s code runs instead of the legitimate program
+# PATH
+## PATH entries and writable directories in the system PATH
+##### Look for PATHS pointing to User-Writable ones like C:\ProgramData\* OR C\:Users\* OR TEMP
+##### If a PATH entry is world-writable (meaning any local user can alter it), then an attacker can place malicious executables or DLLs there. Because Windows searches PATH entries in order, this allows search order hijacking — where the attacker’s code runs instead of the legitimate program
+#### Detection with process creation events for SYSTEM-level environment variable targeting SYSTEM context and /M machine-level changes
 ```
 ((event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND user.name: SYSTEM AND process.name: setx.exe) OR 
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND process.name: setx.exe AND process.args: \/M) OR 
@@ -120,7 +121,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ```
 
 ## System (machine-level) PATH environment variable in the registry
-### Look for PATHS pointing to User-Writable ones like C:\ProgramData\* OR C\:Users\* OR TEMP in winlog.event_data.Details field.
+##### Look for PATHS pointing to User-Writable ones like C:\ProgramData\* OR C\:Users\* OR TEMP in winlog.event_data.Details field.
 #### HKU\S-1-5-18\Environment may also be interesting to look at, can also be useful to look at Sysmons event.code 14
 ```
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13) AND registry.hive: HKLM AND registry.path: HKLM\\System\\CurrentControlSet\\Control\\Session\ Manager\\Environment\\Path) OR
