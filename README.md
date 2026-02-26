@@ -66,7 +66,7 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://www.zerodayinitiative.com/blog/2022/3/16/abusing-arbitrary-file-deletes-to-escalate-privilege-and-other-great-tricks
 ##### Other file operations
 - https://troopers.de/downloads/troopers19/TROOPERS19_AD_Abusing_privileged_file_operations.pdf
-##### Logon scripts
+#### Logon scripts
 - https://offsec.blog/hidden-menace-how-to-identify-misconfigured-and-dangerous-logon-scripts/
 - https://cyberthreatperspective.buzzsprout.com/1731753/episodes/13343207-episode-54-misconfigured-and-dangerous-logon-scripts
 
