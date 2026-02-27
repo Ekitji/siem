@@ -120,10 +120,12 @@ Gives you an idea of which event codes to use what you will see in the event cod
 
 ##### Registry Hive
 - HKLM\SYSTEM\CurrentControlSet\Services\<Service>\Security
+
 Service security descriptors are not stored as plain SDDL in the registry.
 The registry only shows a Security subkey in binary format when:
 * A descriptor was explicitly written using sc.exe
 * Or the service installer created one
+
 Otherwise:
 The descriptor is computed from built-in defaults hardcoded in Windows.
 
