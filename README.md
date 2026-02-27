@@ -129,8 +129,7 @@ The registry only shows a Security subkey in binary format when:
 Otherwise:
 The descriptor is computed from built-in defaults hardcoded in Windows.
 
-Inside that key, you’ll find a value named Security showing Binary format of the SDDL for the service where you can look for to find misconfigured ACL for the service it self.
-
+Inside that key, you’ll find a value named Security showing Binary format of the SDDL for the service where you can look for to find misconfigured ACL for the service it self.Log them with a well configured Sysmon.
 
 
 
@@ -157,7 +156,8 @@ Check winlog.event_data.TaskContent in event.code 4698 for more context which co
 `What Microsoft should do is to add the <SecurityDescriptor> element to the event code 4698. When exporting a scheduled task manually gives you the SecurityDescriptor value in the exported XML but not in the event code itself.`
 ##### Registry Hive
 - HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\<TaskPath>\<TaskName>
-Inside that key, you’ll find a value named SD showing Binary format of the SDDL for the Scheduled task where you can look for to find misconfigured ACL for the task it self.
+
+Inside that key, you’ll find a value named SD showing Binary format of the SDDL for the Scheduled task where you can look for to find misconfigured ACL for the task it self. Log them with a well configured Sysmon.
 
 ## Prerequisites
 Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11.
