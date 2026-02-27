@@ -64,6 +64,7 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://xmcyber.com/blog/jumpshot-xm-cyber-uncovers-critical-local-privilege-escalation-cve-2025-34352-in-jumpcloud-agent/
 - https://www.youtube.com/watch?v=EG2Mbw2DVnU  from minute: 34.45 (Intel Trusted Connect Service client)
 - https://www.zerodayinitiative.com/blog/2022/3/16/abusing-arbitrary-file-deletes-to-escalate-privilege-and-other-great-tricks
+- https://www.mdsec.co.uk/2026/02/total-recall-retracing-your-steps-back-to-nt-authoritysystem/
 ##### Other file operations
 - https://troopers.de/downloads/troopers19/TROOPERS19_AD_Abusing_privileged_file_operations.pdf
 #### Logon scripts
