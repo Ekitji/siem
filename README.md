@@ -136,6 +136,8 @@ Check winlog.event_data.TaskContent in event.code 4698 for more context which co
 - Trigger
 - Executed command
 
+`What Microsoft should do is to add the <SecurityDescriptor> element to the event code 4698. When exporting a scheduled task manually gives you the SecurityDescriptor value in the exported XML but not in the event code itself.`
+
 ## Prerequisites
 Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11.
  - https://github.com/SwiftOnSecurity/sysmon-config
