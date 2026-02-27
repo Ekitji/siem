@@ -299,7 +299,8 @@ Look for possible used passwords (net use z: \\server\share /user:domain\usernam
 ##### Our testing did not give any result in escalating privileges in scenarios where we could spawn edge and break out to a cmd prompt. This is probably because chromium based browsers is impersonating the user/restricting rendering process to run as SYSTEM and does not allow internet explorer/edge to spawn cmd or other processes as the SYSTEM user. We believe that if none chromium based browser is installed (like firefox) or older versions. An privilege escalation could be possible if you could spawn such process and break out from that to a command prompt.
 
 If you want to enumerate possible events related to this is to query for msiexec.exe as parent process with cmd.exe OR conhost.exe OR powershell.exe OR pwsh.exe as child process.
-Contact the users your query get results from and ask them what they installed/repaired. You could also try this your self in Software Center and install the applications and look for command prompts which you can pause before they dissapear by marking a section in the window. Then break out using same techniques mentioned in the link below.
+Contact the users your query get results from and ask them what they installed/repaired. You can also check event.provider: "MsiInstaller" and event.code: 1033 or similar to get more context around same timestamp.
+You could also try this your self in Software Center and install the applications and look for command prompts which you can pause before they dissapear by marking a section in the window. Then break out using same techniques mentioned in the link below.
 
 ##### Example query
 ```
