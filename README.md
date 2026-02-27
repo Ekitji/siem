@@ -118,6 +118,20 @@ The issue with applications that are installed in C-root folder is that it has p
 Gives you an idea of which event codes to use what you will see in the event code it self.
 - https://detect.fyi/threat-hunting-suspicious-windows-service-names-2f0dceea204c
 
+##### Registry Hive
+- HKLM\SYSTEM\CurrentControlSet\Services\<Service>\Security
+Service security descriptors are not stored as plain SDDL in the registry.
+The registry only shows a Security subkey in binary format when:
+* A descriptor was explicitly written using sc.exe
+* Or the service installer created one
+Otherwise:
+The descriptor is computed from built-in defaults hardcoded in Windows.
+
+Inside that key, you’ll find a value named Security showing Binary format of the SDDL for the service where you can look for to find misconfigured ACL for the service it self.
+
+
+
+
 ### Schedule task - use offensive mindset ⭐
 #### Look for tasks running as SYSTEM, Administrator user or "Domain admin" accounts or other high privileged accounts.
 Gives you and idea of which event codes to use and what you will see in the event code it self.
@@ -141,7 +155,7 @@ Check winlog.event_data.TaskContent in event.code 4698 for more context which co
 `What Microsoft should do is to add the <SecurityDescriptor> element to the event code 4698. When exporting a scheduled task manually gives you the SecurityDescriptor value in the exported XML but not in the event code itself.`
 ##### Registry Hive
 - HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\<TaskPath>\<TaskName>
-Inside that key, you’ll find a value named SD showing Binary format of the SDDL
+Inside that key, you’ll find a value named SD showing Binary format of the SDDL for the Scheduled task where you can look for to find misconfigured ACL for the task it self.
 
 ## Prerequisites
 Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11.
