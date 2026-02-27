@@ -129,7 +129,7 @@ The registry only shows a Security subkey in binary format when:
 Otherwise:
 The descriptor is computed from built-in defaults hardcoded in Windows.
 
-Inside that key, you’ll find a value named Security showing Binary format of the SDDL for the service where you can look for to find misconfigured ACL for the service it self.Log them with a well configured Sysmon.
+Inside that key, you’ll find a value named Security showing Binary format of the SDDL for the service where you can look for to find misconfigured ACL for the service it self. Log them with a well configured Sysmon.
 
 
 
