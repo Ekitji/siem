@@ -155,6 +155,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 11 AND user.name: SYS
 # Scripts
 
 ## Potential Local Privilege Escalation - Script Files Created by SYSTEM in User-Writable Paths
+#### Dont forget to look for creation of script files also in C-root subfolder.
 ```
 (event.provider: Microsoft-Windows-Sysmon
 AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\*) AND file.extension: (cmd OR bat OR ps1 OR vbs))
@@ -195,7 +196,7 @@ process.executable.wildcard: (C\:\\Program\ Files* OR C\:\\Windows\\* OR C\:\\Us
 
 ## Potential local Privilege escalation vulnerability found - DLL Load by SYSTEM in C-Root subfolder
 ```
-event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYSTEM AND NOT file.path.wildcard: (C\:\\Program\ Files* OR C\:\\Windows\\* OR C\:\\Users\\* OR C\:\\ProgramData\\*)
+event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYSTEM AND NOT file.path: (C\:\\Program\ Files* OR C\:\\Windows\\* OR C\:\\Users\\* OR C\:\\ProgramData\\*)
 ```
 
 # Arbitrary File delete
@@ -208,6 +209,21 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 ##### May also be interesting to look inte other file operators
 ```
 (event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: (23 OR 26) AND file.path: (C\:\\*) AND NOT file.path: (C\:\\Users\\* OR C\:\\ProgramData\\* OR C\:\\Program\ Files* OR C\:\\Windows\\*)
+```
+
+# Kernel Drivers Loaded
+
+## Potential Local Privilege Escalation - Kernel Drivers Loaded from User-Writable Paths
+#### Look for none randomized names, we are more interested in static names. Dont forget to look for C-root subfolder also.
+```
+(event.provider: Microsoft-Windows-Sysmon AND event.code: 6 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\*))
+```
+
+## Potential Local Privilege Escalation - Sys-Files Created by SYSTEM in User-Writable Paths
+#### Look for none randomized names, we are more interested in static names. Dont forget to look for C-root subfolder also
+```
+(event.provider: Microsoft-Windows-Sysmon
+AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\*) AND file.extension: (sys OR SYS))
 ```
 
 # Other Queries - Layer on Layer coverage
