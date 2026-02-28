@@ -6,7 +6,7 @@ See above - queries.md file.
 
 Will keep getting updated when needed. 
 The idea is to have layer on layer coverage using different event.codes/event.providers.
-* Released queries for environmental PATHS, Kernel Drivers and Logon/Startup scripts etc released During february 2026!
+* Released queries for environmental PATHS, Kernel Drivers and Logon/Startup scripts etc during february 2026!
 
 ### Vulnerability Management
 Queries added for Vulnerability Management in file: vulnerabilitymanagement.md
