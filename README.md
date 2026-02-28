@@ -162,12 +162,15 @@ Check winlog.event_data.TaskContent in event.code 4698 for more context which co
 
 Inside that key, you’ll find a value named SD showing Binary format of the SDDL for the Scheduled task where you can look for to find misconfigured ACL for the task it self. Log them with a well configured Sysmon.
 
+
+
 ### Kernel drivers and privilege escalation
 #### Look for processes creating .sys files in User-Writable paths using sysmons event code 11 or look for loaded drivers from User-Writable paths using Sysmons event.code 6 (Driver loaded)
 Here is a excellent talk describing .sys files and privilege escalation using Bring Your Own Vulnerable Driver (BYOVD) techniques.
 - https://www.youtube.com/watch?v=U36hAneQeZM
 
 Summary of the talk showcases snowagent.exe dropping sys-files to `C:\Windows\Temp\cpuz143\cpuz143_x64.sys` and local privilege escalation by using the vulnerable driver for CVE-2021-21551.
+
 
 
 ## Prerequisites
