@@ -214,13 +214,13 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 # Kernel Drivers Loaded
 
 ## Potential Local Privilege Escalation - Kernel Drivers Loaded from User-Writable Paths
-#### Look for none randomized names, we are more interested in static names. Dont forget to look for C-root subfolder also.
+##### Look for none randomized names, we are more interested in static names. Dont forget to look for C-root subfolder also. For more context look at file.code_signature.subject_name field which shows the signer.
 ```
 (event.provider: Microsoft-Windows-Sysmon AND event.code: 6 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\*))
 ```
 
 ## Potential Local Privilege Escalation - Sys-Files Created by SYSTEM in User-Writable Paths
-#### Look for none randomized names, we are more interested in static names. Dont forget to look for C-root subfolder also
+##### Look for none randomized names, we are more interested in static names. Dont forget to look for C-root subfolder also
 ```
 (event.provider: Microsoft-Windows-Sysmon
 AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\*) AND file.extension: (sys OR SYS))
