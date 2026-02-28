@@ -222,8 +222,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 ## Potential Local Privilege Escalation - Sys-Files Created by SYSTEM in User-Writable Paths
 ##### Look for none randomized names, we are more interested in static names. Dont forget to look for C-root subfolder also
 ```
-(event.provider: Microsoft-Windows-Sysmon
-AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\*) AND file.extension: (sys OR SYS))
+(event.provider: Microsoft-Windows-Sysmon AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\*) AND file.extension: (sys OR SYS))
 ```
 
 # Other Queries - Layer on Layer coverage
