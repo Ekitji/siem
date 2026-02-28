@@ -71,6 +71,9 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://offsec.blog/hidden-menace-how-to-identify-misconfigured-and-dangerous-logon-scripts/
 - https://cyberthreatperspective.buzzsprout.com/1731753/episodes/13343207-episode-54-misconfigured-and-dangerous-logon-scripts
 
+#### Kernel drivers and privilege escalation
+- https://www.youtube.com/watch?v=U36hAneQeZM
+
 ### Example of interesting areas to look into that we have not covered in presentation but we have queries for some of them.
 * weak passwords in command_line - that are not following best practices / policies
 * weak passwords or sensitive information in powershell admin scripts scriptblock event code: 4104. Search for strings: "SecureString","PSCredential","Password", "passwd"......
@@ -159,8 +162,16 @@ Check winlog.event_data.TaskContent in event.code 4698 for more context which co
 
 Inside that key, you’ll find a value named SD showing Binary format of the SDDL for the Scheduled task where you can look for to find misconfigured ACL for the task it self. Log them with a well configured Sysmon.
 
+### Kernel drivers and privilege escalation
+#### Look for processes creating .sys files in User-Writable paths using sysmons event code 11 or look for loaded drivers from User-Writable paths using Sysmons event.code 6 (Driver loaded)
+Here is a excellent talk describing .sys files and privilege escalation using Bring Your Own Vulnerable Driver (BYOVD) techniques.
+- https://www.youtube.com/watch?v=U36hAneQeZM
+
+Summary of the talk showcases snowagent.exe dropping sys-files to `C:\Windows\Temp\cpuz143\cpuz143_x64.sys` and local privilege escalation by using the vulnerable driver for CVE-2021-21551.
+
+
 ## Prerequisites
-Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11.
+Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11 and 13 for the User-writable paths and the mentioned registry hives.
  - https://github.com/SwiftOnSecurity/sysmon-config
  - https://github.com/olafhartong/sysmon-modular
 
