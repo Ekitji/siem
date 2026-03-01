@@ -352,7 +352,7 @@ To show you how common it is with misconfigured third party software.
 | CVE-2025-1729 | Lenovo TrackPoint          | C:\ProgramData\Lenovo\TPQM\Assistant             | TPQMAssistant.exe                |         | DLL Hijacking, Schtasks         |
 | CVE-2025-47962| Microsoft Windows SDK      | C:\Microsoft Shared\Phone Tools\CoreCon\11.0\bin | cryptsp.dll                      | CWE-284 | DLL Hijacking, Service          |
 | CVE-2025-11772| Synaptics Fingerprint      | C:\ProgramData\Synaptics\CheckFPDatabase.exe     | WTSAPI32.dll etc                 |         | DLL Hijacking USB Co-Installers |
-| CVE-2020-5896 | BIG IP F5 Client           | C;\Windows\Temp\f5tmp\cachecleaner.exe           | cachecleaner.dll                 | CWE-276 | DLL planting → SYSTEM           |
+| CVE-2020-5896 | BIG IP F5 Client           | C:\Windows\Temp\f5tmp\cachecleaner.exe           | cachecleaner.dll                 | CWE-276 | DLL planting → SYSTEM           |
 | CVE-2020-13885| Citrix Workspace App       | %PROGRAMDATA%\Citrix\Citrix Workspace ####\webio.dll | Citrix services / uninstall     | CWE-276 | DLL planting → SYSTEM        |
 | CVE-2018-17778| SnowAgent                  | C:\Windows\Temp\cpuz143\cpuz143_x64.sys          | snowagent.exe CPUID SDK          |         | SYS file planting → SYSTEM      |
 | CVE-2024-34474| Clario for Desktop         | C:\ProgramData\Clario\                           | ClarioService.exe                | CWE-276 | Loads DLLs from ProgramData     |
