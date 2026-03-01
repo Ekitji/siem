@@ -4,12 +4,11 @@ Practical techniques for leveraging SIEM as an offensive discovery tool, helping
 ## Queries
 See above - queries.md file.
 
-Will keep getting updated when needed. 
-The idea is to have layer on layer coverage using different event.codes/event.providers.
+Will keep getting updated when needed. The idea is to have layer on layer coverage using different event.codes/event.providers.
 * Released queries for environmental PATHS, Kernel Drivers and Logon/Startup scripts etc during february 2026!
 
 ### Vulnerability Management
-Queries added for Vulnerability Management in file: vulnerabilitymanagement.md
+Queries for Vulnerability Management in file: vulnerabilitymanagement.md
 #### Gives you an idea how you can enumerate
 - Windows OS version and build status
 - Attack Surface Reduction (ASR) Rules and find misconfigurations 
@@ -21,7 +20,6 @@ We hope that you liked the presentation. Ping us if you (i would say when you) f
 
 ## General information
 The repo will assist you in having offensive mindset. 
-
 Repo is to share the material and queries that we talked about in our presentation:
 
 #### Offensive SIEM - When The Blue Team Switches Perspective
@@ -326,10 +324,10 @@ When a startup/logon script runs via GPO:
 | HKLM\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup | Startup scripts (applies to all users) tracking info. |
 | HKLM\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown | Shutdown scripts info. |
 
-#### Look for User-writable paths for scripts and executables in the child process of gpscript.exe, or writable network shares (SYSVOL). 
+#### Look for User-writable paths for scripts and executables in the child process of gpscript.exe, or writable network shares or genereic (SYSVOL). 
 Read the scripts that are run and look if there is any misconfigurations like other User-Writable paths or paths that does not exist or sensitive information. Look for possible used passwords (net use z: \\server\share /user:domain\username password) or other sensitive information. 
 
-## MSIEXEC / MSI Repairs
+## MSIExec / MSI Repairs
 ##### Our testing did not give any result in escalating privileges in scenarios where we could spawn edge and break out to a cmd prompt. This is probably because chromium based browsers is impersonating the user/restricting rendering process to run as SYSTEM and does not allow internet explorer/edge to spawn cmd or other processes as the SYSTEM user. We believe that if none chromium based browser is installed (like firefox) or older versions. An privilege escalation could be possible if you could spawn such process and break out from that to a command prompt.
 
 If you want to enumerate possible events related to this is to query for msiexec.exe as parent process with cmd.exe OR conhost.exe OR powershell.exe OR pwsh.exe as child process.
@@ -348,26 +346,28 @@ OR
 To show you how common it is with misconfigured third party software.
 | CVE           | Vendor / Product           | Path(s) / File(s)                                | Loads as SYSTEM                  | CWE     | Notes                          |
 |---------------|----------------------------|--------------------------------------------------|----------------------------------|---------|--------------------------------|
-| CVE-2025-42598| Epson Printer Drivers      | C:\ProgramData\EPSON\EPSON <serie> Series Dlls        | spoolsv.exe / PrintIsolationHost.exe | CWE-276 | DLL overwrite → SYSTEM      |
-| CVE-2025-64669| Windows Admin Center       | C:\ProgramData\WindowsAdminCenter\Updater        | WindowsAdminCenterUpdater.exe    | CWE-276 | DLL Hijacking         |
+| CVE-2025-42598| Epson Printer Drivers      | C:\ProgramData\EPSON\EPSON <serie> Series Dlls   | spoolsv.exe / PrintIsolationHost.exe | CWE-276 | DLL overwrite → SYSTEM      |
+| CVE-2025-64669| Windows Admin Center       | C:\ProgramData\WindowsAdminCenter\Updater        | WindowsAdminCenterUpdater.exe    | CWE-276 | DLL Hijacking                   |
 | CVE-2019-19363| Ricoh Printer Drivers      | C:\ProgramData\RICOH_DRV\                        | PrintIsolationHost.exe           | CWE-264*| DLL planting → SYSTEM           |
 | CVE-2025-1729 | Lenovo TrackPoint          | C:\ProgramData\Lenovo\TPQM\Assistant             | TPQMAssistant.exe                |         | DLL Hijacking, Schtasks         |
-| CVE-2025-47962 | Microsoft Windows SDK     | C:\Microsoft Shared\Phone Tools\CoreCon\11.0\bin  | cryptsp.dll                     | CWE-284  | DLL Hijacking, Service         |
-| CVE-2025-11772 | Synaptics Fingerprint     | C:\ProgramData\Synaptics\CheckFPDatabase.exe     | WTSAPI32.dll etc                 |          | DLL Hijacking USB Co-Installers |
-| CVE-2020-13885| Citrix Workspace App       | %PROGRAMDATA%\Citrix\Citrix Workspace ####\webio.dll | Citrix services / uninstall     | CWE-276 | DLL planting → SYSTEM           |
+| CVE-2025-47962| Microsoft Windows SDK      | C:\Microsoft Shared\Phone Tools\CoreCon\11.0\bin | cryptsp.dll                      | CWE-284 | DLL Hijacking, Service          |
+| CVE-2025-11772| Synaptics Fingerprint      | C:\ProgramData\Synaptics\CheckFPDatabase.exe     | WTSAPI32.dll etc                 |         | DLL Hijacking USB Co-Installers |
+| CVE-2020-5896 | BIG IP F5 Client           | C;\Windows\Temp\f5tmp\cachecleaner.exe           | cachecleaner.dll                 | CWE-276 | DLL planting → SYSTEM           |
+| CVE-2020-13885| Citrix Workspace App       | %PROGRAMDATA%\Citrix\Citrix Workspace ####\webio.dll | Citrix services / uninstall     | CWE-276 | DLL planting → SYSTEM        |
+| CVE-2018-17778| SnowAgent                  | C:\Windows\Temp\cpuz143\cpuz143_x64.sys          | snowagent.exe CPUID SDK          |         | SYS file planting → SYSTEM      |
 | CVE-2024-34474| Clario for Desktop         | C:\ProgramData\Clario\                           | ClarioService.exe                | CWE-276 | Loads DLLs from ProgramData     |
 | CVE-2022-34043| NoMachine (Windows)        | C:\ProgramData\NoMachine\var\uninstall\          | Uninstaller                      | CWE-732 | DLL hijack in uninstall folder  |
-| CVE-2020-15145| Composer-Setup (Windows)   | C:\ProgramData\ComposerSetup\bin\composer.bat (+ DLLs) | Maintenance/repair actions     | CWE-276 | Writable bin → LPE              |
+| CVE-2020-15145| Composer-Setup (Windows)   | C:\ProgramData\ComposerSetup\bin\composer.bat (+ DLLs) | Maintenance/repair actions     | CWE-276 | Writable bin → LPE          |
 | CVE-2019-14935| 3CX Phone for Windows      | %PROGRAMDATA%\3CXPhone for Windows\PhoneApp\     | Startup / elevated context       | CWE-732 | Everyone:Full Control           |
 | CVE-2024-54131| Kolide Launcher            | C:\ProgramData\Kolide\Launcher-[ID]\data\        | Launcher service                 | CWE-276 | Weak perms → DLL load           |
 | CVE-2021-28098| Forescout SecureConnector  | %PROGRAMDATA%\ForeScout SecureConnector\         | SecureConnector service          | CWE-264*| Writable log → symlink → SYSTEM |
-| CVE-2019-15752| Docker Desktop (Windows)   | %ProgramData%\DockerDesktop\version-bin\docker-credential-wincred.exe | Docker auth flow      | CWE-276 | EXE planting → SYSTEM           |
-| CVE-2022-39959| Panini Everest Engine      | %PROGRAMDATA%\Panini\Everest Engine\EverestEngine.exe | Engine service (SYSTEM)        | CWE-276 | Unquoted path → EXE planting    |
+| CVE-2019-15752| Docker Desktop (Windows)   | %ProgramData%\DockerDesktop\version-bin\docker-credential-wincred.exe | Docker auth flow      | CWE-276 | EXE planting → SYSTEM |
+| CVE-2022-39959| Panini Everest Engine      | %PROGRAMDATA%\Panini\Everest Engine\EverestEngine.exe | Engine service (SYSTEM)        | CWE-276 | Unquoted path → EXE planting |
 | CVE-2018-10204| PureVPN (Windows)          | %PROGRAMDATA%\purevpn\config\config.ovpn         | openvpn.exe (service)            | CWE-276 | Writable config → DLL load      |
 | CVE-2020-27643| 1E Client (Windows)        | %PROGRAMDATA%\1E\Client\                         | Client service                   | CWE-276 | Writable dir → LPE              |
-| CVE-2020-1985 | Palo Alto Secdo Agent      | C:\ProgramData\Secdo\Logs\                       | Secdo service                    | CWE-276 | Incorrect default perms          |
-| CVE-2024-36495| Faronics WINSelect         | C:\ProgramData\WINSelect\WINSelect.wsd / Faronics\StorageSpace\WS\WINSelect.wsd | WINSelect service            | CWE-276 | Config writable → LPE            |
-| CVE-2024-20656| Visual Studio Setup WMI    | C:\ProgramData\Microsoft\VisualStudio\SetupWMI\MofCompiler.exe | Repair action (SYSTEM)      | CWE-276 | Replace binary → SYSTEM          |
+| CVE-2020-1985 | Palo Alto Secdo Agent      | C:\ProgramData\Secdo\Logs\                       | Secdo service                    | CWE-276 | Incorrect default perms         |
+| CVE-2024-36495| Faronics WINSelect         | C:\ProgramData\WINSelect\WINSelect.wsd / Faronics\StorageSpace\WS\WINSelect.wsd | WINSelect service | CWE-276 | Config writable → LPE|
+| CVE-2024-20656| Visual Studio Setup WMI    | C:\ProgramData\Microsoft\VisualStudio\SetupWMI\MofCompiler.exe | Repair action (SYSTEM)      | CWE-276 | Replace binary → SYSTEM |
 | CVE-2025-3224 | Docker Desktop (Windows)   | C:\ProgramData\Docker\config\                    | Updater (high priv)              | CWE-276 | Creatable/deletable path → LPE   |
 
 
