@@ -64,7 +64,7 @@ Apply before enabling boot logging to reduce log size:
 | Filter | Include/Exclude | Purpose |
 |--------|----------------|---------|
 | `Process Name` → `SYSTEM` | Include | Focus on privileged processes |
-| `Result` → `NAME NOT FOUND` | Include | Detect potential binary/DLL planting or missing files |
+| `Result` → `NAME NOT FOUND` OR `PATH NOT FOUND` | Include | Detect potential binary/DLL planting or missing files |
 | `Path` → `C:\Windows\Temp` | Include | Monitor temp directories and other user-writable directories often used by installers or malicious binaries |
 | `Operation` → `CreateFile` | Include | Trace file reads/writes/deletes |
 | `Operation` → `Process Create` | Include | Track execution of new processes |
