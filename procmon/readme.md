@@ -19,7 +19,7 @@
 2. Procmon will prompt to **save the boot log** (`.PML` file). Save it to a secure location.
 3. The log will automatically load for analysis.
 
-> **Tip:** Boot logs can be very large (10–100s of MBs), so consider using filters to reduce noise.
+> **Tip:** Boot logs can be very large (hundreds of MBs to several GBs), so consider using filters to reduce noise.
 
 ---
 
