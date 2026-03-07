@@ -40,7 +40,23 @@ For sharing or automated analysis:
 
 ---
 
-## 4️⃣ Recommended Filters for Security Research
+## 4️⃣ Convert CSV to NDJSON and Split for SIEM
+
+To prepare Procmon logs for ingestion into a SIEM:
+
+1. Use a script (PowerShell provided one, or your preferred tool) to **convert CSV → NDJSON**.
+   - Each row becomes a JSON object.
+   - NDJSON (Newline-Delimited JSON) is optimized for bulk ingestion.
+2. If the NDJSON file is very large:
+   - Split it into smaller chunks (e.g., up to 1000 MB per file).
+   - Ensure each chunk is valid NDJSON (one JSON object per line).
+3. These splitted NDJSON files can now be ingested into SIEM tools like **Splunk, Elastic** without performance issues.
+
+> **Tip:** Always validate the NDJSON after conversion and splitting to avoid ingestion errors.
+
+---
+
+## 5️⃣ Recommended Filters for Security Research
 
 ### Pre-boot / Live Capture Filters
 Apply before enabling boot logging to reduce log size:
@@ -65,22 +81,6 @@ Apply after log capture to refine investigation:
 | `Result = NAME NOT FOUND` | Identify failed attempts, potential symlink or file planting opportunities |
 
 > **Pro tip:** Combine `Result = NAME NOT FOUND` with `Process Name = SYSTEM` and `Path = Temp` to find privileged processes **searching for missing files** — a common pattern exploited in privilege escalation.
-
----
-
-## 5️⃣ Convert CSV to NDJSON and Split for SIEM
-
-To prepare Procmon logs for ingestion into a SIEM:
-
-1. Use a script (PowerShell provided one, or your preferred tool) to **convert CSV → NDJSON**.
-   - Each row becomes a JSON object.
-   - NDJSON (Newline-Delimited JSON) is optimized for bulk ingestion.
-2. If the NDJSON file is very large:
-   - Split it into smaller chunks (e.g., up to 1000 MB per file).
-   - Ensure each chunk is valid NDJSON (one JSON object per line).
-3. These splitted NDJSON files can now be ingested into SIEM tools like **Splunk, Elastic** without performance issues.
-
-> **Tip:** Always validate the NDJSON after conversion and splitting to avoid ingestion errors.
 
 ---
 
