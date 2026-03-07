@@ -342,6 +342,10 @@ OR
 ```
 - https://cloud.google.com/blog/topics/threat-intelligence/privileges-third-party-windows-installers/
 
+## If you dont have enough telemetry or want to hunt deeper
+In situations where available telemetry is limited, investigators can collect deeper host activity using boot logging in Process Monitor. Procmon can capture low-level system activity such as process creation, file access, registry operations, driver loads, and service activity starting very early in the Windows boot process in Microsoft Windows. The captured boot log can be exported to CSV and converted to NDJSON and ingested into a SIEM for further hunting and analysis. This approach can provide additional visibility when investigating privilege escalation or persistence techniques that might not appear in standard logging sources. Check the section procmon for more information.
+
+
 ## Example of some public windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
 To show you how common it is with misconfigured third party software.
 | CVE           | Vendor / Product           | Path(s) / File(s)                                | Loads as SYSTEM                  | CWE     | Notes                          |
