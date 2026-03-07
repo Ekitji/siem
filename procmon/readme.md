@@ -28,13 +28,27 @@
 For sharing or automated analysis:
 
 1. Open the boot log `.PML` in Procmon.
-2. Go to **File → Save**.
-3. In the **Save Configuration** window:
+2. Make sure that atleast following columns exists
+   - Time of day
+   - Image Path
+   - Process Name
+   - Command Line
+   - Path
+   - Operation
+   - User Name
+   - Result
+   - Detail
+   - Duration
+   - PID
+   - Parent PID
+   
+4. Go to **File → Save**.
+5. In the **Save Configuration** window:
    - Select **“All Events”** or **“Filtered Events”** (filtered is recommended to reduce size)
    - Choose **CSV** as the file type.
    - Choose a filename and location.
-4. Click **OK**.  
-   You now have a CSV file that can be opened in Excel, Python, or other data analysis tools.
+6. Click **OK**.  
+   You now have a CSV file that can be opened in Excel, Python, or other data analysis tools. We will convert the CSV to NDJSON.
 
 > **Pro tip:** Saving filtered events reduces file size and helps focus on relevant actions like `Process Create`, `CreateFile`, and `NAME NOT FOUND`.
 
