@@ -151,18 +151,17 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 11 AND user.name: SYS
 
 
 
-
 # Scripts
 
 ## Potential Local Privilege Escalation - Script Files Created by SYSTEM in User-Writable Paths
 #### Dont forget to look for creation of script files also in C-root subfolder.
 ```
 (event.provider: Microsoft-Windows-Sysmon
-AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\*) AND file.extension: (cmd OR bat OR ps1 OR vbs))
+AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\* ) AND file.extension: (cmd OR bat OR ps1 OR vbs))
 ```
 
 ## Potential Local Privilege Escalation - BAT Files Executed from ProgramData ⭐
-#### Dont forget to create the query for powershell + ps1 and other script engines/files, will likely also catch schtask scripts.
+#### Dont forget to create the query for powershell + ps1 and other script engines/files, will likely also catch schtask scripts. Query also for Temp folder and other User-writable paths.
 ```
 (event.provider: Microsoft-Windows-Sysmon AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.command_line: *ProgramData* AND process.command_line: /.*[Bb][Aa][Tt].*/ AND process.name: cmd.exe )
 (event.code: 4688 AND winlog.event_data.TokenElevationType: "%%1936" AND process.command_line: *ProgramData* AND process.command_line: /.*[Bb][Aa][Tt].*/ AND process.name: cmd.exe)
@@ -181,7 +180,6 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 ```
 ((event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.MandatoryLabel: "S-1-16-12288" AND process.parent.name: gpscript.exe) OR (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: High AND process.parent.name: gpscript.exe))
 ```
-
 
 
 # C-Root Folder
@@ -231,6 +229,15 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 ```
 event.provider: "Microsoft-Windows-Sysmon" AND event.code: 5 AND user.name: SYSTEM AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*)
 ```
+
+## Potential Local Privilege Escalation - Group Policy Preferences Errors enumeration
+##### Event 4117 in Microsoft Windows appears in the GroupPolicy/Operational log and indicates that a Group Policy Preference (GPP) item failed to apply. While it’s primarily an administration/troubleshooting event, it can sometimes reveal privilege-escalation opportunities when the failure involves misconfigured paths, permissions, scheduled tasks, missing binaries/scripts. 
+```
+event.provider:"Microsoft-Windows-GroupPolicy" AND event.code:4117
+```
+
+
+
 ## Potential Local Privilege Escalation - Applocker Events by SYSTEM in User-Writable Paths
 ##### Depending on your Applocker configuration - Could be used to catch events related to DLL/EXE etc...alternative if you dont have SYSMON set but will likely miss alots of DLL events. Applocker could also be good for catching DLL/EXE events in Program Files which SYSMON will likely miss.
 ```
