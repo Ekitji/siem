@@ -68,27 +68,7 @@ Apply after log capture to refine investigation:
 
 ---
 
-## 5️⃣ Analysis Workflow
-
-1. Open the boot log in Procmon.
-2. Apply post-boot filters iteratively.
-3. Investigate suspicious patterns:
-   - **SYSTEM process attempting to open files in writable directories**  
-   - **Failed CreateFile or Load Image events (`NAME NOT FOUND`)**  
-   - **Unexpected Process Create or registry modifications**
-4. Save filtered `.PML` or export to CSV for sharing, automation, or reporting.
-
----
-
-## 6️⃣ References / Resources
-
-- **Procmon Documentation:** [Microsoft Sysinternals](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)  
-- **Windows Object Manager & Reparse Points:** James Forshaw, Microsoft Security Research  
-- **Red Team Blogs:** Practical examples of **privileged file operation tracing** using Procmon
-
----
-
-## 7️⃣ Convert CSV to NDJSON and Split for SIEM
+## 5️⃣ Convert CSV to NDJSON and Split for SIEM
 
 To prepare Procmon logs for ingestion into a SIEM:
 
@@ -103,6 +83,14 @@ To prepare Procmon logs for ingestion into a SIEM:
 > **Tip:** Always validate the NDJSON after conversion and splitting to avoid ingestion errors.
 
 ---
+
+## 6️⃣ References / Resources
+
+- **Procmon Documentation:** [Microsoft Sysinternals](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)  
+- **Windows Object Manager & Reparse Points:** James Forshaw, Microsoft Security Research  
+- **Red Team Blogs:** Practical examples of **privileged file operation tracing** using Procmon
+
+
 
 
 ✅ This README section provides **everything needed to run boot logging, apply security-research-oriented filters, and export events for analysis**, safely and efficiently.
