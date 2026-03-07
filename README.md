@@ -334,6 +334,8 @@ If you want to enumerate possible events related to this is to query for msiexec
 Contact the users your query get results from and ask them what they installed/repaired. You can also check event.provider: "MsiInstaller" and event.code: (1033 OR 11707) or similar to get more context about which msi installer was installed around same timestamp.
 You could also try this your self in Software Center and install the applications and look for command prompts which you can pause before they dissapear by marking a section in the window. Then break out using same techniques mentioned in the link below.
 
+
+
 ##### Example query
 ```
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.parent.name: msiexec.exe AND process.name: (cmd.exe OR conhost.exe OR powershell.exe OR pwsh.exe))
@@ -342,8 +344,10 @@ OR
 ```
 - https://cloud.google.com/blog/topics/threat-intelligence/privileges-third-party-windows-installers/
 
+
 ## If you dont have enough telemetry or want to hunt deeper
 In situations where available telemetry is limited, investigators can collect deeper host activity using boot logging in Process Monitor. Procmon can capture low-level system activity such as process creation, file access, registry operations, driver loads, and service activity starting very early in the Windows boot process in Microsoft Windows. The captured boot log can be exported to CSV and converted to NDJSON and ingested into a SIEM for further hunting and analysis. This approach can provide additional visibility when investigating privilege escalation or persistence techniques that might not appear in standard logging sources. Check the section procmon for more information.
+
 
 
 ## Example of some public windows privilege escalation CVEs (permissions → EXE/DLL load/replace)
