@@ -131,7 +131,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 # Centralized Application Deployment
 
 ## Potential Local Privilege Escalation - Process Creation by SYSTEM in User-Writable Paths ⭐
-#### Catches also none Centralized application deployments, its more a generic query that also catches schtasks or services as parent process. Do a separate query for C:\Windwos\Temp
+#### Catches also none Centralized application deployments, its more a generic query that also catches schtasks or services as parent process. Do a separate query for C:\Windows\Temp
 ```
 (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: System AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\*))
 OR
