@@ -15,11 +15,11 @@
 
 ## 2️⃣ Collect & Open Boot Log
 
-1. After boot, launch Procmon as Administrator.
+1. After boot, wait 5-10 minutes and then launch Procmon as Administrator.
 2. Procmon will prompt to **save the boot log** (`.PML` file). Save it to a secure location.
 3. The log will automatically load for analysis.
 
-> **Tip:** Boot logs can be very large (hundreds of MBs to several GBs), so consider using filters to reduce noise.
+> **Tip:** Boot logs can be very large (hundreds of MBs to several GBs), so consider using filters provided in this repository to reduce noise.
 
 ---
 
@@ -48,9 +48,9 @@ For sharing or automated analysis:
    - Choose **CSV** as the file type.
    - Choose a filename and location.
 6. Click **OK**.  
-   You now have a CSV file that can be opened in Excel, Python, or other data analysis tools. We will convert the CSV to NDJSON.
+   You now have a CSV file that We will convert the CSV to NDJSON and ingest it to a SIEM. It could also be opened in Excel, Python, or other data analysis tools.
 
-> **Pro tip:** Saving filtered events reduces file size and helps focus on relevant actions like `Process Create`, `CreateFile`, and `NAME NOT FOUND`.
+> **Pro tip:** Saving filtered events reduces file size and helps focus on relevant actions like `Path`, `User`, and `Result: NAME NOT FOUND`.
 
 ---
 
@@ -58,13 +58,13 @@ For sharing or automated analysis:
 
 To prepare Procmon logs for ingestion into a SIEM:
 
-1. Use a script (PowerShell provided one, or your preferred tool) to **convert CSV → NDJSON**.
+1. Use the csvtondjsonv.ps1 script (powershell provided one) to **convert CSV → NDJSON**.
    - Each row becomes a JSON object.
    - NDJSON (Newline-Delimited JSON) is optimized for bulk ingestion.
 2. If the NDJSON file is very large:
-   - Split it into smaller chunks (e.g., up to 1000 MB per file).
+   - Split it into smaller chunks using provided script splitndjson.ps1 (e.g., up to 1000 MB per file).
    - Ensure each chunk is valid NDJSON (one JSON object per line).
-3. These splitted NDJSON files can now be ingested into SIEM tools like **Splunk, Elastic** without performance issues.
+3. These splitted NDJSON files can now be ingested into SIEM tools like **Elastic** without performance issues. You can use provided script importtoelastic.ps1 to ingest the ndjson files.
 
 > **Tip:** Always validate the NDJSON after conversion and splitting to avoid ingestion errors.
 
@@ -93,8 +93,9 @@ Apply after log capture to refine investigation:
 | `Path contains .dll` | Detect DLL loads and potential hijacks |
 | `Result = SUCCESS` | Focus on actual successful operations |
 | `Result = NAME NOT FOUND` | Identify failed attempts, potential symlink or file planting opportunities |
+| `Result = PATH NOT FOUND` | Identify failed attempts, potential symlink or file planting opportunities |
 
-> **Pro tip:** Combine `Result = NAME NOT FOUND` with `Process Name = SYSTEM` and `Path = Temp` to find privileged processes **searching for missing files** — a common pattern exploited in privilege escalation.
+> **Pro tip:** Combine `Result = NAME NOT FOUND` with `User = SYSTEM` and `Path = Temp` to find privileged processes **searching for missing files** — a common pattern exploited in privilege escalation.
 
 ---
 
