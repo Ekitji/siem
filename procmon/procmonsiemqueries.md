@@ -31,4 +31,4 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR
 ```
 >**In config adding variables script=, command=,  like Example: script=C:\temp\privesc.ps1**
 >
-- Ref: https://github.com/serilog/serilog-settings-configuration/blob/dev/sample/Sample/appsettings.json **Like path, Template, outputTemplate**
+- Ref: https://github.com/serilog/serilog-settings-configuration/blob/dev/sample/Sample/appsettings.json **Look for keys/variables Like path, Template, outputTemplate**
