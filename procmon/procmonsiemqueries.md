@@ -16,3 +16,10 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp)
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: ("NAME NOT FOUND" OR Result: "PATH NOT FOUND")
 ```
+
+## Potential Local Privilege Escalation - ACCESS DENIED Events
+#### Reveals where privileged processes are trying to access protected resources. Those access attempts can sometimes be manipulated or redirected, leading to local privilege escalation (LPE).
+```
+User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: "ACCESS DENIED"
+```
+
