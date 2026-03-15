@@ -10,3 +10,9 @@
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp)
 ```
 ##### 
+
+## Potential Local Privilege Escalation - NOT FOUND Events
+#### Look for file extensions like `.dll`, `.exe`, `.sys`, `.ps1`, `.bat`, `.cmd`, `.js`, `.vbs`
+```
+User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: ("NAME NOT FOUND" OR Result: "PATH NOT FOUND")
+```
