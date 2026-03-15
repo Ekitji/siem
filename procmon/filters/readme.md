@@ -1,5 +1,6 @@
 # Filters
-My favorite is Filter 1 which shows you lots of event and helps you backtrack possible privilege escalation. Most of the relevant events is captured. If you find something interesting you could use "Process tree" to have parent/child relations.
+My favorite is Filter 1 which shows you lots of event and helps you backtrack possible privilege escalation. 
+Most of the relevant events is captured. If you find something interesting you could use "Process tree" to have parent/child relations.
 Procmon --> Tools --> Process tree
 You can do this on you captured .PML File also after querying in the SIEM.
 
