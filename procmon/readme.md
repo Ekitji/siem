@@ -1,4 +1,4 @@
-# Procmon Boot Logging & Analysis for Security Research
+# Procmon Boot Logging & SIEM Analysis for Security Research
 
 **Process Monitor (Procmon)** from Sysinternals is a powerful tool for tracing **file, registry, and process activity**, including **SYSTEM-level operations during boot**. This workflow is commonly used in **privilege escalation research**, malware analysis, and endpoint monitoring.
 
@@ -28,7 +28,7 @@
 For sharing or automated analysis:
 
 1. Open the boot log `.PML` in Procmon.
-2. Make sure that atleast following columns exists
+2. **Make sure that atleast following columns exists**
    - Time of day
    - Image Path
    - Process Name
