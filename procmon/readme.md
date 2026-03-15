@@ -61,10 +61,10 @@ To prepare Procmon logs for ingestion into a SIEM:
 1. Use the csvtondjsonv.ps1 script (powershell provided one) to **convert CSV → NDJSON**.
    - Each row becomes a JSON object.
    - NDJSON (Newline-Delimited JSON) is optimized for bulk ingestion.
-2. If the NDJSON file is very large:
+2. If the NDJSON file is very large, greater than 1000MB/1GB:
    - Split it into smaller chunks using provided script splitndjson.ps1 (e.g., up to 1000 MB per file).
    - Ensure each chunk is valid NDJSON (one JSON object per line).
-3. These splitted NDJSON files can now be ingested into SIEM tools like **Elastic** without performance issues. You can use provided script importtoelastic.ps1 to ingest the ndjson files.
+3. These splitted NDJSON files can now be ingested into SIEM tools like **Elastic** without performance issues. You can use provided script importtoelastic.ps1 to ingest the ndjson files using the Bulk API.
 
 > **Tip:** Always validate the NDJSON after conversion and splitting to avoid ingestion errors.
 
