@@ -24,6 +24,12 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: ("NAME 
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: "ACCESS DENIED"
 ```
 
+## Potential Local Privilege Escalation - NAME INVALID Events
+#### The Result: "NAME INVALID" in Procmon happens when a process attempts to access a resource whose name the OS considers invalid. NAME INVALID usually indicates a naming or path problem with illegal characters.
+```
+User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: "NAME INVALID"
+```
+
 ## Potential Local Privilege Escalation - Generic query for Config files 
 #### User-controlled configuration used by privileged process which may be used to execute exe/scripts etc. Look for existing/missing files, existing , ReadFile operations etc.
 ```
