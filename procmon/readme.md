@@ -50,7 +50,7 @@ For sharing or automated analysis:
 6. Click **OK**.  
    You now have a CSV file that We will convert the CSV to NDJSON and ingest it to a SIEM. It could also be opened in Excel, Python, or other data analysis tools.
 
-> **Pro tip:** Saving filtered events reduces file size and helps focus on relevant actions like `Path`, `User`, and `Result: NAME NOT FOUND`. To much filters will likely miss important events. Filter 1 is focusing on SYSTEM user and is excluding Registry Operations. 
+> **Pro tip:** Saving filtered events reduces file size and helps focus on relevant actions like `Path`, `User`, and `Result: NAME NOT FOUND`. To much exclusion filters will likely miss important events. Filter 1 is focusing on SYSTEM user and is excluding Registry Operations. 
 
 ---
 
@@ -97,6 +97,9 @@ Apply after log capture to refine investigation:
 | `Result = PATH NOT FOUND` | Identify failed attempts, potential symlink or file planting opportunities |
 
 > **Pro tip:** Combine `Result = NAME NOT FOUND` with `User = SYSTEM` and `Path = Temp` to find privileged processes **searching for missing files** — a common pattern exploited in privilege escalation.
+>
+> **SIEM Queries:** Procmon SIEM queries in the procmonsiemqueries.md file
+> 
 
 ---
 
