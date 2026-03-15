@@ -47,8 +47,7 @@ User: SYSTEM AND Command Line: (ProgramData OR Users OR Temp OR Tmp) AND Command
 ```
 
 ## Potential Local Privilege Escalation - SetSecurityFile Events
-#### `SetSecurityFile` occurs when a process attempts to **change the security descriptor (ACL)** of a file or folder.
-
+#### `SetSecurityFile` occurs when a process attempts to **change the security descriptor (ACL)** of a file or folder. Correlate SetSecurityFile events with ACL inspection to identify LPE opportunities.
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetSecurityFile
 ```
