@@ -45,3 +45,10 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR
 ```
 User: SYSTEM AND Command Line: (ProgramData OR Users OR Temp OR Tmp) AND Command Line: (*.dll* OR *.exe* OR *.sys* OR *ps1* OR *.bat* OR *.cmd* OR *.js* OR *.vbs*) 
 ```
+
+## Potential Local Privilege Escalation - SetSecurityFile Events
+#### `SetSecurityFile` occurs when a process attempts to **change the security descriptor (ACL)** of a file or folder.
+
+```
+User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetSecurityFile
+```
