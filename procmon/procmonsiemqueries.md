@@ -25,7 +25,7 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: "ACCESS
 ```
 
 ## Potential Local Privilege Escalation - Generic query for Config files 
-#### User-controlled configuration used by privileged process which may be used to execute exe/scripts etc. Look for missing config files, ReadFile operations etc.
+#### User-controlled configuration used by privileged process which may be used to execute exe/scripts etc. Look for existing/missing files, existing , ReadFile operations etc.
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR *.config OR *.xml *.json)
 ```
