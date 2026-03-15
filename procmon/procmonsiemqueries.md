@@ -29,7 +29,13 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: "ACCESS
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR *.config OR *.xml *.json)
 ```
->**In config adding variables script=, command=, like Example: script=C:\temp\privesc.ps1**
+>**In config adding variables or values like script=, command=, Example: script=C:\temp\privesc.ps1**
 >
 - Ref: https://github.com/serilog/serilog-settings-configuration/blob/dev/sample/Sample/appsettings.json 
 **Look for keys/variables Like path, Template, outputTemplate** `Missed the chance of CVE-2025-1789`
+
+## Potential Local Privilege Escalation - Generic query for Command Line
+#### Look for cmd.exe, powershell.exe, pwsh.exe or other script engies executing scripts from User-writable paths.
+```
+User: SYSTEM AND Command Line: (ProgramData OR Users OR Temp OR Tmp) AND Command Line: (*.dll* OR *.exe* OR *.sys* OR *ps1* OR *.bat* OR *.cmd* OR *.js* OR *.vbs*) 
+```
