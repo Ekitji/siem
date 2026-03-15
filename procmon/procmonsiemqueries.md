@@ -13,9 +13,9 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp)
 ##### 
 
 ## Potential Local Privilege Escalation - NOT FOUND Events ⭐
-#### Look for file extensions like `.dll`, `.exe`, `.sys`, `.ps1`, `.bat`, `.cmd`, `.js`, `.vbs`
+#### Look for file extensions like `.dll`, `.exe`, `.sys`, `.ps1`, `.bat`, `.cmd`, `.js`, `.vbs` or config files like XML, json etc.
 ```
-User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: ("NAME NOT FOUND" OR Result: "PATH NOT FOUND")
+User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: ("NAME NOT FOUND" OR "PATH NOT FOUND")
 ```
 
 ## Potential Local Privilege Escalation - ACCESS DENIED Events
@@ -23,4 +23,11 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: ("NAME 
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: "ACCESS DENIED"
 ```
+
+## Potential Local Privilege Escalation - Generic query for Config files 
+#### User-controlled configuration used by privileged process which may be used to execute exe/scripts etc. Look for missing config files, ReadFile operations etc.
+```
+User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR *.config OR *.xml *.json)
+```
+
 
