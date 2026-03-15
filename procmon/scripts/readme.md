@@ -13,14 +13,14 @@ The NDJSON files will now be several smaller files in the "splitted" directory. 
 
 ## importtoelastic.ps1
 Elastic supports formats: PDF, TXT, CSV, log files and NDJSON and has Web GUI upload function which is limited to 100MB but can be extended to 1000MB (in the settings)
-The script imports NDJSON data into Elasticsearch using the Bulk API in an efficient, batched way.
+The script imports NDJSON data into Elasticsearch using the Bulk API in an efficient, batched way. There is no settings that need to be adjusted to use the Bulk API. Just make sure that each file dont exceed 1000MB for a smooth experience.
 
 Place the script in the same directory as your NDJSON files and run it with powerhell `powershell -ep bypass .\importtoelastic.ps1`
 
 
 
 
-### Use this on your local SIEM that you installed
+### Use this for your local SIEM that you´ve installed
 #### Setting up a local ELK is fairly easy using Windows platform.
 
 - https://www.elastic.co/downloads/elasticsearch
