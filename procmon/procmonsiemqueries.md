@@ -10,13 +10,19 @@ The queries with ⭐ mark is extra highly relevant.
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp)
 ```
-##### 
 
 ## Potential Local Privilege Escalation - NOT FOUND Events ⭐
 #### Look for file extensions like `.dll`, `.exe`, `.sys`, `.ps1`, `.bat`, `.cmd`, `.js`, `.vbs` or config files like XML, json etc.
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: ("NAME NOT FOUND" OR "PATH NOT FOUND")
 ```
+
+## Potential Local Privilege Escalation - NO SUCH FILE Events 
+#### Look for file extensions like `.dll`, `.exe`, `.sys`, `.ps1`, `.bat`, `.cmd`, `.js`, `.vbs` or config files like XML, json etc.
+```
+User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: ("NO SUCH FILE")
+```
+
 
 ## Potential Local Privilege Escalation - ACCESS DENIED Events
 #### Reveals where privileged processes are trying to access protected resources. Those access attempts can sometimes be manipulated or redirected, leading to local privilege escalation (LPE).
