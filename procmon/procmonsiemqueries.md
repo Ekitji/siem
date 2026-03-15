@@ -30,9 +30,13 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: "ACCESS
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR *.config OR *.xml *.json)
 ```
 >script=
+
 plugin=
+
 command=
+
 update_url=
+
 **Example: script=C:\temp\privesc.ps1**
 >
 
