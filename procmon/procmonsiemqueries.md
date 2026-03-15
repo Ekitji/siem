@@ -29,7 +29,7 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: "ACCESS
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR *.config OR *.xml *.json)
 ```
->**In config adding variables script=, command=,  like Example: script=C:\temp\privesc.ps1**
+>**In config adding variables script=, command=, like Example: script=C:\temp\privesc.ps1**
 >
 - Ref: https://github.com/serilog/serilog-settings-configuration/blob/dev/sample/Sample/appsettings.json 
-**Look for keys/variables Like path, Template, outputTemplate**
+**Look for keys/variables Like path, Template, outputTemplate** `Missed the chance of CVE-2025-1789`
