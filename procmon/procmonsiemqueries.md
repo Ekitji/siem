@@ -33,7 +33,7 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: "NAME I
 ## Potential Local Privilege Escalation - Generic query for Config files 
 #### User-controlled configuration used by privileged process which may be used to execute exe/scripts etc. Look for existing/missing files, existing , ReadFile operations etc.
 ```
-User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR *.config OR *.xml *.json)
+User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR *.config OR *.cfg OR *.xml OR *.json)
 ```
 >**In config adding variables or values like script=, command=, Example: script=C:\temp\privesc.ps1**
 >
