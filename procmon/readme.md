@@ -19,7 +19,7 @@
 2. Procmon will prompt to **save the boot log** (`.PML` file). Save it to a secure location.
 3. The log will automatically load for analysis.
 
-> **Tip:** Boot logs can be very large (hundreds of MBs to several GBs), so consider using filters provided in this repository to reduce noise.
+> **Tip:** Boot logs can be very large (hundreds of MBs to several GBs depending on how you capture it), so consider using filters (Filter 1) provided in this repository to reduce some noise without excluding relevant events.
 
 ---
 
@@ -44,13 +44,13 @@ For sharing or automated analysis:
    
 4. Go to **File → Save**.
 5. In the **Save Configuration** window:
-   - Select **“All Events”** or **“Filtered Events”** (filtered is recommended to reduce size)
+   - Select **“All Events”** or **“Filtered Events”** (filtered events using "Filter 1" is recommended to reduce size and noise)
    - Choose **CSV** as the file type.
    - Choose a filename and location.
 6. Click **OK**.  
    You now have a CSV file that We will convert the CSV to NDJSON and ingest it to a SIEM. It could also be opened in Excel, Python, or other data analysis tools.
 
-> **Pro tip:** Saving filtered events reduces file size and helps focus on relevant actions like `Path`, `User`, and `Result: NAME NOT FOUND`.
+> **Pro tip:** Saving filtered events reduces file size and helps focus on relevant actions like `Path`, `User`, and `Result: NAME NOT FOUND`. To much filters will likely miss important events. Filter 1 is focusing on SYSTEM user and is excluding Registry Operations. 
 
 ---
 
@@ -72,8 +72,9 @@ To prepare Procmon logs for ingestion into a SIEM:
 
 ## 5️⃣ Recommended Filters for Security Research
 
-### Pre-boot / Live Capture Filters
-Apply before enabling boot logging to reduce log size:
+### Capture Filter
+We want to capture as much as possible without excluding important events. We are more interested in SYSTEM user events.
+Focusing on SYSTEM user will give you wide area of events to focus on. My good to go filter is focusing on SYSTEM user and excluding Registry related events (Filter 1 in Filters section). Be aware that we miss registry related events that could have vulnerabilities.
 
 | Filter | Include/Exclude | Purpose |
 |--------|----------------|---------|
@@ -91,7 +92,7 @@ Apply after log capture to refine investigation:
 | `Process Name` → `cmd.exe` | Analyze scripts or shell commands run by SYSTEM |
 | `Path contains .exe` | Identify executable launches |
 | `Path contains .dll` | Detect DLL loads and potential hijacks |
-| `Result = SUCCESS` | Focus on actual successful operations |
+| `Result = SUCCESS` | Focus on actual successful operations in User-writable paths, any file replacement allowed? |
 | `Result = NAME NOT FOUND` | Identify failed attempts, potential symlink or file planting opportunities |
 | `Result = PATH NOT FOUND` | Identify failed attempts, potential symlink or file planting opportunities |
 
