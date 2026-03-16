@@ -46,6 +46,15 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR
 - Ref: https://github.com/serilog/serilog-settings-configuration/blob/dev/sample/Sample/appsettings.json 
 **Look for keys/variables Like path, Template, outputTemplate** `Missed the chance of CVE-2025-1789`
 
+
+
+## Potential Local Privilege Escalation - Generic query for Command Line
+#### SysWOW64 → Folder containing 32-bit system files on a 64-bit Windows system which is odd behaviour if cmd.exe, powershell.exe, pwsh.exe.
+```
+User: SYSTEM AND Image Path: "C:\Windows\SysWOW64\cmd.exe"
+```
+
+
 ## Potential Local Privilege Escalation - Generic query for Command Line
 #### Look for cmd.exe, powershell.exe, pwsh.exe or other script engies executing scripts from User-writable paths.
 ```
