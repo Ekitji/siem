@@ -117,7 +117,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ```
 event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: (4700 OR  4701 OR 4698) AND message: *SecurityDescriptor* AND NOT winlog.event_data.TaskName: (\\Microsoft\\Windows\\* OR \\Microsoft\\Office\\*) 
 ```
-> **Pro Tip:** To generate more events run a script that disables and re-enables all tasks. The event enabled event will be triggered and you will catch the SecurityDescriptor there for Tasks that you dont have any SecurityDescriptor from ex. event.code 4698.
+> **Pro Tip:** To generate more events run a script that disables and re-enables all tasks on a endpoint/workstation that you have logs from. Re-enabling will trigger and log schedule task enabled and you will catch the SecurityDescriptor there for Tasks that you did not have any SecurityDescriptor from ex. some of the event.code 4698.
 
 # DLL Hijacking
 
