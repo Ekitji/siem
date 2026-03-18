@@ -155,7 +155,10 @@ Check winlog.event_data.TaskContent in event.code 4698 for more context which co
 - Executed command
 - Potential Triggers
 
-`What Microsoft should do is to add the <SecurityDescriptor> element to the event code 4698. When exporting a scheduled task manually gives you the SecurityDescriptor value in the exported XML but not in the event code itself.` The SecurityDescriptor exists but is not parsed only in events 4700-4701 (Task Enabled/Disabled). 
+`What Microsoft should do is to add the <SecurityDescriptor> element to the event code 4698. When exporting a scheduled task manually gives you the SecurityDescriptor value in the exported XML but not in the event code itself.` 
+**“The SecurityDescriptor is included in the event, but it is only parsed and visible in events 4700 and 4701 (Task Enabled/Disabled), and is rarely present in 4698 (Task Created).”**
+
+
 ##### Registry Hive
 - HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\<TaskPath>\<TaskName>
 
