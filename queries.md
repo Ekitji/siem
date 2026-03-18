@@ -113,7 +113,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 
 ## Potential Local Privilege Escalation - Scheduled Task SDDL (ACL) Enumeration
 ##### Look in the message field for <SecurityDescriptor> key and convert to humand readable and check the permissions for the schedule task. 
-#### Query to hunt for misconfigured Schedule tasks that regular user can change/modify. Microsoft related ones are whitelisted. We are interested in the ones that runs with higher privileges like System or Administrator (or HighestAvailable)
+#### Query to hunt for misconfigured Schedule tasks that regular user can change/modify. Microsoft related ones are whitelisted. We are interested in the ones that runs with higher privileges like System or Administrator (or HighestAvailable). Can be good to normalize and parse out the SecurityDescriptor as a field and work from there by whitelisting the correct ones.
 ```
 event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: (4700 OR  4701 OR 4698) AND message: *SecurityDescriptor* AND NOT winlog.event_data.TaskName: (\\Microsoft\\Windows\\* OR \\Microsoft\\Office\\*) 
 ```
