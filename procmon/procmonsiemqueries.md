@@ -66,3 +66,9 @@ User: SYSTEM AND Command Line: (ProgramData OR Users OR Temp OR Tmp) AND Command
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetSecurityFile
 ```
+
+## Potential Local Privilege Escalation - FileDelete Events
+#### `SetDispositionInformationFile` Delete with True occurs when a file deletion happes**. Check ACL and if you can symlink and get LPE.
+```
+User: SYSTEM  AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetDispositionInformationFile AND Detail: "Delete: True"
+```
