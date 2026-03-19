@@ -111,8 +111,6 @@ Apply after log capture to refine investigation:
 - **Procmon Documentation:** [Microsoft Sysinternals](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)  
 - **Windows Object Manager & Reparse Points:** James Forshaw, Microsoft Security Research  
 - **Red Team Blogs:** Practical examples of **privileged file operation tracing** using Procmon
-
-
-
+- **FileDelete --> LPE PrivEsc with Procmon**  https://www.securitum.com/wipe_and_rise_how_deleting_files_on_windows_enables_lpe.html
 
 ✅ This README section provides **everything needed to run boot logging, apply security-research-oriented filters, and export events for analysis**, safely and efficiently.
