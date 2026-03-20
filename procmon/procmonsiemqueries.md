@@ -66,6 +66,11 @@ User: SYSTEM AND Command Line: (ProgramData OR Users OR Temp OR Tmp) AND Command
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetSecurityFile
 ```
+## Potential Local Privilege Escalation - Generic CreateFile Events for files with file extension.
+#### `CreateFile` Is that a File handle is created and you have to look in to result/detail to get more context about whats happening.ccurs when a process attempts to 
+```
+User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: SUCCESS AND Path: *.* AND NOT Path: (Microsoft)
+```
 
 ## Potential Local Privilege Escalation - FileWrite Of .LOG files Events
 #### SUCCESS OF `Create File **. Check ACL, if you can delete, and if you can symlink and get LPE. Check Referens with Troopers19 File Operators pdf.
