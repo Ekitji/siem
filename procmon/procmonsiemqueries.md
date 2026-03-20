@@ -82,7 +82,10 @@ User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp O
 User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND NOT Result: SUCCESS AND Path: *.log AND NOT Path: (Microsoft)
 ```
 
-
+## Potential Local Privilege Escalation - WriteFile Of interesting file extensions.
+```
+User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.dll OR *.exe OR *.sys OR *.ps1 OR *.bat OR *.cmd OR *.js OR *.vbs OR *.ini OR *.config OR *.cfg OR *.xml OR *.json) AND NOT Path: (Microsoft)
+```
 ## Potential Local Privilege Escalation - FileDelete Events
 #### `SetDispositionInformationFile` Delete with True occurs when a file deletion happes**. Check ACL and if you can symlink and get LPE. Check Referens with Troopers19 File Operators pdf.
 ```
