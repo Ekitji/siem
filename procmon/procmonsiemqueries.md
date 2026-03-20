@@ -89,3 +89,7 @@ User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp O
 (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetDispositionInformationFile AND Detail: "Delete: True") OR (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: CreateFile AND Detail: "Desired Access: Delete")
 ```
 > **May also be interesting to query and look for Flags: FILE_DISPOSITION_DELETE in the Details column with SetDispositionInformationFile Operation.**
+
+## Potential Local Privilege Escalation - FileRename Events
+(User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: (Rename OR SetRenameInformationFile OR SetInformationFile))
+> **CVE-2020-0668 - A Trivial Privilege Escalation Bug in Windows Service Tracing** https://itm4n.github.io/cve-2020-0668-windows-service-tracing-eop/
