@@ -87,7 +87,7 @@ User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp O
 User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.dll OR *.exe OR *.sys OR *.ps1 OR *.bat OR *.cmd OR *.js OR *.vbs OR *.ini OR *.config OR *.cfg OR *.xml OR *.json) AND NOT Path: (Microsoft)
 ```
 ## Potential Local Privilege Escalation - FileDelete Events
-#### `SetDispositionInformationFile` Delete with True occurs when a file deletion happes**. Check ACL and if you can symlink and get LPE. Check Referens with Troopers19 File Operators pdf.
+#### `SetDispositionInformationFile` Delete with True occurs when a file deletion happes**. Check ACL and if you can symlink and get LPE. We want to delete a file using a high privileged process so we can create it afterwards our self. Check Referens with Troopers19 File Operators pdf.We 
 ```
 (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetDispositionInformationFile AND Detail: "Delete: True") OR (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: CreateFile AND Detail: "Desired Access: Delete")
 ```
