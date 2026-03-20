@@ -105,13 +105,19 @@ Apply after log capture to refine investigation:
 
 ## 6️⃣ References / Resources
 
-- **Finding PrivEsc with Procmon** PDF format https://bordplate.no/presentations/finding_privesc_with_procmon.pdf
 - **Finding PrivEsc with Procmon** Video format [BSides Oslo 2019 - Vetle Hjelle - Finding Privilege Escalation with Procmon](https://www.youtube.com/watch?v=s-Vdt2-kZPc)
+- **Finding PrivEsc with Procmon** PDF format https://bordplate.no/presentations/finding_privesc_with_procmon.pdf
 - **Finding Privilege Escalation Vulnerabilities in Windows using Process Monitor** https://web.archive.org/web/20220719145528/https://vuls.cert.org/confluence/display/Wiki/2021/06/21/Finding+Privilege+Escalation+Vulnerabilities+in+Windows+using+Process+Monitor
+- **WWHF 2020 (Virtual): Hunting Software Vulnerabilities Without Reversing - Jake Williams** https://www.youtube.com/watch?v=JPhrKJzNJyw
+- **Elevating your Windows Privileges Like a Boss! - Jake Williams** Gives overall good idea for what to hunt for https://www.youtube.com/watch?v=SHdM197sbIE
+- **GreHack 2018: Abusing Privileged File Manipulation - Clement Lavoillotte** https://www.youtube.com/watch?v=OfPTkx36EWs
 - **Procmon Documentation:** [Microsoft Sysinternals](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)  
 - **Windows Object Manager & Reparse Points:** James Forshaw, Microsoft Security Research  
 - **Red Team Blogs:** Practical examples of **privileged file operation tracing** using Procmon
 - **FileDelete --> LPE PrivEsc with Procmon**  https://www.securitum.com/wipe_and_rise_how_deleting_files_on_windows_enables_lpe.html
+- **Mystikcon 2020 A Windows FOB (File Operation Bugs) || Windows Privilege Escalation** https://www.youtube.com/watch?v=zQUINVQKk7M
+- **TR19: Abusing privileged file operations on Windows** Video for PDF below https://www.youtube.com/watch?v=xQKtdMO5FuE
 - **File Operations**  https://troopers.de/downloads/troopers19/TROOPERS19_AD_Abusing_privileged_file_operations.pdf
+- **Windows Security Research: A Practical Guide for Beginners to find 0 days - HackTricks Track 2023** Gives good mindset, look from minute 38.53 --> https://www.youtube.com/watch?v=OuL-7GPhhAQ
 
 ✅ This README section provides **everything needed to run boot logging, apply security-research-oriented filters, and export events for analysis**, safely and efficiently.
