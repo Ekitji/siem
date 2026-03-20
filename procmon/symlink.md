@@ -1,5 +1,6 @@
-# Notes for Symlinking
+# Notes for Pseduo-Symlinking
 - https://github.com/googleprojectzero/symboliclink-testing-tools
+> Pseudo-symlinking isn’t a formal Windows feature — it’s a technique/pattern used to mimic symbolic link behavior without actually creating a real symlink.
 
 #### Create a mount point to RPC Control (Source folder must be empty)
 ```CreateMountPoint.exe "C:\Source\Folder" "\RPC Control"```
