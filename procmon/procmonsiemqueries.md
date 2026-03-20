@@ -83,4 +83,4 @@ User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp O
 ```
 (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetDispositionInformationFile AND Detail: "Delete: True") OR (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: CreateFile AND Detail: "Desired Access: Delete")
 ```
-> ** May also be interesting to query and look for Flags: FILE_DISPOSITION_DELETE in the Details column with SetDispositionInformationFile Operation.
+> **May also be interesting to query and look for Flags: FILE_DISPOSITION_DELETE in the Details column with SetDispositionInformationFile Operation.**
