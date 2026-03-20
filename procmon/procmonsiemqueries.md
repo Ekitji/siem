@@ -67,7 +67,7 @@ User: SYSTEM AND Command Line: (ProgramData OR Users OR Temp OR Tmp) AND Command
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetSecurityFile
 ```
 
-## Potential Local Privilege Escalation - File Write Of .LOG files Events
+## Potential Local Privilege Escalation - FileWrite Of .LOG files Events
 #### SUCCESS OF `Create File **. Check ACL, if you can delete, and if you can symlink and get LPE. Check Referens with Troopers19 File Operators pdf.
 ```
 User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: SUCCESS AND Path: *.log AND NOT Path: (Microsoft)
