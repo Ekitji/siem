@@ -198,9 +198,13 @@ Install and check with procmon if it loads or tries to load a openssl.cnf, or ju
 **Example when running openssldir_check.exe
 
 `openssldir_check32.exe libeay32.dll`
+
 `openssldir_check v1.0 by 0xm1rch`
+
 **Output:**
+
 `SSLeay_version() returned OpenSSL 1.0.1g 7 Apr 2014`
+
 `SSLeay_version() returned OPENSSLDIR: "/usr/local/ssl"`
 
 - ref https://github.com/mirchr/openssldir_check/
@@ -213,6 +217,8 @@ Install and check with procmon if it loads or tries to load a openssl.cnf, or ju
    - Drop their DLL
    - Wait for service restart
    - Code executes as **SYSTEM**
+
+
 
 
 ## Prerequisites
