@@ -251,7 +251,13 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 (event.provider: Microsoft-Windows-Sysmon AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\*) AND file.extension: (sys OR SYS))
 ```
 
-# Other Queries - Layer on Layer coverage
+# Other Queries - Some for Layer on Layer coverage
+## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) usage
+#### Look into each application with procmon if it searches for a openssl.cnf that does not exist in a user-writable path Or use openssldir_check agains the executable.
+```
+event.provider: "Microsoft-Windows-Sysmon" AND file.name: ("libeay32.dll" OR "ssleay32.dll" OR "libeay64.dll" OR "ssleay64.dll" OR "libcrypto-1_1.dll" OR "libssl-1_1.dll" OR "libcrypto-1_1-x64.dll" OR "libssl-1_1-x64.dll" OR "libcrypto-3.dll" OR "libssl-3.dll" OR "libcrypto-3-x64.dll" OR "libssl-3-x64.dll" OR "libcrypto.dll" OR "libssl.dll" OR "openssl.dll")
+```
+> **OpenSSLDir_Check** - https://github.com/mirchr/openssldir_check
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
 ##### Will also give you an idea for the process creation query when that process is terminated/exit.
 ```
