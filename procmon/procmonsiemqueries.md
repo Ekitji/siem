@@ -48,8 +48,8 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.ini OR
 
 
 
-## Potential Local Privilege Escalation - Generic query for Command Line
-#### SysWOW64 → Folder containing 32-bit system files on a 64-bit Windows system which is odd behaviour if cmd.exe, powershell.exe, pwsh.exe.
+## Potential Local Privilege Escalation - Generic query for 32 bit executables spawning processes like cmd, schtasks etc.
+#### SysWOW64 → Folder containing 32-bit system files on a 64-bit Windows system which is odd behaviour if cmd.exe, powershell.exe, pwsh.exe. Common that 3rd party applicaion 32 bits executables has vulnerabilities, gives you an idea of executables to look more into.
 ```
 User: SYSTEM AND Image Path: "C:\Windows\SysWOW64\cmd.exe"
 ```
@@ -98,3 +98,11 @@ User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR
 (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: (Rename OR SetRenameInformationFile OR SetInformationFile))
 ```
 > **CVE-2020-0668 - A Trivial Privilege Escalation Bug in Windows Service Tracing** https://itm4n.github.io/cve-2020-0668-windows-service-tracing-eop/
+
+
+## Potential Local Privilege Escalation - NAME NOT FOUND / PATH NOT FOUND / NO SUCH FILE Events in C-Root
+#### Look for file extensions like `.dll`, `.exe`, `.sys`, `.ps1`, `.bat`, `.cmd`, `.js`, `.vbs` or config files like XML, json etc.
+> Files that can give you code execution is relevant.
+```
+User: SYSTEM AND Result: ("NAME NOT FOUND" OR "PATH NOT FOUND" OR "NO SUCH FILE") AND NOT Path: (ProgramData OR Users OR Temp OR "Program Files" OR Windows) AND NOT Operation: Reg*
+```
