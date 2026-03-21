@@ -106,3 +106,12 @@ User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR
 ```
 User: SYSTEM AND Result: ("NAME NOT FOUND" OR "PATH NOT FOUND" OR "NO SUCH FILE") AND NOT Path: (ProgramData OR Users OR Temp OR "Program Files" OR Windows) AND NOT Operation: Reg*
 ```
+
+
+## Potential Local Privilege Escalation - OpenSSL config (openssl.cnf) file
+#### Look for the ones that you can modify or write.
+> Check Offensive SIEM documentation for how to privilege escalate. NOT FOUND events are highly relevant but also SUCCESS on Paths that you can modify.
+```
+User: SYSTEM AND Path: openssl.cnf
+```
+- ref https://blog.mirch.io/2019/06/10/cve-2019-12572-pia-windows-privilege-escalation-malicious-openssl-engine/
