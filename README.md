@@ -73,6 +73,11 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 #### Kernel drivers and privilege escalation
 - https://www.youtube.com/watch?v=U36hAneQeZM
 
+#### OpenSSLs openssl.cnf and privilege escalation
+- https://labs.infoguard.ch/advisories/cve-2025-13176_eset-inspect_edr_local-privilege-escalation/
+- https://blog.mirch.io/2019/06/10/cve-2019-12572-pia-windows-privilege-escalation-malicious-openssl-engine/
+- https://blog.pentryx.ch/local-privilege-escalation-in-lenovo-udc-19dc86d72142?gi=0fe882ea2355
+
 ### Example of interesting areas to look into that we have not covered in presentation but we have queries for some of them.
 * weak passwords in command_line - that are not following best practices / policies
 * weak passwords or sensitive information in powershell admin scripts scriptblock event code: 4104. Search for strings: "SecureString","PSCredential","Password", "passwd"......
@@ -174,6 +179,29 @@ Here is a excellent talk describing .sys files and privilege escalation using Br
 
 Summary of the talk showcases snowagent.exe dropping sys-files to `C:\Windows\Temp\cpuz143\cpuz143_x64.sys` and local privilege escalation by using the vulnerable driver for CVE-2021-21551.
 
+### OpenSSL and its openssl.cnf for privilege escalation
+#### What is openssl.cnf?
+OpenSSL's config file. Loaded automatically when any application initializes OpenSSL — before the app fully starts.
+
+#### The Risk
+`openssl.cnf` can instruct OpenSSL to load a custom DLL as a crypto engine:
+
+```ini
+[dynamic_section]
+SO_PATH = C:\path\to\evil.dll
+LOAD = EMPTY
+```
+
+No signature check. No verification. Any DLL specified gets loaded.
+
+#### Escalation Scenario
+1. A service runs as **SYSTEM** and uses OpenSSL
+2. OpenSSL reads `C:\usr\local\ssl\openssl.cnf` on startup but that file is editable or missing
+3. If a low privileged user can write to that folder they can:
+   - Drop a malicious `openssl.cnf`
+   - Drop their DLL
+   - Wait for service restart
+   - Code executes as **SYSTEM**
 
 
 ## Prerequisites
