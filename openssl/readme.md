@@ -119,9 +119,9 @@ OPENSSLDIR: "C:\Program Files (x86)\Common Files\SSL"
 ENGINESDIR: "C:\Program Files (x86)\OpenSSL\lib\engines-3"
 ```
 ##### As One-Liner for PWD (Print Working Directory/Current Working Directory) in Powershell
-´´´
+```
 [regex]::Matches([System.Text.Encoding]::ASCII.GetString([System.IO.File]::ReadAllBytes("$PWD\libcrypto-1_1-x64.dll")), '(OPENSSLDIR|ENGINESDIR): "([^"]+)"') | ForEach-Object { $_.Value }
-´´´
+```
 
 ---
 
