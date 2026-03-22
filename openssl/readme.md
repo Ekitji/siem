@@ -1,5 +1,5 @@
-# Pre-compiled checker files from
-### Updated for better compatibility with newer OpenSSL versions.
+# Pre-compiled opendirssl_checker files AND Powershell script
+### Updated Opendirssl_checker for better compatibility with newer OpenSSL versions.
 #### Original project
 - https://github.com/mirchr/openssldir_check
 
