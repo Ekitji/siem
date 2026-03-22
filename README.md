@@ -206,7 +206,8 @@ init = 0
 No signature check. No verification. Any DLL specified gets loaded.
 We can query for typical DLL names related to OpenSSL to enumerate possible applications to test more with. We want to 
 Install and check with procmon the found applications if it loads or tries to load a openssl.cnf, or get a copy of the crypto related dll and just run the openssldir_check on the cryptodll (libeay32.dll etc) DLL that the executable loads that are related to OpenSSL to get version information and which path it loads the openssl.cnf file from. 
-**Example when running openssldir_check.exe
+
+**Example when running openssldir_check.exe**
 
 `openssldir_check32.exe libeay32.dll`
 
@@ -218,7 +219,8 @@ Install and check with procmon the found applications if it loads or tries to lo
 
 `SSLeay_version() returned OPENSSLDIR: "/usr/local/ssl"`
 
-- ref https://github.com/mirchr/openssldir_check/
+- ref https://github.com/mirchr/openssldir_check
+> Similar output with custom modified openssldir_check which is pre-compiled in this repo.
 > Output gives OpenSSL version 1.0.1g and that the OpenSSLDIR is set to /usr/local/ssl which is highly interesting!
 > **Sysmon event.code 7** gives you also the version information for the dll in the file.pe.file_version field.
 
