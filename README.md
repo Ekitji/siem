@@ -77,6 +77,8 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://labs.infoguard.ch/advisories/cve-2025-13176_eset-inspect_edr_local-privilege-escalation/
 - https://blog.mirch.io/2019/06/10/cve-2019-12572-pia-windows-privilege-escalation-malicious-openssl-engine/
 - https://blog.pentryx.ch/local-privilege-escalation-in-lenovo-udc-19dc86d72142?gi=0fe882ea2355
+- https://www.triskelelabs.com/blog/cve-2025-2272-forcepoint-endpoint-dlp-privilege-escalation
+- https://hackerone.com/reports/622170 
 
 ### Example of interesting areas to look into that we have not covered in presentation but we have queries for some of them.
 * weak passwords in command_line - that are not following best practices / policies
@@ -181,20 +183,29 @@ Summary of the talk showcases snowagent.exe dropping sys-files to `C:\Windows\Te
 
 ### OpenSSL and its openssl.cnf for privilege escalation
 #### What is openssl.cnf?
-OpenSSL's config file. Loaded automatically when any application initializes OpenSSL — before the app fully starts.
+OpenSSL's config file. Loaded automatically when any application initializes OpenSSL — before the app fully starts. When the DLL is compiled if not the --openssldir parameter is specified it defaults to /usr/local/ssl which is in Windows translated to c:/usr/local/ssl, which is a common path where the cnf will be looked for. Other paths is c:\etc\ssl\ or other custom user-writable paths 
 
 #### The Risk and how to find them
 `openssl.cnf` can instruct OpenSSL to load a custom DLL as a crypto engine:
 
-```ini
+```
+openssl_conf = openssl_init
+
+[openssl_init]
+engines = engine_section
+
+[engine_section]
+dynamic = dynamic_section
+
 [dynamic_section]
-SO_PATH = C:\path\to\evil.dll
+SO_PATH = C:\\path\\to\\evil.dll
 LOAD = EMPTY
+init = 0
 ```
 
 No signature check. No verification. Any DLL specified gets loaded.
-We can query for typical DLL names related to OpenSSL to enumerate possible applications to test more with.
-Install and check with procmon if it loads or tries to load a openssl.cnf, or just run the openssldir_check on the DLL that the executable loads that are related to OpenSSL to get version information and which path it loads the openssl.cnf file from. 
+We can query for typical DLL names related to OpenSSL to enumerate possible applications to test more with. We want to 
+Install and check with procmon the found applications if it loads or tries to load a openssl.cnf, or get a copy of the crypto related dll and just run the openssldir_check on the cryptodll (libeay32.dll etc) DLL that the executable loads that are related to OpenSSL to get version information and which path it loads the openssl.cnf file from. 
 **Example when running openssldir_check.exe
 
 `openssldir_check32.exe libeay32.dll`
@@ -208,6 +219,7 @@ Install and check with procmon if it loads or tries to load a openssl.cnf, or ju
 `SSLeay_version() returned OPENSSLDIR: "/usr/local/ssl"`
 
 - ref https://github.com/mirchr/openssldir_check/
+> Output gives OpenSSL version 1.0.1g and that the OpenSSLDIR is set to /usr/local/ssl which is highly interesting!
 
 #### Escalation Scenario
 1. A service runs as **SYSTEM** and uses OpenSSL
