@@ -36,6 +36,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ```
 event.provider: "Service Control Manager" AND event.code: 7000 AND winlog.event_data.param2: "%%2"
 ```
+> The SCM tried to start a service, went to the ImagePath in the registry (HKLM\SYSTEM\CurrentControlSet\Services\<name>\ImagePath), and the binary wasn't there.
 
 
 # Schedule Tasks
