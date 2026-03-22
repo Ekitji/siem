@@ -276,6 +276,7 @@ foreach ($p in $checkPaths) {
 Compiled with Microsoft Visual Studio.
 Tested with libeay32.dll loading into a process. The test.dll will also be loaded into same process.
 Outputs to c:\temp\test.txt - will create folder and file if missing.
+
 `Example output showing SYSTEM user code execution`
 ```
 [2026-03-22 20:39:58] === DllMain: DLL_PROCESS_ATTACH ===
