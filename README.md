@@ -221,7 +221,9 @@ Install and check with procmon the found applications if it loads or tries to lo
 
 - ref https://github.com/mirchr/openssldir_check
 > Similar output with custom modified openssldir_check which is pre-compiled in this repo.
+
 > Output gives OpenSSL version 1.0.1g and that the OpenSSLDIR is set to /usr/local/ssl which is highly interesting!
+
 > **Sysmon event.code 7** gives you also the version information for the dll in the file.pe.file_version field.
 
 
