@@ -25,52 +25,69 @@ SSLeay_version() returned OPENSSLDIR: "/usr/local/ssl"
 
 
 # PowerShell OpenSSL DLL Scanner
+# PowerShell OpenSSL DLL Scanner
 
 Quick PowerShell alternatives to `openssldir_check` for finding the `OPENSSLDIR` path baked into any OpenSSL DLL.  
 Works on **all OpenSSL versions** regardless of exported function names.
 
 ---
 
-## Method 1 — Find OPENSSLDIR tag directly
+## Method 1 — Find OPENSSLDIR tag directly - Works with easy CLEAN Output
 
 ```powershell
 $dll = "C:\path\to\libcrypto.dll"
 $bytes = [System.IO.File]::ReadAllBytes($dll)
-$text = [System.Text.Encoding]::ASCII.GetString($bytes)
+$text  = [System.Text.Encoding]::ASCII.GetString($bytes)
 
-# Find OPENSSLDIR string
-$pattern = 'OPENSSLDIR[^\x00]*'
-[regex]::Matches($text, $pattern) | ForEach-Object { $_.Value }
+# Find OPENSSLDIR and ENGINESDIR tags
+[regex]::Matches($text, '(OPENSSLDIR|ENGINESDIR): "([^"]+)"') |
+    ForEach-Object { $_.Value }
 ```
 
 **Example output:**
 ```
-OPENSSLDIR: "/usr/local/ssl"
+OPENSSLDIR: "C:\Program Files (x86)\Common Files\SSL"
+ENGINESDIR: "C:\Program Files (x86)\OpenSSL\lib\engines-3"
 ```
 
 ---
 
-## Method 2 — Scan for all path strings baked into the DLL
+## Method 2 — Scan for all SSL-relevant path strings (clean output)
 
 ```powershell
 $bytes = [System.IO.File]::ReadAllBytes("C:\path\to\libcrypto.dll")
-$text = [System.Text.Encoding]::ASCII.GetString($bytes)
+$text  = [System.Text.Encoding]::ASCII.GetString($bytes)
 
-# Look for Windows and Unix directory-like strings
-[regex]::Matches($text, '[A-Za-z]:\\[^\x00]{3,50}|/[a-z]{2,}/[^\x00]{3,50}') |
-    ForEach-Object { $_.Value } |
+# Build artifact extensions to exclude
+$excludeExts = '\.c$|\.h$|\.cpp$|\.pdb$|\.inc$|\.obj$|\.lib$|\.asm$|\.map$|\.rc$'
+
+# Windows paths: require at least one proper folder segment (no garbage like T:\:d:l)
+$winPattern  = '[A-Za-z]:\\(?:[A-Za-z0-9 _.()-]+\\)*[A-Za-z0-9 _.()-]+'
+
+# Unix paths: require at least two proper segments of 2+ lowercase letters/digits
+$unixPattern = '/[a-z][a-z0-9_-]+(?:/[a-z][a-z0-9_.-]+)+'
+
+[regex]::Matches($text, "$winPattern|$unixPattern") |
+    ForEach-Object { $_.Value.TrimEnd('"') } |
+    Where-Object {
+        $_ -notmatch $excludeExts  # exclude source/build files
+    } |
     Sort-Object -Unique
 ```
 
 **Example output:**
 ```
+C:\Program Files (x86)\Common Files\SSL
+C:\Program Files (x86)\OpenSSL\lib\engines-3
+C:\Program Files (x86)\OpenSSL\lib\ossl-modules
 /usr/local/ssl
-C:\OpenSSL-Win32
 ```
 
 ---
 
 ## Method 3 — Full scanner with writability check
+
+Save as `scan-openssldir.ps1`:
 
 ```powershell
 param(
@@ -81,41 +98,44 @@ param(
 $bytes = [System.IO.File]::ReadAllBytes($DllPath)
 $text  = [System.Text.Encoding]::ASCII.GetString($bytes)
 
-Write-Host "`nOpenSSL DLL Scanner (PowerShell)" -ForegroundColor Cyan
-Write-Host "DLL: $DllPath`n"
+# Build artifact extensions to filter out
+$excludeExts = '\.c$|\.h$|\.cpp$|\.pdb$|\.inc$|\.obj$|\.lib$|\.asm$|\.map$|\.rc$|\.def$'
 
-# 1. OPENSSLDIR tag
-Write-Host "[OPENSSLDIR Tag]" -ForegroundColor Yellow
-$matches1 = [regex]::Matches($text, 'OPENSSLDIR[^\x00]{1,80}')
-if ($matches1.Count -gt 0) {
-    $matches1 | ForEach-Object { Write-Host "  $($_.Value)" -ForegroundColor Green }
+# Strict path patterns - require real folder segment names
+$winPattern  = '[A-Za-z]:\\(?:[A-Za-z0-9 _.()-]+\\)*[A-Za-z0-9 _.()-]+'
+$unixPattern = '/[a-z][a-z0-9_-]+(?:/[a-z][a-z0-9_.-]+)+'
+
+Write-Host ""
+Write-Host "OpenSSL DLL Scanner (PowerShell)" -ForegroundColor Cyan
+Write-Host "DLL: $DllPath"
+Write-Host ""
+
+# 1. OPENSSLDIR / ENGINESDIR tags (most reliable)
+Write-Host "[Tagged Paths]" -ForegroundColor Yellow
+$tagged = [regex]::Matches($text, '(OPENSSLDIR|ENGINESDIR|MODULESDIR): "([^"]+)"')
+if ($tagged.Count -gt 0) {
+    $tagged | ForEach-Object { Write-Host "  $($_.Value)" -ForegroundColor Green }
 } else {
-    Write-Host "  Not found" -ForegroundColor Red
+    Write-Host "  No tagged paths found" -ForegroundColor DarkGray
 }
 
-# 2. ENGINESDIR tag
-Write-Host "`n[ENGINESDIR Tag]" -ForegroundColor Yellow
-$matches2 = [regex]::Matches($text, 'ENGINESDIR[^\x00]{1,80}')
-if ($matches2.Count -gt 0) {
-    $matches2 | ForEach-Object { Write-Host "  $($_.Value)" -ForegroundColor Green }
-} else {
-    Write-Host "  Not found" -ForegroundColor Red
-}
-
-# 3. All path strings
-Write-Host "`n[Path Strings]" -ForegroundColor Yellow
-$paths = [regex]::Matches($text, '[A-Za-z]:\\[^\x00]{3,50}|/[a-z]{2,}/[^\x00]{3,50}') |
-    ForEach-Object { $_.Value } |
+# 2. All SSL-relevant path strings
+Write-Host ""
+Write-Host "[All Path Strings]" -ForegroundColor Yellow
+$allPaths = [regex]::Matches($text, "$winPattern|$unixPattern") |
+    ForEach-Object { $_.Value.TrimEnd('"') } |
+    Where-Object { $_ -notmatch $excludeExts } |
     Sort-Object -Unique
-if ($paths) {
-    $paths | ForEach-Object { Write-Host "  $_" -ForegroundColor Green }
+
+if ($allPaths) {
+    $allPaths | ForEach-Object { Write-Host "  $_" -ForegroundColor Green }
 } else {
-    Write-Host "  No path strings found" -ForegroundColor Red
+    Write-Host "  No path strings found" -ForegroundColor DarkGray
 }
 
-# 4. Writability check
-Write-Host "`n[Writability Check]" -ForegroundColor Yellow
-$checkPaths = @(
+# 3. Writability check
+# Combine found paths with common defaults
+$defaultPaths = @(
     "C:\usr\local\ssl",
     "C:\etc\ssl",
     "C:\usr\ssl",
@@ -123,14 +143,18 @@ $checkPaths = @(
     "C:\OpenSSL-Win32",
     "C:\OpenSSL-Win64"
 )
-# Also add any Windows paths found in the DLL
-$paths | Where-Object { $_ -match '^[A-Za-z]:\\' } | ForEach-Object {
-    $checkPaths += ($_ -split '[^\x00]')[0]
+
+# Extract just directory paths from found paths (no file extensions)
+$dirPaths = $allPaths | Where-Object {
+    $_ -notmatch '\.[a-zA-Z]{1,4}$' -and $_.Length -le 80
 }
 
-foreach ($p in ($checkPaths | Sort-Object -Unique)) {
-    if (Test-Path $p) {
-        # Try writing a temp file to test writability
+$checkPaths = ($defaultPaths + $dirPaths) | Sort-Object -Unique
+
+Write-Host ""
+Write-Host "[Writability Check]" -ForegroundColor Yellow
+foreach ($p in $checkPaths) {
+    if (Test-Path $p -PathType Container) {
         $testFile = Join-Path $p "~writetest.tmp"
         try {
             [System.IO.File]::WriteAllText($testFile, "test")
@@ -148,7 +172,22 @@ foreach ($p in ($checkPaths | Sort-Object -Unique)) {
 **Usage:**
 ```powershell
 .\scan-openssldir.ps1 -DllPath "C:\Program Files (x86)\MyApp\libeay32.dll"
+.\scan-openssldir.ps1 -DllPath "C:\Program Files (x86)\MyApp\libcrypto-3.dll"
 ```
+
+---
+
+## What was wrong with the original regex
+
+The original pattern `[A-Za-z]:\\[^\x00]{3,50}` matched **any** byte sequence starting with a letter and `:\` — including binary data like:
+
+```
+T:\:d:l:t:|:?:?:?:?     <- binary garbage
+E:\:c:w:1;A;Q;a;q        <- binary garbage  
+q:\_Wc4?? j?????????     <- binary garbage
+```
+
+The fixed pattern requires **real folder segment names** — sequences of letters, digits, spaces, dots, and hyphens separated by backslashes — which eliminates all binary false positives.
 
 ---
 
