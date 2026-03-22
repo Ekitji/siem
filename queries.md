@@ -258,6 +258,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 event.provider:"Microsoft-Windows-Sysmon" AND file.extension:"dll" AND (file.name:libcrypto*.dll OR file.name:libssl*.dll OR file.name:libeay*.dll OR file.name:ssleay*.dll OR file.name:openssl.dll OR file.pe.original_file_name:libcrypto*.dll OR file.pe.original_file_name:libssl*.dll OR file.pe.original_file_name:libeay*.dll OR file.pe.original_file_name:ssleay*.dll) AND user.name: SYSTEM
 ```
 > **Pro Tip** Its probably easier to get a copy of the libcrypto related DLL and running the openssldir_check.exe against it then installing the application and running procmon to catch if it has a openssl.cnf path set.
+
 > **OpenSSLDir_Check** - https://github.com/mirchr/openssldir_check
 
 
