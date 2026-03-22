@@ -269,3 +269,23 @@ foreach ($p in $checkPaths) {
 - Run **as Administrator** if scanning DLLs in `Program Files`
 - A path that **does not exist** is potentially exploitable — a low-privileged user may be able to create it and plant a malicious `openssl.cnf`
 - Use openssldir_check binaries in repo for a more complete analysis including XOR obfuscation detection and PE entropy analysis if you dont get any results with the scripts.
+
+
+# Libeay32 test.dll
+**libeay32_test_dll.cpp**
+Compiled with Microsoft Visual Studio.
+Tested with libeay32.dll loading into a process. The test.dll will also be loaded into same process.
+Outputs to c:\temp\test.txt - will create folder and file if missing.
+`Example output showing SYSTEM user code execution`
+```
+[2026-03-22 20:39:58] === DllMain: DLL_PROCESS_ATTACH ===
+[2026-03-22 20:39:58] User: SYSTEM | Type: SYSTEM account
+[2026-03-22 20:39:58] v_check() called
+[2026-03-22 20:39:58] bind_engine() called - engine being bound
+[2026-03-22 20:39:58] User: SYSTEM | Type: SYSTEM account
+[2026-03-22 20:39:58] ENGINE API functions loaded from libeay32.dll
+[2026-03-22 20:39:58] bind_engine() completed
+[2026-03-22 20:39:58] engine_destroy() called
+[2026-03-22 20:39:58] DllMain: DLL_PROCESS_DETACH
+```
+
