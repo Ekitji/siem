@@ -48,7 +48,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 
 #### User-Writable Paths in the Arguments (SYSTEM User covering UserID and GroupID for System user) - Cover your language locale for SYSTEM user - check winlog.event_data.TaskContent for more context
 ```
-((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698") AND winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: (*HighestAvailable* OR *System* OR *S\-1\-5\-18* OR *NT\ AUTHORITY\\SYSTEM* OR *NT\ instans\\SYSTEM*))
+((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698) AND winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp) AND message: (*HighestAvailable* OR *System* OR *S\-1\-5\-18* OR *NT\ AUTHORITY\\SYSTEM* OR *NT\ instans\\SYSTEM*))
 ```
 
 #### User-Writable Paths in the Binary path (SYSTEM User covering UserID and GroupID for System user) - Cover your language locale for SYSTEM user - check winlog.event_data.TaskContent for more context
