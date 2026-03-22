@@ -5,23 +5,92 @@
 
 
 ## Running the executable against a Libcrypto related DLL
-### Observe the returned OPENSSLDIR pointing to a protected file path
+### Observe the returned Dir OPENSSLDIR pointing to /usr/local/ssl file path
+`openssldir_check_x86.exe libeay32.dll`
+```
+openssldir_check v3.1 (all OpenSSL versions + deep scan)
+Original: Rich Mirch @0xm1rch | Updated: deep scan edition
+Running as: 32-bit
+
+Detected OpenSSL major version: 1.x
+
+[OpenSSL < 1.1 - SSLeay_version()]
+  Version : OpenSSL 1.0.1g 7 Apr 2014
+  Dir     : OPENSSLDIR: "/usr/local/ssl"
+
+[Binary Scan]
+  OPENSSLDIR tag  : "/usr/local/ssl"
+                    -> Does NOT exist (can be created!)
+  Path string     : "/usr/local/ssl"
+  Path string     : "/usr/local/ssl/private"
+  Path string     : "/usr/local/ssl/certs"
+  Path string     : "/usr/local/ssl/cert.pem"
+  Path string     : "/usr/local/ssl/lib/engines"
+```
+
+### Observe the returned DIR OPENSSLDIR pointing to C:\Program Files (x86)\Common Files\SSL which is a protected path if the ACL is correct.
 `openssldir_check_x86.exe libcrypto-3.dll`
 ```
-openssldir_check v1.0 by 0xm1rch
+openssldir_check v3.1 (all OpenSSL versions + deep scan)
+Original: Rich Mirch @0xm1rch | Updated: deep scan edition
+Running as: 32-bit
 
-OpenSSL_version() returned OpenSSL 3.6.1 27 Jan 2026
-OpenSSL_version() returned OPENSSLDIR: "C:\Program Files (x86)\Common Files\SSL"
+Detected OpenSSL major version: 3.x
+
+[OpenSSL 1.1+ / 3.x - OpenSSL_version()]
+  Version : OpenSSL 3.6.1 27 Jan 2026
+  Dir     : OPENSSLDIR: "C:\Program Files (x86)\Common Files\SSL"
+
+[Binary Scan]
+  OPENSSLDIR tag  : "C:\Program Files (x86)\Common Files\SSL"
+                    -> EXISTS on this system
+  ENGINESDIR tag  : "C:\Program Files (x86)\OpenSSL\lib\engines-3"
+
+Tip: Run with --deep for XOR/Unicode/entropy obfuscation scan
+
+[Writability Check]
+  Not found  : C:\OpenSSL  (creatable by non-admin?)
+  Not found  : C:\OpenSSL-Win32  (creatable by non-admin?)
+  Not found  : C:\OpenSSL-Win64  (creatable by non-admin?)
+  Protected  : C:\Program Files (x86)\Common Files\SSL
+  Not found  : C:\Program Files (x86)\OpenSSL\lib\engines-3  (creatable by non-admin?)
+  Not found  : C:\Program Files (x86)\OpenSSL\lib\ossl-modules  (creatable by non-admin?)
+  Not found  : C:\etc\ssl  (creatable by non-admin?)
+  Not found  : C:\usr\local\ssl  (creatable by non-admin?)
+  Not found  : C:\usr\ssl  (creatable by non-admin?)
 ```
 
-### Observe the returned OPENSSLDIR pointing to a potential user-writable path.
-`openssldir_check_x86.exe libeay32.dll`
-
+### Observe the returned DIR OPENSSLDIR pointing to c:/vsttech\vsttech\openssl/ssl which is a typical User-writable path.
+`openssldir_check_x64.exe libeay64.dll`
 ```
-openssldir_check v1.0 by 0xm1rch
+openssldir_check v3.1 (all OpenSSL versions + deep scan)
+Original: Rich Mirch @0xm1rch | Updated: deep scan edition
+Running as: 64-bit
 
-SSLeay_version() returned OpenSSL 1.0.1g 7 Apr 2014
-SSLeay_version() returned OPENSSLDIR: "/usr/local/ssl"
+Detected OpenSSL major version: 0.x
+
+[OpenSSL < 1.1 - SSLeay_version()]
+  Version : OpenSSL 0.9.8o 01 Jun 2010
+  Dir     : OPENSSLDIR: "c:/vsttech\vsttech\openssl/ssl"
+
+[Binary Scan]
+  OPENSSLDIR tag  : "c:/vsttech\vsttech\openssl/ssl"
+                    -> Does NOT exist (can be created!)
+
+Tip: Run with --deep for XOR/Unicode/entropy obfuscation scan
+
+[Writability Check]
+  Not found  : /dev/ubskey  (creatable by non-admin?)
+  Not found  : C:\OpenSSL  (creatable by non-admin?)
+  Not found  : C:\OpenSSL-Win32  (creatable by non-admin?)
+  Not found  : C:\OpenSSL-Win64  (creatable by non-admin?)
+  Not found  : C:\etc\ssl  (creatable by non-admin?)
+  Not found  : C:\usr\local\ssl  (creatable by non-admin?)
+  Not found  : C:\usr\ssl  (creatable by non-admin?)
+  Not found  : c:/vsttech\vsttech\openssl/lib/engines  (creatable by non-admin?)
+  Not found  : c:/vsttech\vsttech\openssl/ssl  (creatable by non-admin?)
+  Not found  : c:/vsttech\vsttech\openssl/ssl/certs  (creatable by non-admin?)
+  Not found  : c:/vsttech\vsttech\openssl/ssl/private  (creatable by non-admin?)
 ```
 
 
