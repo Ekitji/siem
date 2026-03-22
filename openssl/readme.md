@@ -176,20 +176,6 @@ foreach ($p in $checkPaths) {
 
 ---
 
-## What was wrong with the original regex
-
-The original pattern `[A-Za-z]:\\[^\x00]{3,50}` matched **any** byte sequence starting with a letter and `:\` — including binary data like:
-
-```
-T:\:d:l:t:|:?:?:?:?     <- binary garbage
-E:\:c:w:1;A;Q;a;q        <- binary garbage  
-q:\_Wc4?? j?????????     <- binary garbage
-```
-
-The fixed pattern requires **real folder segment names** — sequences of letters, digits, spaces, dots, and hyphens separated by backslashes — which eliminates all binary false positives.
-
----
-
 ## Compatibility
 
 | OpenSSL Version | DLL Name | Works |
@@ -208,4 +194,4 @@ The fixed pattern requires **real folder segment names** — sequences of letter
 
 - Run **as Administrator** if scanning DLLs in `Program Files`
 - A path that **does not exist** is potentially exploitable — a low-privileged user may be able to create it and plant a malicious `openssl.cnf`
-- Use [openssldir_check](https://github.com/mirchr/openssldir_check) for a more complete analysis including XOR obfuscation detection and PE entropy analysis
+- Use openssldir_check binaries in repo for a more complete analysis including XOR obfuscation detection and PE entropy analysis if you dont get any results with the scripts.
