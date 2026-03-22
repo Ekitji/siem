@@ -4,7 +4,6 @@
 
 ## Running the executable against a Libcrypto related DLL
 ### Observe the returned OPENSSLDIR pointing to a protected file path
-```
 `openssldir_check_x86.exe libcrypto-3.dll`
 ```
 openssldir_check v1.0 by 0xm1rch
@@ -14,8 +13,8 @@ OpenSSL_version() returned OPENSSLDIR: "C:\Program Files (x86)\Common Files\SSL"
 ```
 
 ### Observer the returned OPENSSLDIR pointing to a potential user-writable path.
-
 `openssldir_check_x86.exe libeay32.dll`
+
 ```
 openssldir_check v1.0 by 0xm1rch
 
