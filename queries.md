@@ -253,9 +253,9 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 
 # Other Queries - Some for Layer on Layer coverage
 ## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) usage
-#### Look into each application with procmon if it searches for a openssl.cnf that does not exist in a user-writable path Or use openssldir_check agains the libcrypto DLL that executable loads that are related to OpenSSL to see if it has a OpenSSLDir set to a user-writable path.
+#### Look into each application with procmon if it searches for a openssl.cnf that does not exist in a user-writable path Or use openssldir_check agains the libcrypto/libeay DLL that executable loads that are related to OpenSSL to see if it has a OpenSSLDir set to a user-writable path.
 ```
-event.provider:"Microsoft-Windows-Sysmon" AND file.extension:"dll" AND (file.name:libcrypto*.dll OR file.name:libssl*.dll OR file.name:libeay*.dll OR file.name:ssleay*.dll OR file.name:openssl.dll OR file.pe.original_file_name:libcrypto*.dll OR file.pe.original_file_name:libssl*.dll) AND user.name: SYSTEM
+event.provider:"Microsoft-Windows-Sysmon" AND file.extension:"dll" AND (file.name:libcrypto*.dll OR file.name:libssl*.dll OR file.name:libeay*.dll OR file.name:ssleay*.dll OR file.name:openssl.dll OR file.pe.original_file_name:libcrypto*.dll OR file.pe.original_file_name:libssl*.dll OR file.pe.original_file_name:libeay*.dll OR file.pe.original_file_name:ssleay*.dll) AND user.name: SYSTEM
 ```
 > **OpenSSLDir_Check** - https://github.com/mirchr/openssldir_check
 
