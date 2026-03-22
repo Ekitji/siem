@@ -25,7 +25,6 @@ SSLeay_version() returned OPENSSLDIR: "/usr/local/ssl"
 
 
 # PowerShell OpenSSL DLL Scanner
-# PowerShell OpenSSL DLL Scanner
 
 Quick PowerShell alternatives to `openssldir_check` for finding the `OPENSSLDIR` path baked into any OpenSSL DLL.  
 Works on **all OpenSSL versions** regardless of exported function names.
