@@ -116,6 +116,13 @@ event.provider: "Service Control Manager" AND event.code: 7000 AND winlog.event_
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND message: *WorkingDirectory*) AND message: (*ProgramData* OR *C\:\\Users\\* OR *Temp*))
 ```
 
+## Potential Local Privilege Escalation - Scheduled Task Binary missing / The system cannot find the file specified.
+#### You need to identify what user the Schedule task is running as and the binary path. Maybe we can plant our own binary?
+```
+event.provider: "Microsoft-Windows-TaskScheduler" AND event.code: 101 AND winlog.event_data.ResultCode: (2147942402 OR 2147942667)
+```
+> The Task Scheduler tried to launch the binary or script defined in that task and it didn't exist at the path specified. The ResultCode is Microsoft Error Codes.
+
 ## Potential Local Privilege Escalation - Scheduled Task SDDL (ACL) Enumeration
 #### Look in the message field for <SecurityDescriptor> key and convert to human readable and check the permissions for the schedule task. 
 ##### Query to hunt for misconfigured Schedule tasks that regular user can change/modify. Microsoft related ones are whitelisted simply because they are protected paths. We are interested in the ones that runs with higher privileges like System or Administrator (or HighestAvailable). Can be good to normalize and parse out the SecurityDescriptor as a field and work from there by whitelisting the correct ones.
