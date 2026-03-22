@@ -220,6 +220,8 @@ Install and check with procmon the found applications if it loads or tries to lo
 
 - ref https://github.com/mirchr/openssldir_check/
 > Output gives OpenSSL version 1.0.1g and that the OpenSSLDIR is set to /usr/local/ssl which is highly interesting!
+> **Sysmon event.code 7** gives you also the version information for the dll in the file.pe.file_version field.
+
 
 #### Escalation Scenario
 1. A service runs as **SYSTEM** and uses OpenSSL
