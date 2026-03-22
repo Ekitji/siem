@@ -31,7 +31,11 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND 
 ```
 event.provider: "Microsoft-Windows-Sysmon" AND event.code: (12 OR 13 OR 14) AND winlog.event_data.TargetObject: HKLM\\System\\CurrentControlSet\\Services\\* AND winlog.event_data.Details: (*Program \Files*) AND NOT winlog.event_data.Details: \"*
 ```
-
+## Potential Local Privilege Escalation - Service Binary missing - The system cannot find the file specified.
+#### You need to identify what user the service is running as and the binary path. Maybe we can plant our own binary?
+```
+event.provider: "Service Control Manager" AND event.code: 7000 AND winlog.event_data.param2: "%%2"
+```
 
 
 # Schedule Tasks
