@@ -253,13 +253,15 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 
 # Other Queries - Some for Layer on Layer coverage
 ## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) usage
-#### Look into each application with procmon if it searches for a openssl.cnf that does not exist in a user-writable path Or use openssldir_check against the libcrypto/libeay DLL that executable loads that are related to OpenSSL to see if it has a OpenSSLDir set to a user-writable path.
+#### Look into each application with procmon if it searches for a openssl.cnf that does not exist in a user-writable path Or use openssldir_check against the libcrypto/libeay DLL that executable loads that are related to OpenSSL to see if it has a OpenSSLDir set to a user-writable path. Event.code 7 is for image loaded and will give you the possible vulnerable process. File creation/deletion events will likely give you the installer executables and are mot for finding the existence of the file.
 ```
 event.provider:"Microsoft-Windows-Sysmon" AND file.extension:"dll" AND (file.name:libcrypto*.dll OR file.name:libssl*.dll OR file.name:libeay*.dll OR file.name:ssleay*.dll OR file.name:openssl.dll OR file.pe.original_file_name:libcrypto*.dll OR file.pe.original_file_name:libssl*.dll OR file.pe.original_file_name:libeay*.dll OR file.pe.original_file_name:ssleay*.dll) AND user.name: SYSTEM
 ```
 > **Pro Tip** Its probably easier to get a copy of the libcrypto related DLL and running the openssldir_check.exe against it then installing the application and running procmon to catch if it has a openssl.cnf path set.
 
 > **OpenSSLDir_Check** - https://github.com/mirchr/openssldir_check
+
+> **Pinpoint interesting executables** by filtering for event.code 7 (Image loaded)
 
 
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
