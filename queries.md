@@ -229,7 +229,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 ## Potential Arbitrary File delete by SYSTEM in User writable paths
 ##### May also be interesting to look inte other file operators
 ```
-(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: (23 OR 26) AND file.path: (C\:\\Users\\* OR C\:\\ProgramData\\* OR C\:\\Windows\\Temp\\*)
+(event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: (23 OR 26) AND file.path: (C\:\\Users\\* OR C\:\\ProgramData\\* OR C\:\\Windows\\Temp\\*))
 ```
 ## Potential Arbitrary File delete by SYSTEM in C-Root subfolder
 ##### May also be interesting to look inte other file operators
