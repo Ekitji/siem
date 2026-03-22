@@ -1,5 +1,6 @@
 # Pre-compiled checker files from
-### Updated to be better compatible with newer OpenSSL versions.
+### Updated for better compatibility with newer OpenSSL versions.
+#### Original project
 - https://github.com/mirchr/openssldir_check
 
 
