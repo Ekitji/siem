@@ -12,7 +12,7 @@ OpenSSL_version() returned OpenSSL 3.6.1 27 Jan 2026
 OpenSSL_version() returned OPENSSLDIR: "C:\Program Files (x86)\Common Files\SSL"
 ```
 
-### Observer the returned OPENSSLDIR pointing to a potential user-writable path.
+### Observe the returned OPENSSLDIR pointing to a potential user-writable path.
 `openssldir_check_x86.exe libeay32.dll`
 
 ```
