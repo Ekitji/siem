@@ -16,9 +16,7 @@
 | `C:\tmp\build` / `/tmp/build` | 3.x (Linux, bundled) | Cross-platform CI build artifact |
 
 
-## Less common ones
-
-## Table: OPENSSLDIR → Binaries
+## Table: With less common ones
 
 | OPENSSLDIR Path | OpenSSL Version(s) | Example Binaries | Application / Source |
 |---|---|---|---|
