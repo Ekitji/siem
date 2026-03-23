@@ -271,7 +271,7 @@ event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"
 ```
 > **Pro Tip** Its probably easier to get a copy of the libcrypto related DLL and running the openssldir_check.exe against it then installing the application and running procmon to catch if it has a openssl.cnf path set. **Prioritize filenames libeay32.dll and libcrypto-1_1*.dll** which is most likely vulnerable. Use  **file.pe.file_version** field to get context around OpenSSL version.
 
-> **OpenSSLDir_Check** - https://github.com/mirchr/openssldir_check
+> **OpenSSLDir Tools** - https://github.com/Ekitji/siem/tree/main/openssl
 
 > **Event.code: 7** can be excluded to catch file creation/deletion events but is less relevant then the actual image load of the OpenSSL related DLLs.
 
