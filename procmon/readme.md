@@ -96,7 +96,7 @@ Apply after log capture to refine investigation:
 | `Result = NAME NOT FOUND` | Identify failed attempts, potential symlink or file planting opportunities |
 | `Result = PATH NOT FOUND` | Identify failed attempts, potential symlink or file planting opportunities |
 
-> **Pro tip:** Combine `Result = NAME NOT FOUND` with `User = SYSTEM` and `Path = Temp` to find privileged processes **searching for missing files** — a common pattern exploited in privilege escalation.
+> **Pro tip:** Combine `Result = NAME NOT FOUND` with `User = SYSTEM` and `Path = Temp` to find privileged processes **searching for missing files** — a common pattern exploited in privilege escalation. Load the filters found in filters section to Procmon to get an idea about different filters to use for hunting for vulnerabilities.
 >
 > **SIEM Queries:** Procmon SIEM queries in the procmonsiemqueries.md file
 > 
