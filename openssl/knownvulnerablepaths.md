@@ -230,6 +230,7 @@ dominates because:
 | libcrypto-1_1-x64.dll | 1.1.1n | 8ab148d18164ab411595d8bb2e9f2e6cea534948 | "C:\Program Files\Common Files\SSL" | PostgreSQL |
 | libcrypto-1_1-x64.dll | 1.1.1w | 13423b30f73490fa93018e433f9b4c126e86c2c1 | "C:\Program Files\Common Files\SSL" | |
 | libcrypto-1_1-x64.dll | 1.1.1g | a6eb12db5d4bec6820d98058541973630a090b75 | "C:\Program Files\Common Files\SSL" | |
+| libcrypto-1_1-x64.dll | 1.1.1p | 585bac48084a1c40597a0f1a6c8cd8c135ea6b4a | "\apache24\conf" | Apache24 | |
 | libcrypto-1_1.dll | 1.1.1w | e1e0e7884770b062b803b8396dfce08e889eadac | "C:\Program Files (x86)\Common Files\SSL" | | "C:\builds\3rdparty\bash-packages\.package\lib\engines-1_1" |
 | libcrypto-3.dll | 3.6.1 | fbfa3765ce078f67484e19e431b34fc7373fb36a | "C:\Program Files (x86)\Common Files\SSL" | |
 | libcrypto-3.dll | 3.0.15 | 12d13a0f5e34820ad419e729a4541a32be81d728 | "C:\Program Files (x86)\Common Files\SSL" | |
