@@ -34,7 +34,7 @@
 
 # OpenSSL Binary Scan Results
 
-| FileName | OpenSSLVersion | SHA1 | OPENSSLDIR | ENGINESDIR | MODULESDIR | SourceZip |
+| FileName | Version | SHA1 hash | OPENSSLDIR | ENGINESDIR | MODULESDIR | SourceZip |
 |----------|----------------|------|------------|------------|------------|-----------|
 | libeay32.dll | 0.9.6k | 4e953a8d529ee6bc672610c697f9fe5f5f2860f7 |  |  |  | indy_openssl096k.zip |
 | libeay32.dll | 0.9.6b | a21b7aba94cfcaefa3cbe5e0140e20669459a33f |  |  |  | indy_openssl096b.zip |
@@ -233,11 +233,5 @@
 ---
 ## Summary
 
-| Metric | Value |
-|--------|-------|
-| ZIPs scanned       | 197 |
-| ZIPs with DLLs     | 193 |
-| Unique DLLs found  | 193 |
-| Duplicates skipped | 7 |
 | OpenSSL versions   | 0.9.6, 0.9.6b, 0.9.6k, 0.9.6m, 0.9.8e, 0.9.8h, 0.9.8i, 0.9.8j, 0.9.8k, 0.9.8l, 0.9.8m, 0.9.8o, 0.9.8q, 0.9.8r, 0.9.8s, 0.9.8t, 0.9.8u, 0.9.8w, 0.9.8x, 0.9.8y, 0.9.8z, 1.0.0, 1.0.0a, 1.0.0c, 1.0.0d, 1.0.0e, 1.0.0f, 1.0.0g, 1.0.0h, 1.0.0i, 1.0.0j, 1.0.0k, 1.0.0l, 1.0.0n, 1.0.0o, 1.0.0p, 1.0.0q, 1.0.0r, 1.0.0s, 1.0.0t, 1.0.1, 1.0.1b, 1.0.1c, 1.0.1e, 1.0.1f, 1.0.1g, 1.0.1h, 1.0.1i, 1.0.1j, 1.0.1k, 1.0.1l, 1.0.1m, 1.0.1o, 1.0.1p, 1.0.1q, 1.0.1r, 1.0.1s, 1.0.1t, 1.0.1u, 1.0.2, 1.0.2a, 1.0.2c, 1.0.2d, 1.0.2e, 1.0.2f, 1.0.2g, 1.0.2h, 1.0.2i, 1.0.2j, 1.0.2k, 1.0.2l, 1.0.2m, 1.0.2n, 1.0.2o, 1.0.2p, 1.0.2q, 1.0.2r, 1.0.2s, 1.0.2t, 1.0.2u, 1.1.0h, 3.0.14, 3.0.15, 3.1.6, 3.1.7, 3.2.2, 3.2.3, 3.3.1, 3.3.2 |
-| Generated          | 2026-03-24 21:53:21 |
+
