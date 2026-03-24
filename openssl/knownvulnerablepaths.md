@@ -1,6 +1,7 @@
-# Known Vulnerable Default Paths
+# Known Vulnerable Default Paths And DLLs
 
 > **Pro tip** Its more likely that you will find user-writable paths in the older/legacy versions of OpenSSL then the newer.
+> Check bottom for a list of enumerated DLLs and their OPENSSLDIR, hash and version.
 
 > Have in mind that its possible to specify the OPENSSLDIR path when the DLL is compiled by using parameters “--openssldir” but this is something that oftenly missed.
 
