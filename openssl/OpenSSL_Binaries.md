@@ -231,7 +231,53 @@
 | libcrypto-3-x64.dll | 3.3.2 | ffe6e6ca9ef222967c5439dfac8d7110703af7ac | C:/msys64/usr/local/ssl | C:/msys64/usr/local/lib64/engines-3 | C:/msys64/usr/local/lib64/ossl-modules | openssl-3.3.2-win64.zip |
 
 ---
-## Summary
+> **Below table built by downloading DLLs from:** https://www.dll-files.com/libeay32.dll.html
+> You can also directly search on the site for hash values.
 
-| OpenSSL versions   | 0.9.6, 0.9.6b, 0.9.6k, 0.9.6m, 0.9.8e, 0.9.8h, 0.9.8i, 0.9.8j, 0.9.8k, 0.9.8l, 0.9.8m, 0.9.8o, 0.9.8q, 0.9.8r, 0.9.8s, 0.9.8t, 0.9.8u, 0.9.8w, 0.9.8x, 0.9.8y, 0.9.8z, 1.0.0, 1.0.0a, 1.0.0c, 1.0.0d, 1.0.0e, 1.0.0f, 1.0.0g, 1.0.0h, 1.0.0i, 1.0.0j, 1.0.0k, 1.0.0l, 1.0.0n, 1.0.0o, 1.0.0p, 1.0.0q, 1.0.0r, 1.0.0s, 1.0.0t, 1.0.1, 1.0.1b, 1.0.1c, 1.0.1e, 1.0.1f, 1.0.1g, 1.0.1h, 1.0.1i, 1.0.1j, 1.0.1k, 1.0.1l, 1.0.1m, 1.0.1o, 1.0.1p, 1.0.1q, 1.0.1r, 1.0.1s, 1.0.1t, 1.0.1u, 1.0.2, 1.0.2a, 1.0.2c, 1.0.2d, 1.0.2e, 1.0.2f, 1.0.2g, 1.0.2h, 1.0.2i, 1.0.2j, 1.0.2k, 1.0.2l, 1.0.2m, 1.0.2n, 1.0.2o, 1.0.2p, 1.0.2q, 1.0.2r, 1.0.2s, 1.0.2t, 1.0.2u, 1.1.0h, 3.0.14, 3.0.15, 3.1.6, 3.1.7, 3.2.2, 3.2.3, 3.3.1, 3.3.2 |
+# DLL-Files.com OpenSSL Binary Scan Results
+
+| FileName | OpenSSLVersion | SHA1 | OPENSSLDIR | ENGINESDIR | MODULESDIR | SourceZip |
+|----------|----------------|------|------------|------------|------------|-----------|
+| libeay32.dll | 1.0.2h | d1560bda7d50cdcdea0d2c076b0ce4dc3f19dd0d | C:\projects\openssl-2015-64/ssl |  |  | libeay32 (12).zip |
+| libeay32.dll | 1.0.2h | 407e9c3e52033432d2245006ed348ec61821e3cb | /usr/local/ssl |  |  | libeay32 (13).zip |
+| libeay32.dll | 1.0.2h | 295bdc9079659700b0404e12733ca30077d24c2d | /usr/local/ssl |  |  | libeay32 (14).zip |
+| libeay32.dll | 1.0.2k | 0d1d63fa20ef7a8f6c4d9920978c19482baac1a5 | /usr/local/ssl |  |  | libeay32 (11).zip |
+| libeay32.dll | 1.0.2g | e9946f0dc5a3597cd57df5628049616f13f904cf | C:\Source\gdb\32\openssl/ssl |  |  | libeay32 (15).zip |
+| libeay32.dll | 1.0.2o | e1151e2b8ac62c21e23db2a9618bd6088ad0001a | D:\Download\OpenSSL/ssl |  |  | libeay32 (1).zip |
+| libeay32.dll | 1.0.2l | ad6cea0b53348137935547fb3f7ba471788e98b0 | c:\ciscossl\out32\windows_vs2017_x86_release\ciscossl-1.0.2l.6.2.83/ssl |  |  | libeay32 (10).zip |
+| libeay32.dll | 1.0.2a | 84fe64c29404e73eb03a950fdc2a0b6314f05b32 | /usr/local/ssl |  |  | libeay32 (16).zip |
+| libeay32.dll | 1.0.1j | 491bc406ef37477884f1c21f878825f7b7aa69a7 | /usr/local/ssl |  |  | libeay32 (21).zip |
+| libeay32.dll | 1.0.1s | fe60e3ca56f611e3b59159966d11e53c92b08f72 | E:\vbox_build_lib\openssl-1.0.1s\openssl-1.0.1s_x86/ssl |  |  | libeay32 (19).zip |
+| libeay32.dll | 1.0.1j | 661503cafb5c08964b809a5514db1f124a9c5352 | /usr/local/ssl |  |  | libeay32 (22).zip |
+| libeay32.dll | 1.0.2a | e56eb814a04f050a4335bc328e85336abc0abaae | /usr/local/ssl |  |  | libeay32 (17).zip |
+| libeay32.dll | 1.0.1s | 50ae08b3a2fcdb112db81aa546bcec72a6af2f24 | /usr/local/ssl |  |  | libeay32 (18).zip |
+| libeay32.dll | 1.0.1j | b26b6bafd6f07fac81df5ab7ca8187b8888c54e4 | /usr/local/ssl |  |  | libeay32 (20).zip |
+| libeay32.dll | 1.0.1j | 113832bd35f6f3bfb038360bac9bb419a4b9c6a3 | /usr/local/ssl |  |  | libeay32 (23).zip |
+| libeay32.dll | 1.0.1f | 48331923857caed6db42a267978126967dc650fb | C:\users\ako\projects\miflash\V5\MiFlash\src\ThirdParty\openssl/ssl |  |  | libeay32 (26).zip |
+| libeay32.dll | 1.0.2o | 9876f8bd03fcc83dec2a367755843b6e14112c51 | /usr/local/ssl |  |  | libeay32 (2).zip |
+| libeay32.dll | 1.0.1f | ad80ea9134314ace867f7512189b1a9c7ce22e3a | C:\users\ako\projects\miflash\V5\MiFlash\src\ThirdParty\openssl/ssl |  |  | libeay32 (24).zip |
+| libeay32.dll | 1.0.1e | 837a083487031b82f666ab1ab6ee918b5b7d5185 | /usr/local/ssl |  |  | libeay32 (28).zip |
+| libeay32.dll | 1.0.1f | b76d9ec1b8e93f57426ae27b6b25ca326f6a691c | /usr/local/ssl |  |  | libeay32 (27).zip |
+| libeay32.dll | 1.0.1f | bd9dea38f8a4bcf029c086b6ecc9988b63d95630 | C:\users\ako\projects\miflash\V5\MiFlash\src\ThirdParty\openssl/ssl |  |  | libeay32 (25).zip |
+| libeay32.dll | 1.0.2u | c81f63508f0b8a5e5fb6ea967b56f9285d6812d1 | c:\tmp_open_ssl/ssl |  |  | libeay32 (3).zip |
+| libeay32.dll | 1.0.1e | 1af684f62259b94ecb52c19174d79130abc2ea5f | /etc/ssl |  |  | libeay32 (29).zip |
+| libeay32.dll | 1.0.0e | 8f43c9d3a1e448d8e1bb04cfe970acca66d0c896 | C:\Users\msv.builder.massgate\buildbot\slave-win\openssl-win\build/ssl |  |  | libeay32 (32).zip |
+| libeay32.dll | 1.0.0g | 28c60b284ec30d5ca628ebf5b9b595eec4e72b3a | c:/openvpn-win/build/openssl/ssl |  |  | libeay32 (31).zip |
+| libeay32.dll | 1.0.1c | 98b3422bbce4890ab35adfbe5ebffe5ac0d41f8c | /usr/local/ssl |  |  | libeay32 (30).zip |
+| libeay32.dll | 0.9.8l | 724a2f95d411ae409d82a79583230d2938bcb0ed | c:downloadsopensslopenssl-0.9.8l/ssl |  |  | libeay32 (35).zip |
+| libeay32.dll | 1.0.0c | 3b8325187cf0a60dc4fa133ee3e5c530e4b047f4 | c:\openssl/ssl |  |  | libeay32 (33).zip |
+| libeay32.dll | 1.0.0b | 668ce2c159e90da0166c1a845104e445b6966bc4 | /usr/local/ssl |  |  | libeay32 (34).zip |
+| libeay32.dll | 0.9.8l | 7f2bda629c63164d5ecaa29695c088d05dd8da89 | /usr/local/share/ssl |  |  | libeay32 (36).zip |
+| libeay32.dll | 0.9.8j | be30f0034e8dcc88effe6eacd811bf1e4e484843 | /usr/local/ssl |  |  | libeay32 (39).zip |
+| libeay32.dll | 0.9.8j | c1dd11e0dd9f9c89f240f89e7396d283ee8a10a2 | /usr/local/ssl |  |  | libeay32 (38).zip |
+| libeay32.dll | 0.9.8k | 95d0377fcc5364b7ab17faf2f6c7414d60ee1eb0 | c:/openssl/ssl |  |  | libeay32 (37).zip |
+| libeay32.dll | 0.9.4 | 598e2312fe3675dcadddd246a11ce4d8c71efeea |  |  |  | libeay32 (42).zip |
+| libeay32.dll | 0.9.8i | a91e082e5c6bbf69b918bab3ad963e90690b8575 | c:/some/openssl/dir/ssl |  |  | libeay32 (41).zip |
+| libeay32.dll | 1.0.2o | 7181fffaa6b8f0f29cf7cdd1b1b859c2b956d399 | /usr/local/ssl |  |  | libeay32 (7).zip |
+| libeay32.dll | 1.0.2m | 09372bf345355cb68b17c71bfec4c3241f9b2d87 | C:\Program Files (x86)\VMware\OpenSSL |  |  | libeay32 (8).zip |
+| libeay32.dll | 1.0.2o | 2b13ec172290f55b57bb5ba452cc2f2d44a3abeb | c:\users\builder\appdata\local\temp\openssl_temp\win64releasedllshared\openssl\output_ssl/ssl |  |  | libeay32 (6).zip |
+| libeay32.dll | 1.0.2l | 7a88b91c9d4601bbfeceed599175454981dcc075 | c:\ciscossl\out32\windows_vs2017_x86_release\ciscossl-1.0.2l.6.2.83/ssl |  |  | libeay32 (9).zip |
+
+---
+
 
