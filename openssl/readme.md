@@ -109,7 +109,7 @@ $bytes = [System.IO.File]::ReadAllBytes($dll)
 $text  = [System.Text.Encoding]::ASCII.GetString($bytes)
 
 # Find OPENSSLDIR and ENGINESDIR tags
-[regex]::Matches($text, '(OPENSSLDIR|ENGINESDIR): "([^"]+)"') |
+[regex]::Matches($text, '(OPENSSLDIR|ENGINESDIR|MODULESDIR): "([^"]+)"') |
     ForEach-Object { $_.Value }
 ```
 
@@ -120,7 +120,7 @@ ENGINESDIR: "C:\Program Files (x86)\OpenSSL\lib\engines-3"
 ```
 ##### As One-Liner for PWD (Print Working Directory/Current Working Directory) in Powershell
 ```
-[regex]::Matches([System.Text.Encoding]::ASCII.GetString([System.IO.File]::ReadAllBytes("$PWD\libcrypto-1_1-x64.dll")), '(OPENSSLDIR|ENGINESDIR): "([^"]+)"') | ForEach-Object { $_.Value }
+[regex]::Matches([System.Text.Encoding]::ASCII.GetString([System.IO.File]::ReadAllBytes("$PWD\libcrypto-1_1-x64.dll")), '(OPENSSLDIR|ENGINESDIR|MODULESDIR): "([^"]+)"') | ForEach-Object { $_.Value }
 ```
 
 ---
