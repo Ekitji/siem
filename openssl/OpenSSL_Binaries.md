@@ -1,4 +1,4 @@
-> **Pro Tip!** Have you found a DLL with your query and you have its hash - search here in the tables to get OPENSSLDIR. Checking the version only could be wrong if the OpenSSL version is a custom build.
+> **Pro Tip!** Have you found a DLL with your query and you have its hash - search here in the tables to get OPENSSLDIR. Checking the version only could be wrong if the OpenSSL DLL is a custom build.
 
 ## My own list with DLLs, hashes and versions.
 
