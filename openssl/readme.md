@@ -1,3 +1,36 @@
+# What each file contains
+## OpenSSL_Binaries.md
+File names, File versions, SHA1 hashes, OPENSSLDIR, ENGINESDIR AND MODULESDIR of many OpenSSL DLLs
+
+## knownvulnerablepaths.md
+Shows common vulnerable paths in OPENSSLDIR AND short about ENGINESDIR and MODULESDIR
+
+## libeay32_test_dll.cpp
+Code for a test.dll you can point openssl.cnf to load.
+Pre-compiled is also uploaded here.
+
+## openssl.cnf
+Used with libeay32.dll pointing to /usr/local/ssl which is translated in windows to c:\usr\local\ssl
+openssl.cnf in c:\usr\local\ssl
+> Probably need adjustment to work with newer versions of OpenSSL.
+
+## openssldir_check.cpp
+Code for openssldir_check binary that checks OPENSSLDIR and ENGINESDIR
+use Script to cover MODULESDIR also.
+
+## openssldir_check_x64.exe
+Pre-compiled 64-bit binary to use against OpenSSL DLL to fetch OPENSSLDIR and ENGINESDIR
+
+## openssldir_check_x86.exe
+Pre-compiled 32-bit binary to use against OpenSSL DLL to fetch OPENSSLDIR and ENGINESDIR
+
+## test.dll
+pre-compiled test.dll to use with libeay32.dll. Code from libeay32_test_dll.cpp.
+
+> Execution chain will be, process --> libeay32.dll --> openssl.cnf --> test.dll
+
+
+
 # Pre-compiled opendirssl_checker files AND Powershell script
 ### Updated Opendirssl_checker for better compatibility with newer OpenSSL versions.
 #### Original project
