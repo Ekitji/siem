@@ -271,3 +271,7 @@ DLLs autoloaded from `MODULESDIR` are:
 - Any custom provider DLLs implementing the OpenSSL 3 module interface.
 
 > If a DLL does not implement a provider interface, OpenSSL will ignore it.
+>
+ MODULESDIR → automatic loading of provider modules at OpenSSL startup.
+ENGINESDIR → manual loading of engines; not automatically autoloaded.
+Engines are considered legacy in OpenSSL 3, while providers are the new modular system.
