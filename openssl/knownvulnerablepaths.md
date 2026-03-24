@@ -229,6 +229,7 @@ dominates because:
 
 | Filename | Version | SHA1 hash| OPENSSLDIR | Application | ENGINES DIR |
 |---|---|---|---|---|---|
+| libcrypto-1_1-x64.dll | 1.1.1 | 3554f7e615496e4bebd30e24a3bcbe8752c1cd3b | "C:\Program Files\Common Files\SSL" | 
 | libcrypto-1_1-x64.dll | 1.1.1n | 8ab148d18164ab411595d8bb2e9f2e6cea534948 | "C:\Program Files\Common Files\SSL" | PostgreSQL |
 | libcrypto-1_1-x64.dll | 1.1.1w | 13423b30f73490fa93018e433f9b4c126e86c2c1 | "C:\Program Files\Common Files\SSL" | |
 | libcrypto-1_1-x64.dll | 1.1.1g | a6eb12db5d4bec6820d98058541973630a090b75 | "C:\Program Files\Common Files\SSL" | |
@@ -254,4 +255,5 @@ dominates because:
 ---
 
 > **Plenty DLLS can be found here** https://github.com/IndySockets/OpenSSL-Binaries/tree/master
+
 > Check Archive folder also for more versions in same and different ranges.
