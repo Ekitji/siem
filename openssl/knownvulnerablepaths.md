@@ -226,3 +226,48 @@ dominates because:
 
 ---
 
+# OpenSSL MODULESDIR and Autoloaded DLLs
+
+## 1. Context: MODULESDIR
+- `MODULESDIR` is an environment variable (or compile-time path) that points to the directory where OpenSSL “modules” or providers are stored.
+- A module in OpenSSL is usually a `.dll` (Windows) or `.so` (Linux) file that implements cryptographic algorithms or engine functionality.
+- Examples: `aes.dll`, `rsa.dll`, `ec.dll`, or engine implementations.
+
+## 2. OpenSSL 3.x Module Loading
+OpenSSL 3 introduced a **provider concept**, where algorithms are implemented in providers rather than directly in `libcrypto`. The main providers are:
+
+- **Default Provider (`default.dll`)** – provides most standard algorithms (AES, RSA, SHA, etc.).
+- **Legacy Provider (`legacy.dll`)** – provides deprecated algorithms.
+- **FIPS Provider (`fips.dll`)** – provides FIPS-compliant implementations (if built).
+
+When OpenSSL starts:
+
+1. It checks the compiled-in default path or the `OPENSSL_MODULES` environment variable (can be `MODULESDIR`) for DLLs.
+2. It automatically loads:
+   - `default.dll`
+   - `legacy.dll` (optional)
+   - `fips.dll` (if FIPS is enabled)
+
+## 3. Autoload Behavior
+From OpenSSL 3.0 documentation:
+
+> OpenSSL automatically loads all providers found in `MODULESDIR` that match the expected provider interface unless explicitly disabled.
+
+So practically, in Windows:
+%MODULESDIR%\default.dll
+%MODULESDIR%\legacy.dll
+%MODULESDIR%\fips.dll
+
+
+- Custom providers you place in `MODULESDIR` will also be autoloaded if they follow the naming and interface conventions.
+- OpenSSL searches for `*.dll` and calls the provider entry point: `OSSL_provider_init`.
+
+## ✅ Summary
+DLLs autoloaded from `MODULESDIR` are:
+
+- `default.dll` – standard algorithms.
+- `legacy.dll` – deprecated algorithms.
+- `fips.dll` – FIPS-compliant algorithms (if enabled).
+- Any custom provider DLLs implementing the OpenSSL 3 module interface.
+
+> If a DLL does not implement a provider interface, OpenSSL will ignore it.
