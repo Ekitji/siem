@@ -225,6 +225,8 @@ dominates because:
 
 ---
 
+## My own list with DLLs, hashes and versions.
+
 | Filename | Version | SHA1 hash| OPENSSLDIR | Application | ENGINES DIR |
 |---|---|---|---|---|---|
 | libcrypto-1_1-x64.dll | 1.1.1n | 8ab148d18164ab411595d8bb2e9f2e6cea534948 | "C:\Program Files\Common Files\SSL" | PostgreSQL |
