@@ -264,12 +264,12 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 ```
 
 # Other Queries - Some for Layer on Layer coverage
-## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) usage
-#### Look into each applications DLL your query found simply with the tools/script in this repo or with procmon if it searches for a openssl.cnf that does not exist in a user-writable path. The relevant ones are libcrypto/libeay DLL that executable loads that are related to OpenSSL. Event.code 7 is for image loaded and will give you the possible vulnerable process loading the DLL. File creation/deletion events will likely give you the installer executables and are mot for finding the existence of the file.
+## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) Usage
+#### Look at the fields process executable, file path to the dll, file.pe.file_version, sha1 hash field. **Prioritize filenames libeay32.dll and libcrypto-1_1*.dll** which is older/legacy DLLs and are more likely vulnerable. You can use https://github.com/Ekitji/siem/blob/main/openssl/OpenSSL_Binaries.md which is a pre-built table with lots of hashes of openssl dlls what hardcoded OPENSSLDIR is set. If you cant find your DLL on that list, ask for a copy of the DLL you found or simply install the application and do the controls your self. Event.code 7 is for image loaded and will give you the possible vulnerable process loading the DLL. File creation/deletion events will likely give you the installer executables and are mot for finding the existence of the file.
 ```
 event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"dll" AND (file.name:libcrypto*.dll OR file.name:libssl*.dll OR file.name:libeay*.dll OR file.name:ssleay*.dll OR file.name:openssl.dll OR file.pe.original_file_name:libcrypto*.dll OR file.pe.original_file_name:libssl*.dll OR file.pe.original_file_name:libeay*.dll OR file.pe.original_file_name:ssleay*.dll) AND user.name: SYSTEM
 ```
-> **Pro Tip** Its probably easier to get a copy of the libcrypto related DLL and running the openssldir_check.exe against it then installing the application and running procmon to catch if it has a openssl.cnf path set. **Prioritize filenames libeay32.dll and libcrypto-1_1*.dll** which is most likely vulnerable. Use  **file.pe.file_version** field to get context around OpenSSL version.
+> **Pro Tip** if OPENSSLDIR is set to /usr/local/ssl, in windows this is translated to c:\usr\local\ssl and is a user-writable path. Check the process executable that its a high privileged process that are started by a service or schedule task. If so then you probably have your persistent local privilege escalation.
 
 > **OpenSSLDir Tools** - https://github.com/Ekitji/siem/tree/main/openssl
 
