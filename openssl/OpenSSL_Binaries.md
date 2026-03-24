@@ -30,7 +30,7 @@
 
 ---
 
-> **Below table built by using following github repo** https://github.com/IndySockets/OpenSSL-Binaries/tree/master
+> **Below table built by using following github repo** https://github.com/IndySockets/OpenSSL-Binaries
 
 # OpenSSL Binary Scan Results
 
