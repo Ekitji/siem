@@ -1,0 +1,12 @@
+openssl_conf = openssl_init
+
+[openssl_init]
+engines = engine_section
+
+[engine_section]
+dynamic = dynamic_section
+
+[dynamic_section]
+SO_PATH = C:\\usr\\local\\ssl\\test.dll
+LOAD = EMPTY
+init = 0
