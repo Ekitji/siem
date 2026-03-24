@@ -254,6 +254,7 @@ dominates because:
 
 
 ---
+> **Pro Tip!** Have you found a DLL and have its hash and version? check below if its there and compare version and hash. If they match, use that DLL to look what OPENSSLDIR is set.
 
 > **Plenty DLLS can be found here** https://github.com/IndySockets/OpenSSL-Binaries/tree/master
 
