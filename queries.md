@@ -264,6 +264,13 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 ```
 
 # Other Queries - Some for Layer on Layer coverage
+## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) Usage with Legacy drivers ⭐
+#### Query that searches for legacy OpenSSL driver libeay32.dll that has almost in every case hardcoded user-writable path to c:\usr\local\ssl. Start with this query and go with the next one for a wider search where you will also catch newer OpenSSL versions that you later need to lookup its OPENSSLDIR.
+```
+event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"dll" file.pe.description: "OpenSSL library" file.pe.file_version: (0.9.* OR 1.0.*) AND file.pe.original_file_name: (libeay32.dll) AND user.name: SYSTEM 
+```
+> **Pro Tip** Check if the process executable is started from services.exe or as a schedule task. If so - you have a nice persistent local privilege escalation vulnerability.
+
 ## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) Usage ⭐
 #### Look at the fields process executable, file path to the dll, file.pe.file_version, sha1 hash field. **Prioritize filenames libeay32.dll and libcrypto-1_1*.dll** which is older/legacy DLLs and are more likely vulnerable, but dont skip the other ones. You can use https://github.com/Ekitji/siem/blob/main/openssl/OpenSSL_Binaries.md which is a pre-built table with lots of hashes of openssl dlls with hardcoded OPENSSLDIR. If you cant find your DLL on that list, ask for a copy of the DLL you found or simply install the application and do the controls your self. Event.code 7 is for image loaded and will give you the possible vulnerable process loading the DLL. File creation/deletion events will likely give you the installer executables and are mot for finding the existence of the file.
 ```
