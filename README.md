@@ -182,7 +182,7 @@ Here is a excellent talk describing .sys files and privilege escalation using Br
 
 Summary of the talk showcases snowagent.exe dropping sys-files to `C:\Windows\Temp\cpuz143\cpuz143_x64.sys` and local privilege escalation by using the vulnerable driver for CVE-2021-21551.
 
-### OpenSSL and its openssl.cnf for privilege escalation
+### OpenSSL and its openssl.cnf for privilege escalation ⭐
 #### What is openssl.cnf?
 OpenSSL's config file. Loaded automatically when any application initializes OpenSSL — before the app fully starts. When the DLL is compiled if not the --openssldir parameter is specified it defaults to /usr/local/ssl which is in Windows translated to c:/usr/local/ssl, which is a common path where the cnf will be looked for. Other paths is c:\etc\ssl\ or other custom user-writable paths 
 
