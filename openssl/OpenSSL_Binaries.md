@@ -4,7 +4,7 @@
 
 | Filename | Version | SHA1 hash| OPENSSLDIR | Application | ENGINES DIR |
 |---|---|---|---|---|---|
-| libcrypto-1_1-x64.dll | 1.1.1 | 3554f7e615496e4bebd30e24a3bcbe8752c1cd3b | "C:\Program Files\Common Files\SSL" | 
+| libcrypto-1_1-x64.dll | 1.1.1 | 3554f7e615496e4bebd30e24a3bcbe8752c1cd3b | "C:\Program Files\Common Files\dlllSSL" | 
 | libcrypto-1_1-x64.dll | 1.1.1n | 8ab148d18164ab411595d8bb2e9f2e6cea534948 | "C:\Program Files\Common Files\SSL" | PostgreSQL |
 | libcrypto-1_1-x64.dll | 1.1.1w | 13423b30f73490fa93018e433f9b4c126e86c2c1 | "C:\Program Files\Common Files\SSL" | |
 | libcrypto-1_1-x64.dll | 1.1.1g | a6eb12db5d4bec6820d98058541973630a090b75 | "C:\Program Files\Common Files\SSL" | |
@@ -231,7 +231,7 @@
 | libcrypto-3-x64.dll | 3.3.2 | ffe6e6ca9ef222967c5439dfac8d7110703af7ac | C:/msys64/usr/local/ssl | C:/msys64/usr/local/lib64/engines-3 | C:/msys64/usr/local/lib64/ossl-modules | openssl-3.3.2-win64.zip |
 
 ---
-> **Below table built by downloading DLLs from:** https://www.dll-files.com/libeay32.dll.html
+> **Below table built by downloading DLLs from:** https://www.dll-files.com/
 > You can also directly search on the site for hash values.
 
 # DLL-Files.com OpenSSL Binary Scan Results
