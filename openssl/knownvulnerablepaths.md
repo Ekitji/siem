@@ -244,6 +244,7 @@ dominates because:
 | libcrypto-3-x64.dll | 3.2.1 | ee6ed4b54daca2d787ad6232fd09701aafafd8b1 | "C:\Program Files\Common Files\SSL" | |
 | libeay32.dll | 1.0.2p | b09bbc7f5f010ab1d750b5290cf331b372cd7fae | "/usr/local/ssl" | | 
 | libeay32.dll | 1.0.2p | ad8950da5ad9a143a05ce84ddc41e0b7420079ef | "/usr/local/ssl" | | 
+| libeay32.dll | 1.0.2p | fb3eebef898defba2bfd0dbc6167a9efcbe4ac8a |  | | 
 | libeay32.dll | 1.0.2u | f684152c245cc708fbaf4d1c0472d783b26c5b18 | "/usr/local/ssl" | | 
 | libeay32.dll | 1.0.2u | 3c9d8851721d2f1bc13a8dcb74549fa282a5a360 | "/usr/local/ssl" | | 
 | libeay32.dll | 1.0.2t | 74fa885fa59fd7f5b1c71c7736566effbae86d63 |  "/usr/local/ssl" | |
