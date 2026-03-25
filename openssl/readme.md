@@ -155,7 +155,7 @@ ENGINESDIR: "C:\Program Files (x86)\OpenSSL\lib\engines-3"
 ```
 [regex]::Matches([System.Text.Encoding]::ASCII.GetString([System.IO.File]::ReadAllBytes("$PWD\libcrypto-1_1-x64.dll")), '(OPENSSLDIR|ENGINESDIR|MODULESDIR): "([^"]+)"') | ForEach-Object { $_.Value }
 ```
-
+> (Get-FileHash -Algorithm SHA1 ".\libcrypto-3.dll").Hash.ToLower()
 ---
 
 ## Method 2 — Scan for all SSL-relevant path strings (clean output)
