@@ -10,7 +10,7 @@
 | libcrypto-1_1-x64.dll | 1.1.1g | a6eb12db5d4bec6820d98058541973630a090b75 | "C:\Program Files\Common Files\SSL" | |
 | libcrypto-1_1-x64.dll | 1.1.1p | 585bac48084a1c40597a0f1a6c8cd8c135ea6b4a | "\apache24\conf" | Apache24 -IncB | |
 | libcrypto-1_1.dll | 1.1.1w | e1e0e7884770b062b803b8396dfce08e889eadac | "C:\Program Files (x86)\Common Files\SSL" | | "\builds\3rdparty\bash-packages\.package\lib\engines-1_1" |
-| libcrypto-3.dll | 3.6.1 | fbfa3765ce078f67484e19e431b34fc7373fb36a | "C:\Program Files (x86)\Common Files\SSL" | | | C:\Program Files (x86)\OpenSSL\lib\ossl-modules" |
+| libcrypto-3.dll | 3.6.1 | fbfa3765ce078f67484e19e431b34fc7373fb36a | "C:\Program Files (x86)\Common Files\SSL" | | "C:\Program Files (x86)\OpenSSL\lib\engines-3" | C:\Program Files (x86)\OpenSSL\lib\ossl-modules" |
 | libcrypto-3.dll | 3.0.15 | 12d13a0f5e34820ad419e729a4541a32be81d728 | "C:\Program Files (x86)\Common Files\SSL" | |
 | libcrypto-3.dll | 3.0.16 | 8bdaf2c1cebcc019d28ebf181de6751cad608ea4 |  "C:\Program Files (x86)\Common Files\SSL" | | "\builds\3rdparty\bash-packages\.package\lib\engines-3" | 
 | libcrypto-3-x64.dll | 3.0.15 | dd64e10b064efea5c6c1e01666f6c4f62c864e7a | "C:\Program Files\Common Files\SSL" | |
