@@ -17,7 +17,7 @@
 | libcrypto-3-x64.dll | 3.0.12 | 7b6ccb74ab9f28ed929d0e668b638b8bed375c20 | "C:\Program Files\Common Files\SSL" | |
 | libcrypto-3-x64.dll | 3.0.16 | 9ec8b76179e2b746e0d0a6a8d8bf6e8f70729ede | "C:\Program Files\Common Files\SSL" | | "\builds\3rdparty\bash-packages\.package\lib\engines-3"| "C:\builds\3rdparty\bash-packages\.package\lib\ossl-modules" |8bdaf2c1cebcc019d28ebf181de6751cad608ea4 | "C:\Program Files (x86)\Common Files\SSL" | 
 | libcrypto-3-x64.dll | 3.2.1 | ee6ed4b54daca2d787ad6232fd09701aafafd8b1 | "C:\Program Files\Common Files\SSL" | |
-| libcrypto-1.dll | 3.5.4 | 7e2c4f0f19a44d3472a620034beca554073e562a | "C:\Program Files (x86)\Common Files\SSL" | | "\lib\engines-3" | "\lib\ossl-modules" |
+| libcrypto-3.dll | 3.5.4 | 7e2c4f0f19a44d3472a620034beca554073e562a | "C:\Program Files (x86)\Common Files\SSL" | | "\lib\engines-3" | "\lib\ossl-modules" |
 | libeay32.dll | 1.0.2p | b09bbc7f5f010ab1d750b5290cf331b372cd7fae | "/usr/local/ssl" | | 
 | libeay32.dll | 1.0.2p | ad8950da5ad9a143a05ce84ddc41e0b7420079ef | "/usr/local/ssl" | | 
 | libeay32.dll | 1.0.2p | fb3eebef898defba2bfd0dbc6167a9efcbe4ac8a |  | | 
