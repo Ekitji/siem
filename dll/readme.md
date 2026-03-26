@@ -5,6 +5,11 @@
 
 
 ### Writes to c:\temp\test.txt
+Many of the DLLs have exported functions from the real DLL. Try first with ctemptestplussound.dll and if its not working, you may need to export the functions and compile a own till with the functions.
+
+
+### ctemptestplussound.dll
+Writes to C:\temp\test.txt and plays sound
 
 ### whomprogramdataplussound.exe
 logs to C:\ProgramData\logs\
