@@ -12,7 +12,7 @@
 # Notes for BaitAndSwitch.exe
 > Syntax: BaitAndSwitch.exe symlink target1 target2 share_mode
 
-BaitAndSwitch.exe "C:\path\to\fileoperation\filename.txt" "C:\path\to\bait\createdfiletocheck.dll" "C:\destination\path\filename.txt" w
+BaitAndSwitch.exe "C:\path\to\fileoperation\filename.txt" "C:\path\to\bait\createdfiletocheck.txt" "C:\destination\path\filename.txt" w
 
 ### Scenario
 A privileged process writes to C:\Temp\test.txt and you want it to actually write to C:\Program Files\test.txt.
