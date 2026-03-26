@@ -23,9 +23,13 @@ BaitAndSwitch.exe C:\Temp\test.txt C:\Temp\bait.txt "C:\Program Files\test.txt" 
 #### Sequence of events
 
 C:\Temp\test.txt becomes a symlink → pointing to C:\Temp\bait.txt
+
 Oplock placed on C:\Temp\bait.txt
+
 Privileged process opens C:\Temp\test.txt → follows symlink → touches C:\Temp\bait.txt
+
 Oplock fires — symlink is swapped to C:\Program Files\test.txt
+
 Privileged process continues its write, now landing in Program Files
 
 ## Arguments
