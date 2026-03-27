@@ -132,10 +132,10 @@ User: SYSTEM AND Path: *appsettings.json AND Path: (ProgramData OR Users OR Temp
 ```
 #### Second will be to cross reference if that application has serilog library (dll) files.
 ```
-Path: *serilog* AND Path: *.dll
+Path: *Serilog.dll OR Path: *Serilog.Sinks.File.dll OR Path: *Serilog.Settings.Configuration.dll
 ```
 **If you find same application with DLL files, the application is probably using serilog, try to customize the appsettings.json**
-> appsettings.json/serilogsettings.json file logging
+> appsettings.json/serilogsettings.json file logging DLLs
 - Serilog.dll
 - Serilog.Sinks.File.dll
 - Serilog.Settings.Configuration.dll
@@ -143,5 +143,3 @@ Path: *serilog* AND Path: *.dll
 *start with altering the file path.. can you modify the file name and file path?*
 
 *then go with template and try do add own data/text*
-
-
