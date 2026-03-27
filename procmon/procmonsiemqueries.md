@@ -82,6 +82,8 @@ User: SYSTEM AND Operation: SetEndOfFileInformationFile AND Image Path: Program 
 
 > SetEndOfFileInformationFile is less noisy and give a good idea of when an app is resizing the file.
 
+> Make a table that show count of SetEndOfFileInformationFile for each file and you will have a clear picture on which files has most events.
+
 ## Potential Local Privilege Escalation - FileWrite Of .LOG files Events
 #### SUCCESS OF `Create File **. Check ACL, if you can delete, and if you can symlink and get LPE. Check Referens with Troopers19 File Operators pdf.
 ```
