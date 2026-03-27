@@ -1,3 +1,4 @@
+#define NOMINMAX
 #include <windows.h>
 #include <mmsystem.h>
 #include <iostream>
@@ -91,16 +92,16 @@ std::vector<std::string> GetExports(const std::string& path)
 
     auto sections = IMAGE_FIRST_SECTION(nt);
     auto RvaToOffset = [&](DWORD rva) -> DWORD
-    {
-        for (int i = 0; i < nt->FileHeader.NumberOfSections; i++)
         {
-            DWORD start = sections[i].VirtualAddress;
-            DWORD end = start + std::max(sections[i].Misc.VirtualSize, sections[i].SizeOfRawData);
-            if (rva >= start && rva < end)
-                return sections[i].PointerToRawData + (rva - start);
-        }
-        return rva;
-    };
+            for (int i = 0; i < nt->FileHeader.NumberOfSections; i++)
+            {
+                DWORD start = sections[i].VirtualAddress;
+                DWORD end = start + (std::max)(sections[i].Misc.VirtualSize, sections[i].SizeOfRawData);
+                if (rva >= start && rva < end)
+                    return sections[i].PointerToRawData + (rva - start);
+            }
+            return rva;
+        };
 
     DWORD exportOffset = RvaToOffset(dir.VirtualAddress);
     auto exportDir = reinterpret_cast<IMAGE_EXPORT_DIRECTORY*>(base + exportOffset);
@@ -221,6 +222,7 @@ std::string GenCpp(const std::string& dllName, const std::vector<std::string>& e
 {
     std::stringstream ss;
 
+    ss << "#define NOMINMAX\n";
     ss << "#include <windows.h>\n";
     ss << "#include <stdio.h>\n";
     ss << "#include <mmsystem.h>\n";
@@ -243,31 +245,54 @@ std::string GenCpp(const std::string& dllName, const std::vector<std::string>& e
     }
 }
 
-static void Log(HMODULE hModule, const char* msg)
+static void BuildTimestamp(char* buffer, size_t bufferSize)
 {
     SYSTEMTIME st;
     GetLocalTime(&st);
 
+    sprintf_s(
+        buffer,
+        bufferSize,
+        "%04u-%02u-%02u %02u:%02u:%02u.%03u",
+        (unsigned)st.wYear,
+        (unsigned)st.wMonth,
+        (unsigned)st.wDay,
+        (unsigned)st.wHour,
+        (unsigned)st.wMinute,
+        (unsigned)st.wSecond,
+        (unsigned)st.wMilliseconds
+    );
+}
+
+static void Log(HMODULE hModule, const char* msg)
+{
+    char timestamp[64] = { 0 };
+    BuildTimestamp(timestamp, sizeof(timestamp));
+
     char user[UNLEN + 1] = { 0 };
     DWORD userSize = UNLEN + 1;
-    if (!GetUserNameA(user, &userSize))
-        strcpy_s(user, "UNKNOWN");
+    if (!GetUserNameA(user, &userSize) || user[0] == '\0')
+        strcpy_s(user, sizeof(user), "UNKNOWN");
 
     char exePath[MAX_PATH] = { 0 };
-    if (!GetModuleFileNameA(NULL, exePath, MAX_PATH))
-        strcpy_s(exePath, "UNKNOWN");
+    if (!GetModuleFileNameA(NULL, exePath, MAX_PATH) || exePath[0] == '\0')
+        strcpy_s(exePath, sizeof(exePath), "UNKNOWN");
 
     char dllPath[MAX_PATH] = { 0 };
-    if (!GetModuleFileNameA(hModule, dllPath, MAX_PATH))
-        strcpy_s(dllPath, "UNKNOWN");
+    if (!GetModuleFileNameA(hModule, dllPath, MAX_PATH) || dllPath[0] == '\0')
+        strcpy_s(dllPath, sizeof(dllPath), "UNKNOWN");
 
     char line[2048] = { 0 };
     sprintf_s(
         line,
-        "[%04d-%02d-%02d %02d:%02d:%02d] DLL: %s | %s | User: %s | EXE: %s | DLL: %s\n",
-        st.wYear, st.wMonth, st.wDay,
-        st.wHour, st.wMinute, st.wSecond,
-        g_DllName, msg, user, exePath, dllPath
+        sizeof(line),
+        "[%s] DLL: %s | %s | User: %s | EXE: %s | DLL: %s\r\n",
+        timestamp,
+        g_DllName,
+        msg ? msg : "UNKNOWN",
+        user,
+        exePath,
+        dllPath
     );
 
     AppendLogLine(line);
@@ -279,16 +304,17 @@ DWORD WINAPI PlayRing05Thread(LPVOID)
 
     if (!PlaySoundA("C:\\Windows\\Media\\Ring05.wav", NULL, SND_FILENAME | SND_SYNC))
     {
-        SYSTEMTIME st;
-        GetLocalTime(&st);
+        char timestamp[64] = { 0 };
+        BuildTimestamp(timestamp, sizeof(timestamp));
 
         char line[512] = { 0 };
         sprintf_s(
             line,
-            "[%04d-%02d-%02d %02d:%02d:%02d] DLL: %s | PlaySoundA failed - GetLastError: %lu\n",
-            st.wYear, st.wMonth, st.wDay,
-            st.wHour, st.wMinute, st.wSecond,
-            g_DllName, GetLastError()
+            sizeof(line),
+            "[%s] DLL: %s | PlaySoundA failed - GetLastError: %lu\r\n",
+            timestamp,
+            g_DllName,
+            GetLastError()
         );
 
         AppendLogLine(line);
@@ -456,8 +482,7 @@ int main(int argc, char* argv[])
     std::ofstream(out / (safe + ".vcxproj")) << GenVcxproj(safe, arch);
     std::ofstream(out / "README.md")
         << "Stub DLL for " + name + "\n"
-        << "Logs load/unload to C:\\temp\\test.txt, including full date/time, executable path, DLL path, and user. "
-        << "Plays Ring05.wav on load.\n";
+        << "Logs load/unload to C:\\temp\\test.txt with full timestamp including milliseconds.\n";
 
     std::cout << "[+] Stub project created at: " << out << "\n";
     return 0;
