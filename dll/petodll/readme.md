@@ -18,6 +18,7 @@ The tool exports a legitimate DLLs functions and creates a Visual Studio code pr
 
 
 
+
 ## petodll version
 
 Generates a stub DLL.
@@ -56,8 +57,34 @@ Generates a real proxy DLL.
 
 > “Pretend to be the DLL”
 
-###  Playing sound
-C:\Windows\Media\Ring05.wav
+## Proxy
 
 > “Stand in front of the real DLL”
 
+## Why proxy is better for your use
+
+You want sound and logging when:
+
+- the DLL loads
+- exported functions get called
+
+A stub only sees calls that land in its own bodies.
+
+A proxy is designed to route calls through your instrumentation first.
+
+## What the proxy adds technically
+
+- runtime `LoadLibrary` of the original DLL
+- `GetProcAddress` resolution per export
+- thunk/jump layer so unknown function signatures can still be passed through
+- better coverage for forwarded exports
+
+## What it still cannot fully do
+
+- generically observe raw `DATA` export reads/writes
+- magically recover exact source-level prototypes for every DLL
+- guarantee 100% behavior parity for extremely weird ABI edge cases
+
+
+###  Playing sound
+C:\Windows\Media\Ring05.wav
