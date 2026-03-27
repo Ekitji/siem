@@ -115,3 +115,26 @@ User: SYSTEM AND Result: ("NAME NOT FOUND" OR "PATH NOT FOUND" OR "NO SUCH FILE"
 User: SYSTEM AND Path: openssl.cnf
 ```
 - ref https://blog.mirch.io/2019/06/10/cve-2019-12572-pia-windows-privilege-escalation-malicious-openssl-engine/
+
+  ## Potential Local Privilege Escalation - serilog config file
+  #### Check the ACL if you can modify the configuration file.
+  ##### If you can modify, you can add  "outputTemplate" to add custom data to the log, you can also specify file name. Which basicly gives you file overwrite with what the file will contain. A privilege escalation could be overwriting a script in a protected path that runs with higher privileges and add commands to it.
+  ```
+  User: SYSTEM AND Path: *serilogSettings.json AND Path: (ProgramData OR Users OR Temp)
+  ```
+**General about Serilog** - https://esmp.dev/configuring-serilog-through-appsettings-json-file-33b26594bb46
+- Missed CVE-2025-1789
+
+## Potential Local Privilege Escalation - appsettings.json config file that could be for serilog.
+#### Start with first query to find applications with appsettings.json in User-writable path.
+```
+User: SYSTEM AND Path: *appsettings.json AND Path: (ProgramData OR Users OR Temp)
+```
+#### Second will be to cross reference if that applications has serilog library (dll) files.
+```
+Path: *serilog* AND Path: *.dll
+```
+**If you find same application with DLL files, try to customize the appsettings.json**
+*start with altering the file path.. can you modify the file name and file path?*
+
+*then go with template and try do add own data/text*
