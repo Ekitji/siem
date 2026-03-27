@@ -143,4 +143,5 @@ Path: *Serilog.dll OR Path: *Serilog.Sinks.File.dll OR Path: *Serilog.Settings.C
 *start with altering the file path.. can you modify the file name and file path?*
 
 *then go with template and try do add own data/text*
+
 **example script** https://github.com/Ekitji/siem/blob/main/procmon/lpepaths.md
