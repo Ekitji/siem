@@ -135,7 +135,12 @@ User: SYSTEM AND Path: *appsettings.json AND Path: (ProgramData OR Users OR Temp
 Path: *serilog* AND Path: *.dll
 ```
 **If you find same application with DLL files, the application is probably using serilog, try to customize the appsettings.json**
-
+> appsettings.json/serilogsettings.json file logging
+- Serilog.dll
+- Serilog.Sinks.File.dll
+- Serilog.Settings.Configuration.dll
 *start with altering the file path.. can you modify the file name and file path?*
 
 *then go with template and try do add own data/text*
+
+
