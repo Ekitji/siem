@@ -72,6 +72,16 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetS
 User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: SUCCESS AND Path: *.* AND NOT Path: (Microsoft)
 ```
 
+## Potential FileOverWrite Vulnerability - Generic
+#### Query seaches for SYSTEM privileged process from "Program Files*" which has file events on ProgramData or Users Or Temp
+#### Look for events with periodic timestamp. Prioritize static names. We want to catch service etc that writes files for example each 5 minutes to a log file or other file. If we find interesting ones, check file and folder ACL and if you can delete the whole folder, then you can re-create it and make a junction with symbolic linking to overwrite perhaps system files etc.
+```
+User: SYSTEM AND Operation: SetEndOfFileInformationFile AND Image Path: Program AND Path: (ProgramData OR Users OR Temp)
+```
+**Pro tip** Start procmon and let it run for a while so we can catch periodic file events. 
+
+> SetEndOfFileInformationFile is less noisy and give a good idea of when an app is resizing the file.
+
 ## Potential Local Privilege Escalation - FileWrite Of .LOG files Events
 #### SUCCESS OF `Create File **. Check ACL, if you can delete, and if you can symlink and get LPE. Check Referens with Troopers19 File Operators pdf.
 ```
