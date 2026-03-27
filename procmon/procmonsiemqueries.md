@@ -130,11 +130,12 @@ User: SYSTEM AND Path: openssl.cnf
 ```
 User: SYSTEM AND Path: *appsettings.json AND Path: (ProgramData OR Users OR Temp)
 ```
-#### Second will be to cross reference if that applications has serilog library (dll) files.
+#### Second will be to cross reference if that application has serilog library (dll) files.
 ```
 Path: *serilog* AND Path: *.dll
 ```
 **If you find same application with DLL files, try to customize the appsettings.json**
+
 *start with altering the file path.. can you modify the file name and file path?*
 
 *then go with template and try do add own data/text*
