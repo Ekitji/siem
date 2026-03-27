@@ -139,9 +139,8 @@ Path: *serilog* AND Path: *.dll
 - Serilog.dll
 - Serilog.Sinks.File.dll
 - Serilog.Settings.Configuration.dll
-- 
+ 
 *start with altering the file path.. can you modify the file name and file path?*
-
 
 *then go with template and try do add own data/text*
 
