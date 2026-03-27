@@ -16,6 +16,86 @@ The created visual studio project will be saved in same folder as petodll.exe wi
 # petodllproxy.dll a tool to export a legitimate DLLs functions (Generates a proxy DLL)
 The tool exports a legitimate DLLs functions and creates a Visual Studio code project for compiling a own DLL which when the DLL is attached, functions called, it writes a log file to c:\temp\test.txt with what process was executed, which dll was loaded and as what user. It has also a function for playing sound when DllMain or functions is called.
 
+## How the Generated Proxy DLL Chooses the Real DLL
+
+If you run the generator like this:
+
+```bat
+petodllproxy.exe C:\Windows\System32\version.dll
+```
+
+the generated project will produce a custom `version.dll` that tries to proxy to the real DLL in this order:
+
+1. `version.real.dll` in the same folder as the custom `version.dll`
+2. `C:\Windows\System32\version.dll`
+3. `System32\version.dll` as a fallback
+
+## What This Means in Practice
+
+The generator bakes the original source path into the generated code.
+
+So if you pointed the generator at:
+
+```bat
+C:\Windows\System32\version.dll
+```
+
+then the compiled custom `version.dll` knows that this is the original DLL it should try to load.
+
+When the custom DLL is loaded, it will:
+
+1. Check if `version.real.dll` exists beside itself
+2. If not, try the original path that was embedded during generation
+3. If that fails, try loading `version.dll` from `C:\Windows\System32`
+
+## Recommended Setup
+
+The safest and easiest setup is:
+
+```text
+TargetAppFolder/
+  TargetApp.exe
+  version.dll
+  version.real.dll
+```
+
+Where:
+
+- `version.dll` = your compiled custom proxy DLL
+- `version.real.dll` = a renamed copy of the original DLL
+
+In this setup:
+
+- the target process loads your custom `version.dll`
+- your proxy logs and plays sound
+- your proxy forwards function calls to `version.real.dll`
+
+## Important Warning
+
+Do **not** replace the real `C:\Windows\System32\version.dll` with your custom proxy DLL.
+
+That can cause system instability and makes the proxy logic harder to reason about.
+
+The intended use is:
+
+- leave the real system DLL untouched
+- place the custom proxy DLL next to the target EXE
+- optionally place the original DLL beside it as `version.real.dll`
+
+## Summary
+
+If you generated a proxy from:
+
+```bat
+petodllproxy.exe C:\Windows\System32\version.dll
+```
+
+then the compiled custom `version.dll` will proxy to:
+
+- `version.real.dll` beside itself, if present
+- otherwise `C:\Windows\System32\version.dll`
+
+So the proxy DLL knows where to forward because the generator embeds the original DLL path into the generated source code.
 
 
 
@@ -36,6 +116,8 @@ Generates a real proxy DLL.
 - Each function export goes through your code first
 - Your code logs to `C:\temp\test.txt`, plays a sound, resolves the real function from the original DLL, then jumps to it
 - That means you can observe many more function calls, including exports that were originally forwarders
+
+
 
 ## In practical terms
 
