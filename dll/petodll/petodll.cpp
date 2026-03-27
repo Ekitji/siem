@@ -56,6 +56,30 @@ static std::string Sanitize(const std::string& s)
     return out;
 }
 
+static std::string EscapeCString(const std::string& s)
+{
+    std::string out;
+    out.reserve(s.size());
+    for (unsigned char c : s)
+    {
+        switch (c)
+        {
+        case '\\': out += "\\\\"; break;
+        case '\"': out += "\\\""; break;
+        case '\r': out += "\\r"; break;
+        case '\n': out += "\\n"; break;
+        case '\t': out += "\\t"; break;
+        default:
+            if (c >= 32 && c <= 126)
+                out += static_cast<char>(c);
+            else
+                out += '?';
+            break;
+        }
+    }
+    return out;
+}
+
 struct PEView
 {
     HANDLE hFile = INVALID_HANDLE_VALUE;
@@ -432,9 +456,21 @@ static void Log(HMODULE hModule, const char* msg)
 
 static DWORD WINAPI PlayRing05Thread(LPVOID)
 {
-    Sleep(500);
     PlaySoundA("C:\\Windows\\Media\\Ring05.wav", NULL, SND_FILENAME | SND_ASYNC);
     return 0;
+}
+
+static void TriggerSound(void)
+{
+    HANDLE hThread = CreateThread(NULL, 0, PlayRing05Thread, NULL, 0, NULL);
+    if (hThread)
+        CloseHandle(hThread);
+}
+
+static void SignalEvent(HMODULE hModule, const char* msg)
+{
+    Log(hModule, msg);
+    TriggerSound();
 }
 
 BOOL WINAPI DllMain(HINSTANCE hModule, DWORD reason, LPVOID)
@@ -442,10 +478,7 @@ BOOL WINAPI DllMain(HINSTANCE hModule, DWORD reason, LPVOID)
     if (reason == DLL_PROCESS_ATTACH)
     {
         DisableThreadLibraryCalls(hModule);
-        Log(hModule, "Loaded");
-        HANDLE hThread = CreateThread(NULL, 0, PlayRing05Thread, NULL, 0, NULL);
-        if (hThread)
-            CloseHandle(hThread);
+        SignalEvent(hModule, "Loaded");
     }
     else if (reason == DLL_PROCESS_DETACH)
     {
@@ -456,7 +489,7 @@ BOOL WINAPI DllMain(HINSTANCE hModule, DWORD reason, LPVOID)
 
 )";
 
-    ss << "// Internal stubs are intentionally plain and minimal.\n";
+    ss << "// Internal stubs log invocation so you can see which exports are hit.\n";
     for (size_t i = 0; i < exports.size(); ++i)
     {
         const auto& e = exports[i];
@@ -466,7 +499,17 @@ BOOL WINAPI DllMain(HINSTANCE hModule, DWORD reason, LPVOID)
         if (e.isData)
             ss << "extern \"C\" __declspec(selectany) unsigned char stub_" << i << " = 0;\n";
         else
-            ss << "extern \"C\" void __cdecl stub_" << i << "() {}\n";
+        {
+            std::string label = e.hasName
+                ? ("Export called: " + e.name + " (ordinal " + std::to_string(e.ordinal) + ")")
+                : ("Export called: ordinal " + std::to_string(e.ordinal));
+            ss << "extern \"C\" void __cdecl stub_" << i << "()\n{\n"
+                "    HMODULE hSelf = NULL;\n"
+                "    GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,\n"
+                "                       reinterpret_cast<LPCSTR>(&stub_" << i << "), &hSelf);\n"
+                "    SignalEvent(hSelf, \"" << EscapeCString(label) << "\");\n"
+                "}\n";
+        }
     }
 
     return ss.str();
@@ -658,7 +701,9 @@ static bool ProcessDll(const std::string& dllPath, const fs::path& outRoot)
         << "## Notes\n"
         << "- PE32, PE32+, and ARM64 image headers are parsed explicitly.\n"
         << "- Win32 stub aliases use decorated internal names where needed for linker compatibility.\n"
+        << "- Non-forwarded function exports log and trigger sound when called.\n"
         << "- Forwarders are emitted through the DEF file, including ordinal-only forwarders.\n"
+        << "- Forwarded exports and data exports do not execute stub code, so only DLL load/unload is logged for them.\n"
         << "- Exports mapped to non-executable sections are marked as `DATA` heuristically.\n"
         << "- Internal stub names are implementation details; the DEF file owns the public export surface.\n";
 
