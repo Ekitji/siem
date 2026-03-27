@@ -1,6 +1,5 @@
 #include <windows.h>
 #include <mmsystem.h>
-#include <lmcons.h>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -9,6 +8,8 @@
 #include <filesystem>
 #include <algorithm>
 #include <cctype>
+#include <winreg.h>
+
 #pragma comment(lib, "winmm.lib")
 
 namespace fs = std::filesystem;
@@ -211,6 +212,7 @@ std::string DetectToolset()
         }
         RegCloseKey(hKey);
     }
+
     return "v142";
 }
 
@@ -218,16 +220,17 @@ std::string DetectToolset()
 std::string GenCpp(const std::string& dllName, const std::vector<std::string>& exports)
 {
     std::stringstream ss;
+
     ss << "#include <windows.h>\n";
     ss << "#include <stdio.h>\n";
     ss << "#include <mmsystem.h>\n";
-    ss << "#include <lmcons.h>\n";
+    ss << "#include <string.h>\n";
+    ss << "#include <Lmcons.h>\n";
     ss << "#pragma comment(lib, \"winmm.lib\")\n\n";
 
     ss << "static const char* g_DllName = \"" << dllName << "\";\n\n";
 
-    // Log function
-    ss << R"(static void Log(HMODULE hModule, const char* msg)
+    ss << R"(static void AppendLogLine(const char* line)
 {
     CreateDirectoryA("C:\\temp", NULL);
 
@@ -235,65 +238,66 @@ std::string GenCpp(const std::string& dllName, const std::vector<std::string>& e
     fopen_s(&f, "C:\\temp\\test.txt", "a");
     if (f)
     {
-        SYSTEMTIME st;
-        GetLocalTime(&st);
-
-        char user[UNLEN + 1] = { 0 };
-        DWORD size = UNLEN + 1;
-        if (!GetUserNameA(user, &size))
-            strcpy_s(user, "UNKNOWN");
-
-        char exePath[MAX_PATH] = { 0 };
-        if (!GetModuleFileNameA(NULL, exePath, MAX_PATH))
-            strcpy_s(exePath, "UNKNOWN");
-
-        char dllPath[MAX_PATH] = { 0 };
-        if (!GetModuleFileNameA(hModule, dllPath, MAX_PATH))
-            strcpy_s(dllPath, "UNKNOWN");
-
-        fprintf(f,
-            "[%04d-%02d-%02d %02d:%02d:%02d] DLL: %s | %s | User: %s | EXE: %s | DLL: %s\n",
-            st.wYear, st.wMonth, st.wDay,
-            st.wHour, st.wMinute, st.wSecond,
-            g_DllName, msg, user, exePath, dllPath);
-
+        fputs(line, f);
         fclose(f);
     }
 }
-)" << "\n";
 
-    // Sound thread
-    ss << R"(DWORD WINAPI PlayRing05Thread(LPVOID)
+static void Log(HMODULE hModule, const char* msg)
+{
+    SYSTEMTIME st;
+    GetLocalTime(&st);
+
+    char user[UNLEN + 1] = { 0 };
+    DWORD userSize = UNLEN + 1;
+    if (!GetUserNameA(user, &userSize))
+        strcpy_s(user, "UNKNOWN");
+
+    char exePath[MAX_PATH] = { 0 };
+    if (!GetModuleFileNameA(NULL, exePath, MAX_PATH))
+        strcpy_s(exePath, "UNKNOWN");
+
+    char dllPath[MAX_PATH] = { 0 };
+    if (!GetModuleFileNameA(hModule, dllPath, MAX_PATH))
+        strcpy_s(dllPath, "UNKNOWN");
+
+    char line[2048] = { 0 };
+    sprintf_s(
+        line,
+        "[%04d-%02d-%02d %02d:%02d:%02d] DLL: %s | %s | User: %s | EXE: %s | DLL: %s\n",
+        st.wYear, st.wMonth, st.wDay,
+        st.wHour, st.wMinute, st.wSecond,
+        g_DllName, msg, user, exePath, dllPath
+    );
+
+    AppendLogLine(line);
+}
+
+DWORD WINAPI PlayRing05Thread(LPVOID)
 {
     Sleep(500);
 
     if (!PlaySoundA("C:\\Windows\\Media\\Ring05.wav", NULL, SND_FILENAME | SND_SYNC))
     {
-        CreateDirectoryA("C:\\temp", NULL);
+        SYSTEMTIME st;
+        GetLocalTime(&st);
 
-        FILE* f = nullptr;
-        fopen_s(&f, "C:\\temp\\test.txt", "a");
-        if (f)
-        {
-            SYSTEMTIME st;
-            GetLocalTime(&st);
+        char line[512] = { 0 };
+        sprintf_s(
+            line,
+            "[%04d-%02d-%02d %02d:%02d:%02d] DLL: %s | PlaySoundA failed - GetLastError: %lu\n",
+            st.wYear, st.wMonth, st.wDay,
+            st.wHour, st.wMinute, st.wSecond,
+            g_DllName, GetLastError()
+        );
 
-            fprintf(f,
-                "[%04d-%02d-%02d %02d:%02d:%02d] DLL: %s | PlaySoundA failed - GetLastError: %lu\n",
-                st.wYear, st.wMonth, st.wDay,
-                st.wHour, st.wMinute, st.wSecond,
-                g_DllName, GetLastError());
-
-            fclose(f);
-        }
+        AppendLogLine(line);
     }
 
     return 0;
 }
-)" << "\n";
 
-    // DllMain
-    ss << R"(BOOL WINAPI DllMain(HINSTANCE hModule, DWORD reason, LPVOID)
+BOOL WINAPI DllMain(HINSTANCE hModule, DWORD reason, LPVOID)
 {
     if (reason == DLL_PROCESS_ATTACH)
     {
@@ -310,7 +314,6 @@ std::string GenCpp(const std::string& dllName, const std::vector<std::string>& e
 }
 )" << "\n";
 
-    // Export stubs
     for (const auto& e : exports)
         ss << "extern \"C\" __declspec(dllexport) void " << Sanitize(e) << "() {}\n";
 
@@ -453,7 +456,7 @@ int main(int argc, char* argv[])
     std::ofstream(out / (safe + ".vcxproj")) << GenVcxproj(safe, arch);
     std::ofstream(out / "README.md")
         << "Stub DLL for " + name + "\n"
-        << "Logs load/unload to C:\\temp\\test.txt, including date, time, executable path, DLL path, and user. "
+        << "Logs load/unload to C:\\temp\\test.txt, including full date/time, executable path, DLL path, and user. "
         << "Plays Ring05.wav on load.\n";
 
     std::cout << "[+] Stub project created at: " << out << "\n";
