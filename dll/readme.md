@@ -14,3 +14,8 @@ Writes to C:\temp\test.txt and plays sound
 ### whomprogramdataplussound.exe
 logs to C:\ProgramData\logs\
 and plays sound
+
+## PetoDLL
+A tool to use to export functions from a legitimate DLL that you want to mimic and plant your own dll.
+It gives you a visual studio project ready to compile the DLL.
+
