@@ -66,9 +66,9 @@ User: SYSTEM AND Command Line: (ProgramData OR Users OR Temp OR Tmp) AND Command
 ```
 (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetSecurityFile AND Detail: DACL)
 ```
-> Anything with DACL in Detail = the discretionary ACL was being changed. That is the normal “permissions changed” signal. DACL_SECURITY_INFORMATION is the flag for the object’s DACL, and setting it requires WRITE_DAC
+> Anything with DACL in Detail = the discretionary ACL was being changed. That is the normal “permissions changed” signal.
+> Check lpepaths.md for DACL descriptions.
 
->
 ## Potential Local Privilege Escalation - Generic CreateFile Events for files with file extension.
 #### `CreateFile` Is that a File handle is created and you have to look in to result/detail to get more context about whats happening.ccurs when a process attempts to 
 ```
