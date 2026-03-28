@@ -139,6 +139,7 @@ User: SYSTEM AND Operation: Reg* AND Path: HKLM* AND Path: *Services* AND Path: 
 ```
 
 ## Potential Privilege escalation - Services DLLs in user-writable path.
+#### Many services hosted under `svchost.exe` use `Parameters\ServiceDll`. Registry writes here are worth reviewing carefully.
 #### Check if you can replace binary or write files to the folder
 > Less likely that this will give any result
 ```
