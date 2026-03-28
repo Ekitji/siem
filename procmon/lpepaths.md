@@ -45,3 +45,15 @@
 
 
 
+
+## Arbitrary file overwrite / privileged file write. 
+If a privileged service writes to a pathname that can resolve to a hard-linked target, the write may land in a more sensitive file than intended. The Almond write-up explicitly treats privileged create/copy/move/write behavior on user-influenced files as a route to local privilege escalation.
+
+## Arbitrary file delete. 
+If the privileged service later deletes or replaces that pathname, it can end up deleting the linked target instead. That is why hard links often show up around delete workflows, temp-file cleanup, or replace-in-place logic.
+
+## Privilege escalation. 
+If the resulting write/delete reaches a file that a privileged process will later load, execute, or trust, the bug can become an EoP issue rather than just a local integrity issue. The Almond article calls out DLL hijacking and overwrite of executable/script/config targets as common end states for arbitrary file write bugs.
+
+## Denial of service
+Even when you cannot turn it into code execution, steering a privileged delete or overwrite into important application files can still break the service or product. The same article notes arbitrary file delete as a practical DoS vector even when escalation is not available
