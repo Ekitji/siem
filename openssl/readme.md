@@ -28,8 +28,12 @@ Pre-compiled 32-bit binary to use against OpenSSL DLL to fetch OPENSSLDIR and EN
 pre-compiled test.dll to use with libeay32.dll. Code from libeay32_test_dll.cpp.
 
 > Execution chain will be, process --> libeay32.dll --> openssl.cnf --> test.dll
+> the test.dll writes to c:\temp\test.txt
 
-
+## test2.dll - rename so it fits the openssl.cnf
+pre-compiled test.dll to use with libeay32.dll
+> Execution chain will be, process --> libeay32.dll --> openssl.cnf --> test.dll
+> the test2.dll writes to c:\usr\local\ssl\test.txt
 
 # Pre-compiled opendirssl_checker files AND Powershell script
 ### Updated Opendirssl_checker for better compatibility with newer OpenSSL versions.
