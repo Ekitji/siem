@@ -104,7 +104,7 @@ User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR
 ## Potential Local Privilege Escalation - FileDelete Events
 #### `SetDispositionInformationFile` Delete with True occurs when a file deletion happes**. Check ACL and if you can symlink and get LPE. We want to delete a file using a high privileged process so we can create it afterwards our self. Check Referens with Troopers19 File Operators pdf.We 
 ```
-(User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetDispositionInformationFile AND Detail: "Delete: True") OR (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: CreateFile AND Detail: "Desired Access: Delete") OR (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetDispositionInformationEx AND Detail: "Flags: FILE_DISPOSITION_DELETE, FILE_DISPOSITION_POSIX_SEMANTICS")
+(User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetDispositionInformationFile AND Detail: "Delete: True") OR (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: CreateFile AND Detail: "Desired Access: Delete") OR (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetDispositionInformationEx AND Detail: "Flags: FILE_DISPOSITION_DELETE")
 ```
 > **3 different operators for file delete events**
 
