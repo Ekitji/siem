@@ -124,14 +124,14 @@ User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR
 User: SYSTEM AND Result: ("NAME NOT FOUND" OR "PATH NOT FOUND" OR "NO SUCH FILE") AND NOT Path: (ProgramData OR Users OR Temp OR "Program Files" OR Windows) AND NOT Operation: Reg*
 ```
 
-# Hard link activity
+## Hard link activity
 #### Look whether a privileged process just created a hard link in a user-writable area that aliases some other file on the same NTFS volume. SetLinkInformationFile is the Windows file-information operation for creating an NTFS hard link, and hard links can only target files (not directories) on the same volume.
 ##### for hard link creation: Path is the existing file, Detail FileName is the additional name being created.
 ```
 User: SYSTEM AND Operation: SetLinkInformationFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: SUCCESS
 ```
 
-# Potential Privilege escalation - Services in user-writable path.
+## Potential Privilege escalation - Services in user-writable path.
 #### Check if you can replace binary or write files to the folder
 > Service path in Details:
 ```
