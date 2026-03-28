@@ -150,7 +150,7 @@ User: SYSTEM AND Operation: Reg* AND Path: HKLM* AND Path: *Services AND Path: *
 ```
 User: SYSTEM AND Operation: Reg* AND Path: CLSID AND Path: InprocServer32 AND Detail: (ProgramData OR Users OR Temp OR Tmp) AND NOT Detail: Defender
 ```
-
+> For ideas look at lpepaths.md file.
 ## Potential Local Privilege Escalation - OpenSSL config (openssl.cnf) file
 #### Look for the ones that you can modify or write.
 > Check Offensive SIEM documentation for how to privilege escalate. NOT FOUND events are highly relevant but also SUCCESS on Paths that you can modify.
