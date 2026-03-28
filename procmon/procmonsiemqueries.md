@@ -106,7 +106,7 @@ User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR
 > **May also be interesting to query and look for Flags: FILE_DISPOSITION_DELETE in the Details column with SetDispositionInformationFile Operation.**
 
 ## Potential Local Privilege Escalation - FileRename Events
-#### Covers also Move where "Path" shows old file name and "Details" shows new file name and if its going to replace if file exists.
+#### Where "Path" shows old file name and "Details" shows new file name and if its going to replace if file exists.
 ```
 (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: (Rename OR SetRenameInformationFile OR SetInformationFile))
 ```
