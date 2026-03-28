@@ -58,3 +58,33 @@ If the resulting write/delete reaches a file that a privileged process will late
 
 ## Denial of service
 Even when you cannot turn it into code execution, steering a privileged delete or overwrite into important application files can still break the service or product. The same article notes arbitrary file delete as a practical DoS vector even when escalation is not available
+
+## DACL for SetSecurityFile
+
+- **Information: DACL**  
+  Only the **DACL** was being changed. That is the normal “permissions changed” case, because the DACL controls who is allowed or denied access.
+
+- **Information: Owner, DACL, DACL Protected**  
+  The **owner** changed, the **DACL** changed, and the DACL was marked **protected**, meaning it will not inherit ACEs from the parent.
+
+- **Information: Owner, Group, DACL, DACL Protected**  
+  The **owner** changed, the **primary group** changed, the **DACL** changed, and inheritance on the DACL was blocked.
+
+- **Information: Owner, Group, DACL**  
+  The **owner**, **primary group**, and **DACL** changed, but there is no explicit protected/unprotected inheritance flag shown in that entry.
+
+- **Information: Owner, DACL, DACL Unprotected**  
+  The **owner** changed, the **DACL** changed, and the DACL was marked **unprotected**, meaning it inherits ACEs from the parent object.
+
+- **Information: Owner, DACL, SACL, DACL Protected, SACL Unprotected**  
+  The **owner** changed, the **DACL** changed, the **SACL** changed, the DACL was marked **protected** so it does not inherit, and the SACL was marked **unprotected** so it does inherit from the parent. The SACL is the audit/system ACL, not the normal allow/deny permission list.
+
+### Quick decoder
+
+- **Owner** = object ownership changed.
+- **Group** = primary group changed.
+- **DACL** = normal access permissions changed.
+- **SACL** = audit/system ACL changed.
+- **DACL Protected** = stop inheriting ACEs into the DACL.
+- **DACL Unprotected** = allow the DACL to inherit ACEs from parent.
+- **SACL Unprotected** = allow the SACL to inherit ACEs from parent.
