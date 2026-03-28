@@ -64,8 +64,11 @@ User: SYSTEM AND Command Line: (ProgramData OR Users OR Temp OR Tmp) AND Command
 ## Potential Local Privilege Escalation - SetSecurityFile Events
 #### `SetSecurityFile` occurs when a process attempts to **change the security descriptor (ACL)** of a file or folder. Correlate SetSecurityFile events with ACL inspection to identify LPE opportunities.
 ```
-User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetSecurityFile
+(User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetSecurityFile AND Detail: DACL)
 ```
+> Anything with DACL in Detail = the discretionary ACL was being changed. That is the normal “permissions changed” signal. DACL_SECURITY_INFORMATION is the flag for the object’s DACL, and setting it requires WRITE_DAC
+
+>
 ## Potential Local Privilege Escalation - Generic CreateFile Events for files with file extension.
 #### `CreateFile` Is that a File handle is created and you have to look in to result/detail to get more context about whats happening.ccurs when a process attempts to 
 ```
@@ -120,6 +123,12 @@ User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR
 User: SYSTEM AND Result: ("NAME NOT FOUND" OR "PATH NOT FOUND" OR "NO SUCH FILE") AND NOT Path: (ProgramData OR Users OR Temp OR "Program Files" OR Windows) AND NOT Operation: Reg*
 ```
 
+# Hard link activity
+#### Look whether a privileged process just created a hard link in a user-writable area that aliases some other file on the same NTFS volume. SetLinkInformationFile is the Windows file-information operation for creating an NTFS hard link, and hard links can only target files (not directories) on the same volume.
+##### for hard link creation: Path is the existing file, Detail FileName is the additional name being created.
+```
+User: SYSTEM AND Operation: SetLinkInformationFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: SUCCESS
+```
 
 ## Potential Local Privilege Escalation - OpenSSL config (openssl.cnf) file
 #### Look for the ones that you can modify or write.
