@@ -146,6 +146,12 @@ User: SYSTEM AND Operation: Reg* AND Path: HKLM* AND Path: *Services* AND Path: 
 User: SYSTEM AND Operation: Reg* AND Path: HKLM* AND Path: *Services AND Path: *ServiceDll
 ```
 
+## Potential Privilege escalation - Schedule task process in user-writable path.
+#### Check if you can replace binary or write files to the folder
+```
+User: SYSTEM AND Command Line: Schedule AND Operation: (Process AND Create) AND Path: (ProgramData OR Users OR Temp OR Tmp)
+```
+
 ## Potential Privilege escalation - InprocServer32 DLL is loaded for an in-process COM server from User-writable path.
 #### Microsoft Windows Defender path in ProgramData excluded.
 ```
