@@ -146,6 +146,7 @@ User: SYSTEM AND Operation: Reg* AND Path: HKLM* AND Path: *Services AND Path: *
 ```
 
 ## Potential Privilege escalation - InprocServer32 DLL is loaded for an in-process COM server from User-writable path.
+#### Microsoft Windows Defender path in ProgramData excluded.
 ```
 User: SYSTEM AND Operation: Reg* AND Path: CLSID AND Path: InprocServer32 AND Detail: (ProgramData OR Users OR Temp OR Tmp) AND NOT Detail: Defender
 ```
