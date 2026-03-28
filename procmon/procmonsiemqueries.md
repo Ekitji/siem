@@ -135,9 +135,15 @@ User: SYSTEM AND Operation: SetLinkInformationFile AND Path: (ProgramData OR Use
 #### Check if you can replace binary or write files to the folder
 > Service path in Details:
 ```
-User: SYSTEM AND Operation: Reg* AND Path: *Services* AND Path: *ImagePath* AND Detail: (ProgramData OR Users OR Temp Or Tmp)
+User: SYSTEM AND Operation: Reg* AND Path: HKLM* AND Path: *Services* AND Path: *ImagePath* AND Detail: (ProgramData OR Users OR Temp Or Tmp)
 ```
 
+## Potential Privilege escalation - Services DLLs in user-writable path.
+#### Check if you can replace binary or write files to the folder
+> Less likely that this will give any result
+```
+User: SYSTEM AND Operation: Reg* AND Path: HKLM* AND Path: *Services AND Path: *ServiceDll
+```
 
 ## Potential Local Privilege Escalation - OpenSSL config (openssl.cnf) file
 #### Look for the ones that you can modify or write.
