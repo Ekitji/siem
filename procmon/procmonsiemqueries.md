@@ -152,6 +152,11 @@ User: SYSTEM AND Operation: Reg* AND Path: HKLM* AND Path: *Services AND Path: *
 User: SYSTEM AND Command Line: Schedule AND Operation: (Process AND Create) AND Path: (ProgramData OR Users OR Temp OR Tmp)
 ```
 
+## Potential Privilege escalation - Schedule task process arguments pointing to user-writable path.
+#### Check if you can replace binary/script or write files to the folder. This query should catch powershell running scripts from user-writable paths or other processes pointing arguments to user-writable paths.
+```
+User: SYSTEM AND Command Line: Schedule AND Operation: (Process AND Create) AND Detail: (ProgramData OR Users OR Temp OR Tmp)
+```
 ## Potential Privilege escalation - InprocServer32 DLL is loaded for an in-process COM server from User-writable path.
 #### Microsoft Windows Defender path in ProgramData excluded.
 ```
