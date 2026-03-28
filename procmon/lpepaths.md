@@ -7,9 +7,10 @@
 > Common with log files
 
 # Arbitrary File Delete
-- Remove files that we can replace
+- Remove files that we can replace in
 * C:\ProgramData
 * C:\Windows\Temp
+* C:\Root\subfolders (that is not Program Files)
 > Default rights allow low privileged users to create files and directories but not to modify existing ones.
 
 # Serilog.json/appsettings.json
