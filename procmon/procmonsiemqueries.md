@@ -131,6 +131,14 @@ User: SYSTEM AND Result: ("NAME NOT FOUND" OR "PATH NOT FOUND" OR "NO SUCH FILE"
 User: SYSTEM AND Operation: SetLinkInformationFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: SUCCESS
 ```
 
+# Potential Privilege escalation - Services in user-writable path.
+#### Check if you can replace binary or write files to the folder
+> Service path in Details:
+```
+User: SYSTEM AND Operation: Reg* AND Path: *Services* AND Path: *ImagePath* AND Detail: (ProgramData OR Users OR Temp Or Tmp)
+```
+
+
 ## Potential Local Privilege Escalation - OpenSSL config (openssl.cnf) file
 #### Look for the ones that you can modify or write.
 > Check Offensive SIEM documentation for how to privilege escalate. NOT FOUND events are highly relevant but also SUCCESS on Paths that you can modify.
