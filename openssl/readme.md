@@ -312,7 +312,7 @@ foreach ($p in $checkPaths) {
 **libeay32_test_dll.cpp**
 Compiled with Microsoft Visual Studio.
 Tested with libeay32.dll loading into a process. The test.dll will also be loaded into same process.
-Outputs to c:\temp\test.txt - will create folder and file if missing.
+Outputs to c:\temp\test.txt - will create folder and file if missing. **the test2.dll will output to C:\usr\local\ssl\**
 
 `Example output showing SYSTEM user code execution`
 ```
@@ -327,3 +327,7 @@ Outputs to c:\temp\test.txt - will create folder and file if missing.
 [2026-03-22 20:39:58] DllMain: DLL_PROCESS_DETACH
 ```
 
+
+# load_libeay32.exe
+A custom loader executable to mimic a legitimate process that loads the libeay32.dll --> loads openssl.cnf --> loads specified dll.
+load_libeay32.c is the source code.
