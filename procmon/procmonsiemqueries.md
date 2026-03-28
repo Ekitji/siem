@@ -89,7 +89,7 @@ User: SYSTEM AND Operation: SetEndOfFileInformationFile AND Image Path: Program 
 ```
 User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: SUCCESS AND Path: *.log AND NOT Path: (Microsoft)
 ```
-#### NOT FOUND OF `Create File **. Check ACL, if you can delete, and if you can symlink and get LPE. Check Referens with Troopers19 File Operators pdf.
+#### NOT FOUND OF `Create File **. Check ACL, if you can delete, can you delete all in folder and if you can create a junction and symlink and get LPE. Check Referens with Troopers19 File Operators pdf.
 ```
 User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND NOT Result: SUCCESS AND Path: *.log AND NOT Path: (Microsoft)
 ```
