@@ -88,3 +88,30 @@ Even when you cannot turn it into code execution, steering a privileged delete o
 - **DACL Protected** = stop inheriting ACEs into the DACL.
 - **DACL Unprotected** = allow the DACL to inherit ACEs from parent.
 - **SACL Unprotected** = allow the SACL to inherit ACEs from parent.
+
+## InprocServer32
+
+- **Which value was modified**
+  - **`(Default)`** = DLL path → highest priority
+  - **`ThreadingModel`** = COM threading behavior → usually lower priority
+
+- **What makes a hit interesting**
+  - DLL path points to `ProgramData`, `Users`, `Temp`, `Tmp`, or another writable folder
+  - DLL path is not a full absolute path
+  - A per-user `HKCU` entry appears to override a safer machine-wide `HKLM` registration
+  - Registration changes happen during install, repair, self-update, or service startup
+  - A privileged process later loads the written DLL path
+
+## Tighter Triage Queries
+
+#### Only default-value writes
+
+    User: SYSTEM AND Operation: RegSetValue AND Path: *\CLSID\*\InprocServer32\(Default)
+
+#### Only user-writable DLL destinations
+
+    User: SYSTEM AND Operation: RegSetValue AND Path: *\CLSID\*\InprocServer32\* AND Detail: (ProgramData OR Users OR Temp OR Tmp)
+
+#### Only per-user COM registration changes
+
+    Operation: RegSetValue AND Path: HKCU\Software\Classes\CLSID\*\InprocServer32\(Default)
