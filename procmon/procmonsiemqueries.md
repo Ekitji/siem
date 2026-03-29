@@ -109,6 +109,12 @@ User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR
 ```
 > **3 different operators for file delete events**
 
+## Potential Local Privilege Escalation - Directory list events could be Delete of content
+#### Query catches directory listing events that does not exist. Try to create and drop some files there and see whats happens. Maybe its listing to delete the files. Then set a Junction to a protected directory and you will maybe have a FileDelete in directory.
+
+```User: SYSTEM AND Operation: CreateFile AND Detail: "Options: Directory" AND Path: (ProgramData OR Users OR Temp OR Tmp) AND NOT Path: Microsoft AND Detail: "Read Data/List Directory" AND Result: "NOT FOUND"
+```
+
 ## Potential Local Privilege Escalation - FileRename Events
 #### Where "Path" shows old file name and "Details" shows new file name and if its going to replace if file exists.
 ```
