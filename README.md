@@ -225,7 +225,7 @@ Install and check with procmon the found applications if it loads or tries to lo
 
 > Output gives OpenSSL version 1.0.1g and that the OpenSSLDIR is set to **/usr/local/ssl** which is **highly interesting!**
 
-> **Sysmon event.code 7** gives you also the version information for the dll in the file.pe.file_version field.
+> **Sysmon event.code 7** gives you loaded OpenSSL DLLs and also the version information for the dll in the file.pe.file_version field.
 
 
 #### Escalation Scenario
@@ -237,6 +237,7 @@ Install and check with procmon the found applications if it loads or tries to lo
    - Wait for service restart
    - Code executes as **SYSTEM**
 
+> Result: Local privilege escalation by planting a openssl.cnf which the applications openssl dll loads and ends with loading a custom "malicious" dll.
 
 
 
