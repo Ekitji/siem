@@ -363,6 +363,7 @@ We want to do this to catch every uninstaller without trusting the process creat
 | .wsh      | Windows Script Host Settings | Configuration settings for WSH scripts                  | Windows Script Host (`wscript.exe`, `cscript.exe`)          |
 | .jar      | Java Archive               | Java applications packaged as a single file             | `java.exe` (console) / `javaw.exe` (no console window)       |
 | .hta      | HTML Application (HTA)     | GUI-based Windows scripts using HTML, CSS, and JScript/VBScript | `mshta.exe` (Microsoft HTML Application Host)          |
+| .com      | MS-DOS Application / DOS Executable | Legacy executable programs, small command-line utils | Executed directly as a program; on modern Windows, classic 16-bit .com programs run through NTVDM on 32-bit Windows, and are not natively supported on x64/ARM Windows |
 | .chm     | Compiled HTML Help          | Offline help/documentation files for Windows programs   | `hh.exe` (Microsoft HTML Help Viewer)                           |
 
 ## Startup/Logon scripts
