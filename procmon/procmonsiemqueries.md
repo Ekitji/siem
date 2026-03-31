@@ -3,7 +3,7 @@
 The queries with ⭐ mark is extra highly relevant.
 
 >**Pro Tip: If a high-privileged process accesses something that a low-privileged user can modify, it may be exploitable.**
->
+
 
 ## Potential Local Privilege Escalation - Generic Wide Query
 #### Use wildcards if needed 
@@ -108,6 +108,8 @@ User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR
 (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetDispositionInformationFile AND Detail: "Delete: True") OR (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: CreateFile AND Detail: "Desired Access: Delete") OR (User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Operation: SetDispositionInformationEx AND Detail: "Flags: FILE_DISPOSITION_DELETE")
 ```
 > **3 different operators for file delete events**
+
+> **Pro tip** Install every application that you are allowed to install. Then spray ProgramData and Users folders with a file name, for an example test.exe and then fire up ProcMon to capture File operation events and wait for it to catch and delete your test.exe. Typical probing applications does is is every 20 minutes up to hourly probes. So i would say that a ProcMon capture with specific file related filters will hopefully catch something.
 
 ## Potential Local Privilege Escalation - Directory list events could be Delete of content
 #### Query catches directory listing events that does not exist. Try to create and drop some files there and see whats happens. Maybe its listing to delete the files. Then set a Junction to a protected directory and you will maybe have a FileDelete in directory.
