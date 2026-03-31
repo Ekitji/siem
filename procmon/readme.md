@@ -118,6 +118,7 @@ Apply after log capture to refine investigation:
 - **Mystikcon 2020 A Windows FOB (File Operation Bugs) || Windows Privilege Escalation** https://www.youtube.com/watch?v=zQUINVQKk7M
 - **TR19: Abusing privileged file operations on Windows** Video for PDF below https://www.youtube.com/watch?v=xQKtdMO5FuE
 - **File Operations**  https://troopers.de/downloads/troopers19/TROOPERS19_AD_Abusing_privileged_file_operations.pdf
+- **Abusing Arbitrary File Deletes to Escalate Privilege and Other Great Tricks (Archive)** https://www.trendmicro.com/en/research/24/i/arbitrary-file-deletes-escalate-privilege.html
 - **Windows Security Research: A Practical Guide for Beginners to find 0 days - HackTricks Track 2023** Gives good mindset, look from minute 38.53 --> https://www.youtube.com/watch?v=OuL-7GPhhAQ
 
 ✅ This README section provides **everything needed to run boot logging, apply security-research-oriented filters, and export events for analysis**, safely and efficiently.
