@@ -243,12 +243,14 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 ```
 (event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: (23 OR 26) AND file.path: (C\:\\Users\\* OR C\:\\ProgramData\\* OR C\:\\Windows\\Temp\\*))
 ```
+> **Pro tip** For detection using SIEM. Install every application that you are allowed to, then spray Users and Programdata folders and subfolders with a file name you know will be logged if deleted. For an example test.exe sprayed into every folder and subfolder on a workstation. Then do your query to see if you catch something. It could be that a delete operation exists but a file never is put there per default.
+
 ## Potential Arbitrary File delete by SYSTEM in C-Root subfolder
 ##### May also be interesting to look inte other file operators
 ```
 (event.provider: Microsoft-Windows-Sysmon AND user.name: SYSTEM AND event.code: (23 OR 26) AND file.path: (C\:\\*) AND NOT file.path: (C\:\\Users\\* OR C\:\\ProgramData\\* OR C\:\\Program\ Files* OR C\:\\Windows\\*)
 ```
-
+> **Pro tip** Check above pro-tip for better detection opportunities by spraying own files and generating events by that.
 # Kernel Drivers Loaded
 
 ## Potential Local Privilege Escalation - Kernel Drivers Loaded from User-Writable Paths
