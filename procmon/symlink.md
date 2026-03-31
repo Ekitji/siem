@@ -57,3 +57,9 @@ Privileged process continues its write, now landing in Program Files
 | `symlink` | `C:\Temp\test.txt` | Replaces the real file with a symlink |
 | `target1` | `C:\Temp\bait.txt` | Oplock is placed here, initially safe |
 | `target2` | `C:\Program Files\test.txt` | Where writes actually land after swap |
+
+## Creating Junction with Powershell (like CreateMountPoint.exe)
+New-Item -ItemType Junction -Path "C:\Source\Path" -Target "C:\Target\Path"
+### Delete Powershell created Junction
+fsutil reparsepoint delete "C:\Source\Path"
+
