@@ -179,12 +179,12 @@ User: SYSTEM AND Path: openssl.cnf
 ```
 - ref https://blog.mirch.io/2019/06/10/cve-2019-12572-pia-windows-privilege-escalation-malicious-openssl-engine/
 
-  ## Potential Local Privilege Escalation - serilog config file
-  #### Check the ACL if you can modify the configuration file.
-  ##### If you can modify, you can add  "outputTemplate" to add custom data to the log, you can also specify file name. Which basicly gives you file overwrite with what the file will contain. A privilege escalation could be overwriting a script in a protected path that runs with higher privileges and add commands to it.
-  ```
-  User: SYSTEM AND Path: *serilogSettings.json AND Path: (ProgramData OR Users OR Temp)
-  ```
+## Potential Local Privilege Escalation - serilog config file
+#### Check the ACL if you can modify the configuration file.
+##### If you can modify, you can add  "outputTemplate" to add custom data to the log, you can also specify file name. Which basicly gives you file overwrite with what the file will contain. A privilege escalation could be overwriting a script in a protected path that runs with higher privileges and add commands to it.
+```
+User: SYSTEM AND Path: *serilogSettings.json AND Path: (ProgramData OR Users OR Temp)
+```
 **General about Serilog** - https://esmp.dev/configuring-serilog-through-appsettings-json-file-33b26594bb46
 - Missed CVE-2025-1789
 
