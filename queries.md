@@ -273,12 +273,16 @@ event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"
 ```
 > **Pro Tip** Check if the process executable is started from services.exe or as a schedule task. If so - you have a nice persistent local privilege escalation vulnerability.
 
+> We have to manually verify the process if its calling OPENSSL_config or CONF_modules_load_file then we have a privilege escalation or if  OPENSSL_no_config is not set. 
+
 ## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) Usage ⭐
 #### Look at the fields process executable, file path to the dll, file.pe.file_version, sha1 hash field. **Prioritize filenames libeay32.dll and libcrypto-1_1*.dll** which is older/legacy DLLs and are more likely vulnerable, but dont skip the other ones. You can use https://github.com/Ekitji/siem/blob/main/openssl/OpenSSL_Binaries.md which is a pre-built table with lots of hashes of openssl dlls with hardcoded OPENSSLDIR. If you cant find your DLL on that list, ask for a copy of the DLL you found or simply install the application and do the controls your self. Event.code 7 is for image loaded and will give you the possible vulnerable process loading the DLL. File creation/deletion events will likely give you the installer executables and are mot for finding the existence of the file.
 ```
 event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"dll" AND (file.name:libcrypto*.dll OR file.name:libssl*.dll OR file.name:libeay*.dll OR file.name:ssleay*.dll OR file.name:openssl.dll OR file.pe.original_file_name:libcrypto*.dll OR file.pe.original_file_name:libssl*.dll OR file.pe.original_file_name:libeay*.dll OR file.pe.original_file_name:ssleay*.dll) AND user.name: SYSTEM
 ```
 > **Pro Tip** if OPENSSLDIR is set to /usr/local/ssl, in windows this is translated to c:\usr\local\ssl and is a user-writable path. Check the process executable that its a high privileged process that are started by a service or schedule task. If so then you probably have your persistent local privilege escalation.
+
+> We have to manually verify the process if its calling OPENSSL_config or CONF_modules_load_file then we have a privilege escalation or if  OPENSSL_no_config is not set.
 
 > **OpenSSLDir Tools** - https://github.com/Ekitji/siem/tree/main/openssl
 
