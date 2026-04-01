@@ -14,6 +14,8 @@ Used with libeay32.dll pointing to /usr/local/ssl which is translated in windows
 openssl.cnf in c:\usr\local\ssl
 > Probably need adjustment to work with newer versions of OpenSSL.
 
+> We have to manually verify the process if its calling OPENSSL_config or CONF_modules_load_file then we have a privilege escalation or if  OPENSSL_no_config is not set.
+
 ## openssldir_check.cpp
 Code for openssldir_check binary that checks OPENSSLDIR and ENGINESDIR
 use Script to cover MODULESDIR also.
