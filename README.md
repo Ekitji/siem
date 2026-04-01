@@ -225,6 +225,10 @@ A minimal rule you can use while debugging:
 If the process only loads libeay32.dll, that is not enough.
 It must also call OpenSSL config loading and not disable it.
 
+- Its should call OPENSSL_config to work or
+- CONF_modules_load_file or
+- OPENSSL_no_config is not set.
+
 
 No signature check. No verification. Any DLL specified gets loaded, If the process calls OPENSSL_config.
 We can query for typical DLL names related to OpenSSL to enumerate possible applications to test more with. We want to check the DLLs OPENSSLDIR and if the process is calling the OpenSSL_conf.
