@@ -184,7 +184,22 @@ Summary of the talk showcases snowagent.exe dropping sys-files to `C:\Windows\Te
 
 ### OpenSSL and its openssl.cnf for privilege escalation ⭐
 #### What is openssl.cnf?
-OpenSSL's config file. Loaded automatically when any application initializes OpenSSL — before the app fully starts. When the DLL is compiled if not the --openssldir parameter is specified it defaults to /usr/local/ssl which is in Windows translated to c:/usr/local/ssl, which is a common path where the cnf will be looked for. Other paths is c:\etc\ssl\ or other custom user-writable paths 
+OpenSSL's config file. Loaded automatically when any application initializes OpenSSL — before the app fully starts. When the DLL is compiled if not the --openssldir parameter is specified it defaults to /usr/local/ssl which is in Windows translated to c:/usr/local/ssl, which is a common path where the cnf will be looked for. Other paths is c:\etc\ssl\ or other custom user-writable paths.
+
+**A practical mental model is:**
+
+process loads libeay32.dll
+→ process calls OPENSSL_config(NULL)
+→ OpenSSL reads openssl.cnf
+→ engine section causes test.dll load attempt
+→ Windows loader accepts test.dll and its dependencies
+
+If any step is missing, your DLL will not load.
+
+A minimal rule you can use while debugging:
+
+If the process only loads libeay32.dll, that is not enough.
+It must also call OpenSSL config loading and not disable it.
 
 #### The Risk and how to find them
 `openssl.cnf` can instruct OpenSSL to load a custom DLL as a crypto engine:
@@ -204,7 +219,7 @@ LOAD = EMPTY
 init = 0
 ```
 
-No signature check. No verification. Any DLL specified gets loaded.
+No signature check. No verification. Any DLL specified gets loaded. If the process calls OPENSSL_config.
 We can query for typical DLL names related to OpenSSL to enumerate possible applications to test more with. We want to 
 Install and check with procmon the found applications if it loads or tries to load a openssl.cnf, or get a copy of the crypto related dll and just run the openssldir_check on the cryptodll (libeay32.dll etc) DLL that the executable loads that are related to OpenSSL to get version information and which path it loads the openssl.cnf file from. 
 
