@@ -178,6 +178,9 @@ User: SYSTEM AND Operation: Reg* AND Path: CLSID AND Path: InprocServer32 AND De
 User: SYSTEM AND Path: openssl.cnf
 ```
 - ref https://blog.mirch.io/2019/06/10/cve-2019-12572-pia-windows-privilege-escalation-malicious-openssl-engine/
+> Compared to using sysmon logs where OpenSSL DLLs are loaded We DONT have to manually verify the process if its calling OPENSSL_config or CONF_modules_load_file or if OPENSSL_no_config is not set.
+
+> If we see that a process calls openssl.cnf then we know that its actually calling for openssl.cnf and we most likely have a vulnerable application.
 
 ## Potential Local Privilege Escalation - serilog config file
 #### Check the ACL if you can modify the configuration file.
