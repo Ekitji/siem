@@ -184,9 +184,12 @@ Summary of the talk showcases snowagent.exe dropping sys-files to `C:\Windows\Te
 
 ### OpenSSL and its openssl.cnf for privilege escalation ⭐
 #### What is openssl.cnf?
-OpenSSL's config file. When a application initializes OpenSSL — before the app fully starts it normally has to explicitly call OPENSSL_config(NULL) or CONF_modules_load_file(...) to process the config file. If it does not, 
-your engine DLL from openssl.cnf will not be loaded. The OpenSSL DLL (legacy) When compiled if not the --openssldir parameter is specified it defaults to /usr/local/ssl which is in Windows translated to c:/usr/local/ssl, which is a common path where the cnf will be looked for. 
-Other paths is c:\etc\ssl\ or other custom user-writable paths.
+The OpenSSL DLL (legacy) When compiled if not the --openssldir parameter is specified it defaults to /usr/local/ssl which is in Windows translated to c:/usr/local/ssl, which is a common path where the cnf will be looked for. It sets defaults for certificates/keys and can also load/configure crypto engines or providers.
+On Windows, it can reference an engine/provider DLL so OpenSSL can use extra cryptographic modules. This is what we can missuse and point it to a "malicious" dll.
+When a application initializes OpenSSL — it has to explicitly call OPENSSL_config(NULL) or CONF_modules_load_file(...) to process the config file. If it does not, 
+your engine DLL (malicious one) from openssl.cnf will not be loaded. 
+
+Other common paths where applications may look for openssl.cnf is c:\etc\ssl\ or other custom user-writable paths.
 
 #### The Risk and how to find them
 `openssl.cnf` can instruct OpenSSL to load a custom DLL as a crypto engine:
@@ -233,7 +236,7 @@ It must also call OpenSSL config loading and not disable it.
 No signature check. No verification. Any DLL specified gets loaded, If the process calls OPENSSL_config.
 We can query for typical DLL names related to OpenSSL to enumerate possible applications to test more with. We want to check the DLLs OPENSSLDIR and if the process is calling the OpenSSL_conf.
 We can check OpenSSLDIR by checking file hash against the list in this repo, or get a copy of the crypto related dll and just run the openssldir_check on the cryptodll (libeay32.dll etc).
-We can also use ProcMon to check if the process calls any openssl.cnf. What we want is to get version information and which path it loads the openssl.cnf file from.
+We can also use ProcMon to check if the process calls any openssl.cnf. If we see openssl.cnf i procmon then we know for sure that the applications calls for it. In other methods what we want to get is version information (in fields of event.code 7) and which path it loads the openssl.cnf file from by checking file hash against the list in this repo, get a copy of same DLL and do manual check. 
 
 
 **Example when running openssldir_check.exe**
