@@ -468,7 +468,7 @@ To show you how common it is with misconfigured third party software.
 | CVE-2019-12572  | PIA Windows service      | C:\etc\ssl\openssl.cnf                           | pia-service.exe                 |          | LPE openssl.cnf   |
 | CVE-2023–6338   | Lenovo UDC               | C:\J\w\prod\BUildSIngleReference.......          | UDClientService.exe             |          | LPE openssl.cnf   |
 | CVE-2025-2272   | ForcePoint Endpoint DLP  | C:\usr\local\ssl\openssl.cnf                     | ENdPointClassifier.exe          |          | LPE openssl.cnf   |
-| CVE-2020-8224   | nextcloud windows desktop application | C:\usr\local\ssl\openssl.cnf        | nextcloud.exe                   |          | LPE openssl.cnf   |
+| CVE-2020-8224   | Nextcloud windows desktop application | C:\usr\local\ssl\openssl.cnf        | nextcloud.exe                   |          | LPE openssl.cnf   |
 | CVE-2024-34474| Clario for Desktop         | C:\ProgramData\Clario\                           | ClarioService.exe                | CWE-276 | Loads DLLs from ProgramData     |
 | CVE-2022-34043| NoMachine (Windows)        | C:\ProgramData\NoMachine\var\uninstall\          | Uninstaller                      | CWE-732 | DLL hijack in uninstall folder  |
 | CVE-2020-15145| Composer-Setup (Windows)   | C:\ProgramData\ComposerSetup\bin\composer.bat (+ DLLs) | Maintenance/repair actions     | CWE-276 | Writable bin → LPE          |
