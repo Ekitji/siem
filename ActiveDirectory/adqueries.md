@@ -1,7 +1,7 @@
 # AD 5136 Queries for Elastic
 
 This document contains **Elastic KQL queries** for hunting risky Active Directory changes with **Event ID 5136**, plus investigation notes for each query.
-
+Most of them with the idea from Trustedsecs A Hitch-hacker's Guide to DACL-Based Detections.
 ---
 
 ## How to use these queries
