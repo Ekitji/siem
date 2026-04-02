@@ -30,7 +30,7 @@
 | libeay32.dll | 1.0.1h | 9bc1d6e44e14314c6b002436d4edb9b7f8a51fb6 |  "/usr/local/ssl" | |
 | libeay32.dll | 1.0.2ze | abb4d4b100aaa5c47ed7b16e9dcf729964b6a197 |"/builds/3rdparty/bash-packages/.package/ssl" | PNM | 
 | libeay64.dll | 0.9.8o | c4157d4340118db638c615d5c8a81193bf241dd2 | "c:/vsttech\vsttech\openssl/ssl" | |
-
+| libeay32.dll | 0.9.8h | c8e5c0f57e18dfc5226ff0bd5bc63607e1754c66 | "/usr/local/ssl" | |
 
 ---
 
