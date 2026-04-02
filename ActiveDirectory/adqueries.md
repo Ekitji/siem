@@ -458,6 +458,7 @@ winlog.event_data.AttributeLDAPDisplayName:(
   "msDS-SupportedEncryptionTypes"
 )
 ```
+> Some AttributeLDAPDisplayName values more noisy then others.
 
 ### What this finds
 A compact watchlist of the highest-value 5136 attribute changes.
