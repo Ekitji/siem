@@ -24,6 +24,7 @@
 | libeay32.dll | 1.0.2u | f684152c245cc708fbaf4d1c0472d783b26c5b18 | "/usr/local/ssl" | | 
 | libeay32.dll | 1.0.2u | 3c9d8851721d2f1bc13a8dcb74549fa282a5a360 | "/usr/local/ssl" | |
 | libeay32.dll | 1.0.2l | 4a370744744bcc25298ff9b29ed6d16d4b598bf9 | "E:\64Bit_CurlWork\release/ssl"" | |
+| libeay32.dll | 1.0.2j | a5e567a5be1beda8479900e07a7a11e1e06f4389 | "g:\openssl-w64/ssl" | |
 | libeay32.dll | 1.0.2t | 74fa885fa59fd7f5b1c71c7736566effbae86d63 |  "/usr/local/ssl" | |
 | libeay32.dll | 1.0.1g | 4e5329c4321b17a54d40df6ff6d2537ebc54691b |  "/usr/local/ssl" | |
 | libeay32.dll | 1.0.1h | 9bc1d6e44e14314c6b002436d4edb9b7f8a51fb6 |  "/usr/local/ssl" | |
