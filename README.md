@@ -467,6 +467,7 @@ To show you how common it is with misconfigured third party software.
 | CVE-2025-8069 | AWS Client VPN             | C:\usr\local\windows-x86_64-openssl-localbuild\ssl |                                |         | LPE openssl.cnf   |
 | CVE-2025-2272   | ForcePoint Endpoint DLP  | C:\usr\local\ssl\openssl.cnf                     | ENdPointClassifier.exe          |          | LPE openssl.cnf   |
 | CVE-2025-13176 | ESET Inspect EDR          | C:\src\vcpkg\packages\openssl_x64-windows-static\openssl.cnf | ElConnector.exe     |          | LPE openssl.cnf   | 
+| CVE-2024-6975  | Cato Client               | C:\Work\WinVPNClient\ThirdParty\openssl\openssl-3.1.1\VS2022\SSL64\openssl.cnf | winvpnclient.cli.exe  | | LPE openssl.cnf |
 | CVE-2023–6338   | Lenovo UDC               | C:\J\w\prod\BUildSIngleReference.......          | UDClientService.exe             |          | LPE openssl.cnf   |
 | CVE-2020-8224   | Nextcloud windows desktop application | C:\usr\local\ssl\openssl.cnf        | nextcloud.exe                   |          | LPE openssl.cnf   |
 | CVE-2020–26050  | SaferVPN                 | C:\etc\ssl\openssl.cnf                           | C:\Program Files (x86)\SaferVPN for Windows\bin\openvpn.exe || LPE openssl.cfg |
