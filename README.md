@@ -470,7 +470,7 @@ To show you how common it is with misconfigured third party software.
 | CVE-2024-6975  | Cato Client               | C:\Work\WinVPNClient\ThirdParty\openssl\openssl-3.1.1\VS2022\SSL64\openssl.cnf | winvpnclient.cli.exe  | | LPE openssl.cnf |
 | CVE-2023–6338   | Lenovo UDC               | C:\J\w\prod\BUildSIngleReference.......          | UDClientService.exe             |          | LPE openssl.cnf   |
 | CVE-2023-41840  | FortiClient Windows OpenSSL component |                                     |                                 | CWE-426 | openssl.cnf       |       
-| CVE-2021-21999  | VMWare Workstation tools |                                                  |                                  |         | LPE openssl.cfg
+| CVE-2021-21999  | VMWare Workstation tools |                                                  |                                  |         | LPE openssl.cfg  |
 | CVE-2020-8224   | Nextcloud windows desktop application | C:\usr\local\ssl\openssl.cnf        | nextcloud.exe                   |          | LPE openssl.cnf   |
 | CVE-2020–26050  | SaferVPN                 | C:\etc\ssl\openssl.cnf                           | C:\Program Files (x86)\SaferVPN for Windows\bin\openvpn.exe || LPE openssl.cfg |
 | CVE-2019-12572  | PIA Windows service      | C:\etc\ssl\openssl.cnf                           | pia-service.exe                 |          | LPE openssl.cnf   |
