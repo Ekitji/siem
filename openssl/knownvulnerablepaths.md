@@ -276,3 +276,12 @@ DLLs autoloaded from `MODULESDIR` are:
  
 ### ENGINESDIR → manual loading of engines; not automatically autoloaded.
 Engines are considered legacy in OpenSSL 3, while providers are the new modular system.
+
+
+ ## Functions that has to be called to make the openssl.cnf read by the process.
+| Missing function | What it does |
+| --- | --- |
+| `OPENSSL_config()` | The standard entry point that reads `openssl.cnf` |
+| `CONF_modules_load_file()` | Explicit config file loader |
+| `CONF_load()` | Lower-level config loader |
+| `CONF_modules_load()` | Module-based config loader |
