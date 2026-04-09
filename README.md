@@ -464,8 +464,9 @@ To show you how common it is with misconfigured third party software.
 | CVE-2020-5896 | BIG IP F5 Client           | C:\Windows\Temp\f5tmp\cachecleaner.exe           | cachecleaner.dll                 | CWE-276 | DLL planting → SYSTEM           |
 | CVE-2020-13885| Citrix Workspace App       | %PROGRAMDATA%\Citrix\Citrix Workspace ####\webio.dll | Citrix services / uninstall     | CWE-276 | DLL planting → SYSTEM        |
 | CVE-2018-17778| SnowAgent                  | C:\Windows\Temp\cpuz143\cpuz143_x64.sys          | snowagent.exe CPUID SDK          |         | SYS file planting → SYSTEM |
+| CVE-2026-3991 | Symantec DLP Agent for Windows | C:\VontuDev\workDir\openssl\output\x64\Release\SSL\openssl.cnf | edpa.exe       |         | LPE openssl.cnf |
 | CVE-2025-8069 | AWS Client VPN             | C:\usr\local\windows-x86_64-openssl-localbuild\ssl |                                |         | LPE openssl.cnf   |
-| CVE-2025-2272   | ForcePoint Endpoint DLP  | C:\usr\local\ssl\openssl.cnf                     | ENdPointClassifier.exe          |          | LPE openssl.cnf   |
+| CVE-2025-2272 | ForcePoint Endpoint DLP    | C:\usr\local\ssl\openssl.cnf                     | ENdPointClassifier.exe          |          | LPE openssl.cnf   |
 | CVE-2025-13176 | ESET Inspect EDR          | C:\src\vcpkg\packages\openssl_x64-windows-static\openssl.cnf | ElConnector.exe     |          | LPE openssl.cnf   | 
 | CVE-2024-6975  | Cato Client               | C:\Work\WinVPNClient\ThirdParty\openssl\openssl-3.1.1\VS2022\SSL64\openssl.cnf | winvpnclient.cli.exe  | | LPE openssl.cnf |
 | CVE-2023–6338   | Lenovo UDC               | C:\J\w\prod\BUildSIngleReference.......          | UDClientService.exe             |          | LPE openssl.cnf   |
