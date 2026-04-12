@@ -289,6 +289,16 @@ event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"
 > **Event.code: 7** can be excluded to catch file creation/deletion events but is less relevant then the actual image load of the OpenSSL related DLLs.
 
 
+## Potential Local Privilege Escalation - Possible NSIS installer bugs ⭐
+####  NSIS (Nullsoft Scriptable Install System) installer script uses a plugin (such as nsExec.dll) which reveals that the Installer base is NSIS related. Some of the nsExec.dll has PE metadata showing version in field file.pe.file_version. nsExec.dll files in C:\Windows\Temp\****.tmp\nsExec.dll path his highly relevant to research more.
+```
+event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 7 AND file.name: nsExec.dll
+```
+> NSIS before 3.09 mishandles access control for an uninstaller directory.
+
+> NSIS before 3.11 contains a race condition in the temporary plugin directory creation logic, caused by incomplete checking of the CreateRestrictedDirectory return value.
+> **Ref.** https://blog.amberwolf.com/blog/2026/april/next-next-system/
+
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
 ##### Will also give you an idea for the process creation query when that process is terminated/exit.
 ```
