@@ -294,6 +294,7 @@ event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"
 ```
 event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 7 AND file.name: nsExec.dll
 ```
+**You could also use file creation events (event code 11) to find the NSIS related installers/uninstallers**
 > NSIS before 3.09 mishandles access control for an uninstaller directory.
 
 > NSIS before 3.11 contains a race condition in the temporary plugin directory creation logic, caused by incomplete checking of the CreateRestrictedDirectory return value.
