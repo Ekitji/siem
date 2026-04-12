@@ -297,6 +297,7 @@ event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 
 > NSIS before 3.09 mishandles access control for an uninstaller directory.
 
 > NSIS before 3.11 contains a race condition in the temporary plugin directory creation logic, caused by incomplete checking of the CreateRestrictedDirectory return value.
+
 > **Ref.** https://blog.amberwolf.com/blog/2026/april/next-next-system/
 
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
