@@ -79,7 +79,10 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://blog.mirch.io/2019/06/10/cve-2019-12572-pia-windows-privilege-escalation-malicious-openssl-engine/
 - https://blog.pentryx.ch/local-privilege-escalation-in-lenovo-udc-19dc86d72142?gi=0fe882ea2355
 - https://www.triskelelabs.com/blog/cve-2025-2272-forcepoint-endpoint-dlp-privilege-escalation
-- https://hackerone.com/reports/622170 
+- https://hackerone.com/reports/622170
+
+#### NSIS installer/uninstaller vulnerability
+- https://blog.amberwolf.com/blog/2026/april/next-next-system/
 
 ### Example of interesting areas to look into that we have not covered in presentation but we have queries for some of them.
 * weak passwords in command_line - that are not following best practices / policies
@@ -270,6 +273,13 @@ We can also use ProcMon to check if the process calls any openssl.cnf. If we see
 
 > Result: Local privilege escalation by planting a openssl.cnf which the applications openssl dll loads and ends with loading a custom "malicious" dll.
 
+
+
+### NSIS installer/uninstaller vulnerability
+
+NSIS is a widely used Windows installer framework. The issue described here is that, when an NSIS installer or uninstaller runs with elevated privileges, it may use temporary directories under C:\Windows\Temp in a way that a normal local user can interfere with.
+
+In practice, that means a low-privileged attacker can take control of files the installer trusts, such as temporary plugin files or uninstaller files, and turn that into code execution as SYSTEM. In other words, the weakness is not “the installer runs as admin,” but that the installer’s temp-file handling can let an unprivileged user hijack an elevated install or uninstall flow
 
 
 ## Prerequisites
