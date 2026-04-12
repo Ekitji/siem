@@ -290,7 +290,7 @@ event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"
 
 
 ## Potential Local Privilege Escalation - Possible NSIS installer bugs ⭐
-####  NSIS (Nullsoft Scriptable Install System) installer script uses a plugin (such as nsExec.dll) which reveals that the Installer base is NSIS related. Some of the nsExec.dll has PE metadata showing version in field file.pe.file_version. nsExec.dll files in C:\Windows\Temp\****.tmp\nsExec.dll path his highly relevant to research more. The nsExec.dll is fairly common in NSIS usage.
+####  NSIS (Nullsoft Scriptable Install System) installer script uses a plugin (such as nsExec.dll) which reveals that the Installer base is NSIS related. Some of the nsExec.dll has PE metadata showing version in field file.pe.file_version. nsExec.dll files in C:\Windows\Temp\*.tmp\nsExec.dll path his highly relevant to research more. The nsExec.dll is fairly common in NSIS usage.
 ```
 event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 7 AND file.name: nsExec.dll
 ```
@@ -305,8 +305,9 @@ event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 
 
 ## Potential Local Privilege Escalation - Possible NSIS installer bugs - Wide query
 ####  NSIS (Nullsoft Scriptable Install System) installer script uses a plugin using DLLs. The query holds common DLL file names used with NSIS with a common file path to C:\Windows\Temp
+```
 event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 7 AND file.name: (System.dll OR nsDialogs.dll OR nsExec.dll OR StartMenu.dll OR LangDLL.dll OR Banner.dll OR InstallOptions.dll OR UserInfo.dll OR Dialer.dll OR Math.dll OR NSISdl.dll OR Splash.dll OR AdvSplash.dll OR BgImage.dll OR inetc.dll OR InetLoad.dll OR UAC.dll OR AccessControl.dll OR Registry.dll OR ShellLink.dll OR SimpleFC.dll OR FindProcDLL.dll OR KillProcDLL.dll OR NScurl.dll OR ZipDLL.dll OR unzipdll.dll OR untgz.dll OR VPatch.dll OR CabDLL.dll OR nsJSON.dll OR StdUtils.dll OR ExecDos.dll) AND file.path: C\:\\Windows\\Temp\\*
-
+```
 
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
 ##### Will also give you an idea for the process creation query when that process is terminated/exit.
