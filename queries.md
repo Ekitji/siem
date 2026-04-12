@@ -308,6 +308,9 @@ event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 
 ```
 event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 7 AND file.name: (System.dll OR nsDialogs.dll OR nsExec.dll OR StartMenu.dll OR LangDLL.dll OR Banner.dll OR InstallOptions.dll OR UserInfo.dll OR Dialer.dll OR Math.dll OR NSISdl.dll OR Splash.dll OR AdvSplash.dll OR BgImage.dll OR inetc.dll OR InetLoad.dll OR UAC.dll OR AccessControl.dll OR Registry.dll OR ShellLink.dll OR SimpleFC.dll OR FindProcDLL.dll OR KillProcDLL.dll OR NScurl.dll OR ZipDLL.dll OR unzipdll.dll OR untgz.dll OR VPatch.dll OR CabDLL.dll OR nsJSON.dll OR StdUtils.dll OR ExecDos.dll) AND file.path: C\:\\Windows\\Temp\\*
 ```
+> **file.pe.description**: NSIS: Nullsoft Scriptable Install - field shows if its Nullsoft related and **file.pe.file_version** shows potential NSIS version if the metadata exists. 
+
+
 
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
 ##### Will also give you an idea for the process creation query when that process is terminated/exit.
