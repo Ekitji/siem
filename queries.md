@@ -290,7 +290,7 @@ event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"
 
 
 ## Potential Local Privilege Escalation - Possible NSIS installer bugs ⭐
-####  NSIS (Nullsoft Scriptable Install System) installer script uses a plugin (such as nsExec.dll) which reveals that the Installer base is NSIS related. Some of the nsExec.dll has PE metadata showing version in field file.pe.file_version. nsExec.dll files in C:\Windows\Temp\*.tmp\nsExec.dll path his highly relevant to research more. The nsExec.dll is fairly common in NSIS usage.
+####  NSIS (Nullsoft Scriptable Install System) installer script uses a plugin (such as nsExec.dll) which reveals that the Installer base is NSIS related. Some of the nsExec.dll has PE metadata showing version in field file.pe.file_version. nsExec.dll files in C:\Windows\Temp\*.tmp\nsExec.dll path is highly relevant to research more. The nsExec.dll is fairly common in NSIS usage.
 ```
 event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 7 AND file.name: nsExec.dll
 ```
