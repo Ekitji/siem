@@ -281,6 +281,67 @@ NSIS is a widely used Windows installer framework. The issue described here is t
 
 In practice, that means a low-privileged attacker can take control of files the installer trusts, such as temporary plugin files or uninstaller files, and turn that into code execution as SYSTEM. In other words, the weakness is not “the installer runs as admin,” but that the installer’s temp-file handling can let an unprivileged user hijack an elevated install or uninstall flow
 
+#### Common DLLs Seen in NSIS Installers
+
+> Note: Some of these are **official NSIS plugins**, while others are **common third-party plugins** often used by NSIS installers.  
+> Seeing one of these DLLs is a clue, but not absolute proof, that an installer uses NSIS. A file path of `C:\Windows\Temp\*.tmp\*.dll` is a strong indication.
+
+| DLL | Typical purpose | Type | Notes |
+|---|---|---|---|
+| `System.dll` | Calls Win32 APIs and external DLL functions from NSIS scripts | Official NSIS plugin | One of the strongest indicators of NSIS |
+| `nsDialogs.dll` | Builds custom installer dialogs and controls | Official NSIS plugin | Common in modern NSIS installers |
+| `nsExec.dll` | Executes console commands and captures output | Official NSIS plugin | Often used for silent helper commands |
+| `StartMenu.dll` | Lets the user choose a Start Menu folder | Official NSIS plugin | Common in classic installers |
+| `LangDLL.dll` | Displays a language selection dialog | Official NSIS plugin | Often appears in multilingual installers |
+| `Banner.dll` | Shows banner/progress UI during install steps | Official NSIS plugin | Mostly cosmetic |
+| `InstallOptions.dll` | Creates older-style custom pages from INI definitions | Official NSIS plugin | Largely replaced by `nsDialogs.dll` |
+| `UserInfo.dll` | Retrieves information about the current user/account | Official NSIS plugin | Used for privilege or account checks |
+| `Dialer.dll` | Manages dial-up/network connection behavior | Official NSIS plugin | Mostly legacy |
+| `Math.dll` | Provides arithmetic helpers for NSIS scripts | Official NSIS plugin | Less commonly needed in newer scripts |
+| `NSISdl.dll` | Downloads files from the internet | Official NSIS plugin | Older download plugin; often replaced by `inetc.dll` |
+| `Splash.dll` | Shows a splash screen | Official NSIS plugin | Mostly legacy/cosmetic |
+| `AdvSplash.dll` | Shows a more advanced splash screen | Common NSIS plugin | Similar role to `Splash.dll` |
+| `BgImage.dll` | Displays a background image in the installer UI | Official / common NSIS plugin | Mostly cosmetic |
+| `inetc.dll` | Downloads files over HTTP/FTP | Common third-party NSIS plugin | Very common in web installers |
+| `InetLoad.dll` | Downloads files from the internet | Common third-party NSIS plugin | Alternative to `NSISdl.dll` / `inetc.dll` |
+| `UAC.dll` | Handles elevation and UAC-related behavior | Common third-party NSIS plugin | Strong NSIS-related clue |
+| `AccessControl.dll` | Changes file/folder ACLs and permissions | Common third-party NSIS plugin | Used in admin-sensitive installs |
+| `Registry.dll` | Advanced Windows Registry operations | Common third-party NSIS plugin | More capable than built-in registry commands in some cases |
+| `ShellLink.dll` | Creates or edits Windows shortcut (`.lnk`) files | Common third-party NSIS plugin | Shortcut management helper |
+| `SimpleFC.dll` | Compares files or checks file differences | Common third-party NSIS plugin | Utility/helper plugin |
+| `FindProcDLL.dll` | Detects whether a process is running | Common third-party NSIS plugin | Often used before upgrades |
+| `KillProcDLL.dll` | Terminates running processes | Common third-party NSIS plugin | Common in uninstallers/updaters |
+| `NScurl.dll` | Downloads/transfers data using curl-style functionality | Common third-party NSIS plugin | Newer/more capable network helper |
+| `ZipDLL.dll` | Handles ZIP archive extraction or creation | Common third-party NSIS plugin | Archive utility |
+| `unzipdll.dll` | Extracts ZIP archives | Common third-party NSIS plugin | Older archive plugin |
+| `untgz.dll` | Extracts `.tar.gz` archives | Common third-party NSIS plugin | Less common, but seen in some packages |
+| `VPatch.dll` | Applies binary patches/updates | Common NSIS-related plugin | Often used in patch installers |
+| `CabDLL.dll` | Works with CAB archives | Common NSIS-related plugin | Mostly seen in older packaging workflows |
+| `nsJSON.dll` | Parses or generates JSON data | Common third-party NSIS plugin | More common in modern scripted installers |
+| `StdUtils.dll` | General-purpose helper utilities for NSIS | Common third-party NSIS plugin | Often used for OS/version/path helpers |
+| `ExecDos.dll` | Executes commands with better control over I/O and waiting | Common third-party NSIS plugin | Alternative/extension to `nsExec.dll` |
+
+#### Stronger NSIS Indicators
+
+The following DLLs are especially suggestive of NSIS:
+
+- `System.dll`
+- `nsDialogs.dll`
+- `nsExec.dll`
+- `LangDLL.dll`
+- `StartMenu.dll`
+- `NSISdl.dll`
+- `inetc.dll`
+- `UAC.dll`
+
+#### Caution
+
+Some installers extract these DLLs temporarily into a folder like:
+
+- `$PLUGINSDIR`
+
+So they may appear only at runtime, not next to the installer executable on disk.
+
 
 ## Prerequisites
 Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11 and 13 for the User-writable paths and the mentioned registry hives.
