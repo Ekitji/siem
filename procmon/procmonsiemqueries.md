@@ -219,6 +219,6 @@ Path: *Serilog.dll OR Path: *Serilog.Sinks.File.dll OR Path: *Serilog.Settings.C
 ```
 User: SYSTEM AND Path: *.exe.Local AND Path: (ProgramData OR Users OR Temp)
 ```
-> **Ref** https://www.nccgroup.com/research/technical-advisory-nullsoft-scriptable-installer-system-nsis-insecure-temporary-directory-usage/
+> **Ref** https://web.archive.org/web/20230721193548/https://research.nccgroup.com/2023/07/03/technical-advisory-nullsoft-scriptable-installer-system-nsis-insecure-temporary-directory-usage/
 
 > https://blog.amberwolf.com/blog/2026/april/next-next-system/
