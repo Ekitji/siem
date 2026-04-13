@@ -215,6 +215,7 @@ Path: *Serilog.dll OR Path: *Serilog.Sinks.File.dll OR Path: *Serilog.Settings.C
 
 ## Potential Local Privilege Escalation - DotLocal in World writable path
 #### Queries for .Local in World Writable paths - this is mitigated in later release of Windows 11. Look for the ones that has Operation NOT FOUND
+**DotLocal redirection. Windows has a feature where, if a .local folder exists next to an executable, WinSxS assembly lookups are redirected to resolve from that folder first.**
 ```
 User: SYSTEM AND Path: *.exe.Local AND Path: (ProgramData OR Users OR Temp)
 ```
