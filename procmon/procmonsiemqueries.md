@@ -211,3 +211,13 @@ Path: *Serilog.dll OR Path: *Serilog.Sinks.File.dll OR Path: *Serilog.Settings.C
 *then go with template and try do add own data/text*
 
 **example script** https://github.com/Ekitji/siem/blob/main/procmon/lpepaths.md
+
+
+## Potential Local Privilege Escalation - DotLocal in World writable path
+#### Queries for .Local in World Writable paths - this is mitigated in later release of Windows 11. Look for the ones that has Operation NOT FOUND
+```
+User: SYSTEM AND Path: *.exe.Local AND Path: (ProgramData OR Users OR Temp)
+```
+> **Ref** https://www.nccgroup.com/research/technical-advisory-nullsoft-scriptable-installer-system-nsis-insecure-temporary-directory-usage/
+
+> https://blog.amberwolf.com/blog/2026/april/next-next-system/
