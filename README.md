@@ -70,6 +70,8 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 #### Logon scripts
 - https://offsec.blog/hidden-menace-how-to-identify-misconfigured-and-dangerous-logon-scripts/
 - https://cyberthreatperspective.buzzsprout.com/1731753/episodes/13343207-episode-54-misconfigured-and-dangerous-logon-scripts
+- https://offsec.blog/wp-content/uploads/2024/06/How-to-Harden-Active-Directory-to-Prevent-Cyber-Attacks.pdf
+
 
 #### Kernel drivers and privilege escalation
 - https://www.youtube.com/watch?v=U36hAneQeZM
