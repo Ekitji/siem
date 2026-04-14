@@ -501,6 +501,26 @@ When a startup/logon script runs via GPO:
 #### Look for User-writable paths for scripts and executables in the child process of gpscript.exe, or writable network shares or genereic (SYSVOL). 
 Read the scripts that are run and look if there is any misconfigurations like other User-Writable paths or paths that does not exist or sensitive information. Look for possible used passwords (net use z: \\server\share /user:domain\username password) or other sensitive information. 
 
+**Logon Script Misconfiguration Categories**
+- SS1 – Plaintext credentials
+- SS2 – Unsafe permissions
+- SS3 – Non-existent shares
+- SS4 - Admins with logon scripts
+
+**Logon Script Misconfigurations**
+
+1. SS1 - Plaintext credentials within a logon script
+2. SS2 - Unsafe share permissions
+3. SS2 - Unsafe file permissions
+4. SS2 - Unsafe NETLOGON/SYSVOL permissions
+5. SS2 - Unsafe logon script permissions
+6. SS2 - Unsafe GPO logon script permissions
+7. SS3 - Non-existent shares
+8. SS4 - Admins with logon script
+9. SS4 - Admins with logon scripts mapped from nonexistent share
+
+
+
 ## MSIExec / MSI Repairs
 ##### Our testing did not give any result in escalating privileges in scenarios where we could spawn edge and break out to a cmd prompt. This is probably because chromium based browsers is impersonating the user/restricting rendering process to run as SYSTEM and does not allow internet explorer/edge to spawn cmd or other processes as the SYSTEM user. We believe that if none chromium based browser is installed (like firefox) or older versions. An privilege escalation could be possible if you could spawn such process and break out from that to a command prompt.
 
