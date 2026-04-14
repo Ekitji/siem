@@ -503,8 +503,8 @@ Read the scripts that are run and look if there is any misconfigurations like ot
 
 **Logon Script Misconfiguration Categories**
 - SS1 – Plaintext credentials
-- SS2 – Unsafe permissions
-- SS3 – Non-existent shares
+- SS2 – Unsafe permissions (modifiable logon script by regular user)
+- SS3 – Non-existent shares (which may be creatable by regular user)
 - SS4 - Admins with logon scripts
 
 **Logon Script Misconfigurations**
