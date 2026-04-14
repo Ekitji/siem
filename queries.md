@@ -215,7 +215,9 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 ```
 
 ## Potential Local Privilege Escalation - Logon scripts as Administrator used
-##### Logon/Logoff scripts - Check the process command line field. Look for User-writable paths in binary path or command line, networks shares that are in User-writable location, read the script file and look for sensitive information like passwords misconfigurations etc.
+##### Logon/Logoff scripts - Check the process command line field. Look for user-writable paths in the binary path or command line, network shares in user-writable locations, and non-existent or broken share paths. Review permissions on the referenced share, file, NETLOGON/SYSVOL location, logon script, and any GPO-linked logon script to identify unsafe access controls. Determine whether privileged or administrator accounts are assigned logon scripts, including cases where those scripts are mapped from non-existent shares. Read the script file itself and look for plaintext credentials, passwords, other embedded sensitive information, and general script misconfigurations.
+
+
 #### Generic query - If needed add ProgramData, Users, C-root etc to the query to narrow it down. Could also be interesting to query for none-admin executed scripts. It could be that no admin has still not logged in where that GPO is set and it could be a vulnerability when high privileged user logs in.
 ```
 ((event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.MandatoryLabel: "S-1-16-12288" AND process.parent.name: gpscript.exe) OR (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: High AND process.parent.name: gpscript.exe))
