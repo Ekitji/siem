@@ -315,7 +315,15 @@ event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 
 > **file.pe.description**: NSIS: Nullsoft Scriptable Install - field shows if its Nullsoft related and **file.pe.file_version** shows potential NSIS version if the metadata exists. **file.pe.description** could also hold NSIS related word.
 
 
+## Potential Local Privilege Escalation - Possible dotLocal redirection vulnerability
+####  Query catches DLL loads from WinSxS which could point you to right direction to find applications vulnerable to dotLocal (.local) redirection DLL vulnerabilities. This vulnerability seems to be fixed in later Windows 11 builds.
+#### comctl32.dll is one of the relevant DLLs. What you need to do is to manually check with procmon if it the process tries to load from same directory dll in processname.local directory. Look for NAME NOT FOUND events.
+```
+event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 7 AND file.path: C\:\\Windows\\WinSxS\\* AND file.extension: dll AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\ OR C\:\\Windows\\Temp\*)
+```
+> **Ref** https://www.advancedinstaller.com/exe-local-directory-vulnerability-solution.html
 
+> **NAME NOT FOUND** https://cdn.advancedinstaller.com/img/exe-local-directory-vulnerability-solution/gdiplus-dll-hijacking-risk.png 
 
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
 ##### Will also give you an idea for the process creation query when that process is terminated/exit.
