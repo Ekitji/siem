@@ -360,10 +360,10 @@ DotLocal redirection vulnerability abuses Windows built-in .local / DotLocal DLL
 Why it becomes a vulnerability: if an attacker can write into the executable’s directory (User writable paths), or into a temporary extraction directory used by a privileged process, they can create Target.exe.local folder and place a malicious DLL where Windows will prefer it. That turns the feature into a DLL hijacking , so the trusted process loads attacker library instead of the intended library.
 
 #### Manual control
-Identified high privileged processes in world writable paths should be investigated if they are vulnerable to DotLocal redirection. If you query for them and find applications. Do the last control using ProcMon to see if the process tries to load libraries from the created .exe.local folder. You can use the GetSxsPath tool to determine the full file path. Procmon should show you NAME NOT FOUND / PATH NOT FOUND events pointing to a .exe.local directory if its vulnerable.
+Identified high privileged processes in world writable paths should be investigated if they are vulnerable to DotLocal redirection. If you query for them and find applications. Do the last control using ProcMon to see if the process tries to load libraries from the created .exe.local folder. You can use the GetSxsPath tool to determine the full file path. Procmon should show you NAME NOT FOUND / PATH NOT FOUND events pointing to a .exe.local directory if its vulnerable. Based upon public reports applications during installation is particulary vulnerable during installation process.
 
 **A good rule of thumb is:**
-ProcMon can provide evidence of .local probing, but the absence of a visible .exe.local miss does not prove the app is not susceptible. For comctl32.dll especially, the trace often reflects manifest/SxS binding rather than a simple app-folder DLL searc
+ProcMon can provide evidence of .local probing, but the absence of a visible .exe.local miss does not prove the app is not susceptible. For comctl32.dll especially, the trace often reflects manifest/SxS binding rather than a simple app-folder DLL search. 
 
 
 #### If a program loads:
