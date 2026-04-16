@@ -359,7 +359,7 @@ DotLocal redirection vulnerability abuses Windows built-in .local / DotLocal DLL
 Why it becomes a vulnerability: if an attacker can write into the executable’s directory (User writable paths), or into a temporary extraction directory used by a privileged process, they can create Target.exe.local folder and place a malicious DLL where Windows will prefer it. That turns the feature into a DLL hijacking , so the trusted process loads attacker library instead of the intended library.
 
 #### Manual control
-Identified high privileged processes in world writable paths should be investigated if they are vulnerable to DotLocal redirection. If you query for them and find applications. Do the last control using ProcMon to see if the process tries to load libraries from the created .exe.local folder.
+Identified high privileged processes in world writable paths should be investigated if they are vulnerable to DotLocal redirection. If you query for them and find applications. Do the last control using ProcMon to see if the process tries to load libraries from the created .exe.local folder. You can use the GetSxsPath tool to determine the full file path. Procmon should show you NAME NOT FOUND / PATH NOT FOUND events pointing to a .exe.local directory if its vulnerable.
 
 
 
@@ -368,7 +368,7 @@ Identified high privileged processes in world writable paths should be investiga
 `C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\comctl32.dll`
 
 #### Check this:
-
+**Determine redirection path for SxS DotLocal DLL Hijacking** - https://gist.github.com/rxwx/1717e95e5ec11bea12d33e93a3832508
 `C:\Path\To\Application.exe.local\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\comctl32.dll`
 
 
