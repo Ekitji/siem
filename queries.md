@@ -329,7 +329,7 @@ event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 
 
 
 ## Potential Local Privilege Escalation - Possible dotLocal vulnerable WiZ installer
-#### You need to determine if the application is vulnerable or not. Its **unclear** if file.pe.file_version is showing the vulnerable version. 
+#### You need to determine if the application is vulnerable or not. file.pe.file_version should give you context to find the affected versions. Affected versions >= 4, < 4.0.4 < 3.14.0
 ```
 event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND file.pe.company: "WiX Toolset" AND process.executable: C\:\\Users\\*\\AppData\\Local\\Temp\\*\\.be\\*
 ```
