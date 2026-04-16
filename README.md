@@ -375,6 +375,17 @@ ProcMon can provide evidence of .local probing, but the absence of a visible .ex
 `C:\Path\To\Application.exe.local\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\comctl32.dll`
 **Determine redirection path for SxS DotLocal DLL Hijacking** - https://gist.github.com/rxwx/1717e95e5ec11bea12d33e93a3832508
 
+#### DotLocal Wiz Installer
+**WiX Burn EXE bootstrapper** Affected versions >= 4, < 4.0.4 < 3.14.0. This impacts any installer built with the WiX installer framework.
+WiX also lets authors replace the default icon and use either the stock WixStdBA UI or a custom bootstrapper application, so the EXE can be branded to look like the vendor rather than "WiX"
+
+##### Details
+If the bundle is not run as admin, the user's TEMP folder is used and not the system TEMP folder. A utility is able to monitor the user's TEMP folder for changes and drop its own DLL into the .be/.Local folder immediately when the .be folder is created. When the burn engine elevates, the malicious DLL receives elevated privileges.
+
+> **Ref** https://github.com/wixtoolset/issues/security/advisories/GHSA-7wh2-wxc7-9ph5
+
+“A separate wixstdba.exe process is a good WiX Burn fingerprint, but the strongest indicator for the affected versions is the Burn engine version itself: vulnerable if it identifies as <3.14.0 or 4.0.0–4.0.3.”
+
 
 ## Prerequisites
 Well configured SYSMON config to catch events that are of interest, like event.code 1, 7, 11 and 13 for the User-writable paths and the mentioned registry hives.
