@@ -326,6 +326,8 @@ event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 
 > **NAME NOT FOUND** https://cdn.advancedinstaller.com/img/exe-local-directory-vulnerability-solution/gdiplus-dll-hijacking-risk.png 
 
 
+
+
 ## Potential Local Privilege Escalation - Possible dotLocal vulnerable WiZ installer
 #### You need to determine if the application is vulnerable or not. Its **unclear** if file.pe.file_version is showing the vulnerable version. 
 ```
@@ -336,6 +338,8 @@ event.provider: Microsoft-Windows-Sysmon AND event.code:7 AND AND file.pe.compan
 ```
 event.provider: Microsoft-Windows-Sysmon AND event.code: 1 AND process.executable: C\:\\Users\\*\\AppData\\Local\\Temp\\*\\.ba\\*
 ```
+
+
 
 
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
