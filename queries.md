@@ -319,7 +319,7 @@ event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 
 ####  Query catches DLL loads from WinSxS which could point you to right direction to find applications vulnerable to dotLocal (.local) redirection DLL vulnerabilities. This vulnerability seems to be fixed in later Windows 11 builds.
 #### comctl32.dll is one of the relevant DLLs. What you need to do is to manually check with procmon if it the process tries to load from same directory dll in processname.local directory. Look for NAME NOT FOUND events.
 ```
-event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 7 AND file.path: C\:\\Windows\\WinSxS\\amd64* AND file.extension: dll AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\ OR C\:\\Windows\\Temp\*)
+event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 7 AND file.path: (C\:\\Windows\\WinSxS\\amd64* OR C\:\\Windows\\WinSxS\\x86*) AND file.extension: dll AND process.executable: (C\:\\ProgramData\\* OR C\:\\Users\\ OR C\:\\Windows\\Temp\*)
 ```
 > **Ref** https://www.advancedinstaller.com/exe-local-directory-vulnerability-solution.html
 
