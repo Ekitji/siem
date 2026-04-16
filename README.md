@@ -92,7 +92,7 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://youtu.be/Ik1xpsQEVwI?si=P7G1kmnSKdFldCAG
 - https://heegong.github.io/posts/Advaned-Installer-Local-Privilege-Escalation-Vulnerability/
 - https://www.synaptics.com/sites/default/files/nr-154525-tc-synaptics_displaylink_windows_driver_security_brief_-_oct2023.pdf
-
+- https://github.com/wixtoolset/issues/security/advisories/GHSA-7wh2-wxc7-9ph5
 ### Example of interesting areas to look into that we have not covered in presentation but we have queries for some of them.
 * weak passwords in command_line - that are not following best practices / policies
 * weak passwords or sensitive information in powershell admin scripts scriptblock event code: 4104. Search for strings: "SecureString","PSCredential","Password", "passwd"......
