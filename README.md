@@ -361,6 +361,8 @@ Why it becomes a vulnerability: if an attacker can write into the executable’s
 #### Manual control
 Identified high privileged processes in world writable paths should be investigated if they are vulnerable to DotLocal redirection. If you query for them and find applications. Do the last control using ProcMon to see if the process tries to load libraries from the created .exe.local folder. You can use the GetSxsPath tool to determine the full file path. Procmon should show you NAME NOT FOUND / PATH NOT FOUND events pointing to a .exe.local directory if its vulnerable.
 
+**A good rule of thumb is:**
+ProcMon can provide evidence of .local probing, but the absence of a visible .exe.local miss does not prove the app is not susceptible. For comctl32.dll especially, the trace often reflects manifest/SxS binding rather than a simple app-folder DLL searc
 
 
 #### If a program loads:
@@ -368,9 +370,9 @@ Identified high privileged processes in world writable paths should be investiga
 `C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\comctl32.dll`
 
 #### Check this:
-**Determine redirection path for SxS DotLocal DLL Hijacking** - https://gist.github.com/rxwx/1717e95e5ec11bea12d33e93a3832508
-`C:\Path\To\Application.exe.local\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\comctl32.dll`
 
+`C:\Path\To\Application.exe.local\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\comctl32.dll`
+**Determine redirection path for SxS DotLocal DLL Hijacking** - https://gist.github.com/rxwx/1717e95e5ec11bea12d33e93a3832508
 
 
 ## Prerequisites
