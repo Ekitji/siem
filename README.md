@@ -90,7 +90,7 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 - https://web.archive.org/web/20230721193548/https://research.nccgroup.com/2023/07/03/technical-advisory-nullsoft-scriptable-installer-system-nsis-insecure-temporary-directory-usage/
 - https://blog.amberwolf.com/blog/2026/april/next-next-system/
 - https://youtu.be/Ik1xpsQEVwI?si=P7G1kmnSKdFldCAG
-
+- https://heegong.github.io/posts/Advaned-Installer-Local-Privilege-Escalation-Vulnerability/
 
 ### Example of interesting areas to look into that we have not covered in presentation but we have queries for some of them.
 * weak passwords in command_line - that are not following best practices / policies
