@@ -373,6 +373,7 @@ ProcMon can provide evidence of .local probing, but the absence of a visible .ex
 #### Check this:
 
 `C:\Path\To\Application.exe.local\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\comctl32.dll`
+
 **Determine redirection path for SxS DotLocal DLL Hijacking** - https://gist.github.com/rxwx/1717e95e5ec11bea12d33e93a3832508
 
 #### DotLocal Wiz Installer
