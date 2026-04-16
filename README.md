@@ -86,6 +86,12 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 #### NSIS installer/uninstaller vulnerability
 - https://blog.amberwolf.com/blog/2026/april/next-next-system/
 
+#### DotLocal Redirection vulnerability
+- https://web.archive.org/web/20230721193548/https://research.nccgroup.com/2023/07/03/technical-advisory-nullsoft-scriptable-installer-system-nsis-insecure-temporary-directory-usage/
+- https://blog.amberwolf.com/blog/2026/april/next-next-system/
+- https://youtu.be/Ik1xpsQEVwI?si=P7G1kmnSKdFldCAG
+
+
 ### Example of interesting areas to look into that we have not covered in presentation but we have queries for some of them.
 * weak passwords in command_line - that are not following best practices / policies
 * weak passwords or sensitive information in powershell admin scripts scriptblock event code: 4104. Search for strings: "SecureString","PSCredential","Password", "passwd"......
@@ -343,6 +349,18 @@ Some installers extract these DLLs temporarily into a folder like:
 - `$PLUGINSDIR`
 
 So they may appear only at runtime, not next to the installer executable on disk.
+
+
+### DotLocal Redirection Vulnerabilities
+
+#### If a program loads:
+
+`C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\comctl32.dll`
+
+#### Check this:
+
+`C:\Path\To\Application.exe.local\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\comctl32.dll`
+
 
 
 ## Prerequisites
