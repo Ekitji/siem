@@ -325,6 +325,19 @@ event.provider:"Microsoft-Windows-Sysmon" AND user.name: SYSTEM AND event.code: 
 
 > **NAME NOT FOUND** https://cdn.advancedinstaller.com/img/exe-local-directory-vulnerability-solution/gdiplus-dll-hijacking-risk.png 
 
+
+## Potential Local Privilege Escalation - Possible dotLocal vulnerable WiZ installer
+#### You need to determine if the application is vulnerable or not. Its **unclear** if file.pe.file_version is showing the vulnerable version. 
+```
+event.provider: Microsoft-Windows-Sysmon AND event.code:7 AND AND file.pe.company: "WiX Toolset" AND process.executable: C\:\\Users\\*\\AppData\\Local\\Temp\\*\\.ba\\*
+```
+> **Ref** - https://github.com/wixtoolset/issues/security/advisories/GHSA-7wh2-wxc7-9ph5
+##### You could also query for process creation event, 4688 or 1, executable with .ba in the path.
+```
+event.provider: Microsoft-Windows-Sysmon AND event.code: 1 AND process.executable: C\:\\Users\\*\\AppData\\Local\\Temp\\*\\.ba\\*
+```
+
+
 ## Potential Local Privilege Escalation - Process Terminated by SYSTEM in User-Writable Paths
 ##### Will also give you an idea for the process creation query when that process is terminated/exit.
 ```
