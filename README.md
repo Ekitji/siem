@@ -352,6 +352,12 @@ So they may appear only at runtime, not next to the installer executable on disk
 
 
 ### DotLocal Redirection Vulnerabilities
+**DotLocal redirection abuse is a Windows DLL hijacking issue where a writable app folder lets an attacker trick a legitimate program into loading a malicious DLL first**
+
+DotLocal redirection vulnerability abuses Windows built-in .local / DotLocal DLL redirection feature. Windows supports DLL redirection by honoring a file or folder named like App.exe.local; when present, the loader checks the executable’s folder or that .local folder first for DLLs, and this can apply even when a full DLL path is specified. Microsoft documents this as a legitimate feature for redirecting DLL loads.
+
+Why it becomes a vulnerability: if an attacker can write into the executable’s directory (User writable paths), or into a temporary extraction directory used by a privileged process, they can create Target.exe.local folder and place a malicious DLL where Windows will prefer it. That turns the feature into a DLL hijacking , so the trusted process loads attacker library instead of the intended library.
+
 
 #### If a program loads:
 
