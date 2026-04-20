@@ -224,7 +224,7 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 ```
 
 ## Potential Local Privilege Escalation - Logon scripts enumeration using AD logs
-#### Check winlog.event_data.AttributeValue for User-writable file paths or where a regular user can modify och write to.
+#### Check winlog.event_data.AttributeValue for User-writable file paths or where a regular user can modify or write to.
 ```
 event.provider: "Microsoft-Windows-Security-Auditing" AND winlog.event_data.AttributeLDAPDisplayName: scriptPath
 ```
