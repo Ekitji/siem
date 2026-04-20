@@ -267,6 +267,12 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 (event.provider: Microsoft-Windows-Sysmon AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\*) AND file.extension: (sys OR SYS))
 ```
 
+## Potential Local Privilege Escalation - Service created with Kernel driver in User-writable path
+##### Look for sys files and if found check ACL for the file path.
+```
+(event.provider: "Service Control Manager" AND event.code: 7045 AND winlog.event_data.ServiceType: (*kernel* OR *file\ system* OR *\ 1 OR *\ 2) AND winlog.event_data.ImagePath: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\) AND NOT winlog.event_data.ImagePath: C\:\\ProgramData\\Microsoft\\Windows\ Defender\\*)
+```
+
 # Other Queries - Some for Layer on Layer coverage
 ## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) Usage with Legacy drivers ⭐
 #### Query that searches for legacy OpenSSL driver libeay32.dll that has almost in every case hardcoded user-writable path to c:\usr\local\ssl. Start with this query and go with the next one for a wider search where you will also catch newer OpenSSL versions that you later need to lookup its OPENSSLDIR.
