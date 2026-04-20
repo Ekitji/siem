@@ -223,6 +223,12 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 ((event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.MandatoryLabel: "S-1-16-12288" AND process.parent.name: gpscript.exe) OR (event.provider: "Microsoft-Windows-Sysmon" AND event.code: 1 AND winlog.event_data.IntegrityLevel: High AND process.parent.name: gpscript.exe))
 ```
 
+## Potential Local Privilege Escalation - Logon scripts enumeration using AD logs
+#### Check winlog.event_data.AttributeValue for User-writable file paths or where a regular user can modify och write to.
+```
+event.provider: "Microsoft-Windows-Security-Auditing" AND winlog.event_data.AttributeLDAPDisplayName: scriptPath
+```
+> **Ref** Uses AD logs to enumerate Logon scripts - https://trustedsec.com/blog/a-hitchhackers-guide-to-dacl-based-detections-part-1-a
 
 # C-Root Folder
 
