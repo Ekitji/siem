@@ -224,11 +224,13 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 ```
 
 ## Potential Local Privilege Escalation - Logon scripts enumeration using AD logs
-#### Check winlog.event_data.AttributeValue for User-writable file paths or where a regular user can modify or write to.
+#### Check winlog.event_data.AttributeValue for User-writable file paths or where a regular user can modify or write to. SubjectUserName shows who generated the event and ObjectDN shows affecting object. You could also query for msTSInitialProgram and look for high privileged accounts.
 ```
 event.provider: "Microsoft-Windows-Security-Auditing" AND winlog.event_data.AttributeLDAPDisplayName: scriptPath
 ```
 > **Ref** Uses AD logs to enumerate Logon scripts - https://trustedsec.com/blog/a-hitchhackers-guide-to-dacl-based-detections-part-1-a
+
+
 
 # C-Root Folder
 
