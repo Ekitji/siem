@@ -282,10 +282,10 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 7 AND user.name: SYST
 ```
 
 # Other Queries - Some for Layer on Layer coverage
-## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) Usage with Legacy drivers ⭐
-#### Query that searches for legacy OpenSSL driver libeay32.dll that has almost in every case hardcoded user-writable path to c:\usr\local\ssl. Start with this query and go with the next one for a wider search where you will also catch newer OpenSSL versions that you later need to lookup its OPENSSLDIR.
+## Potential Local Privilege Escalation - Possible OpenSSL Config (openssl.cnf) Usage with Legacy library ⭐
+#### Query that searches for legacy OpenSSL libeay32.dll that has almost in every case hardcoded user-writable path to c:\usr\local\ssl. Start with this query and go with the next one for a wider search where you will also catch newer OpenSSL versions that you later need to lookup its OPENSSLDIR.
 ```
-event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"dll" file.pe.description: "OpenSSL library" file.pe.file_version: (0.9.* OR 1.0.*) AND file.pe.original_file_name: (libeay32.dll) AND user.name: SYSTEM 
+event.provider:"Microsoft-Windows-Sysmon" AND event.code: 7 AND file.extension:"dll" AND file.pe.description: "OpenSSL library" AND file.pe.file_version: (0.9.* OR 1.0.*) AND file.pe.original_file_name: (libeay32.dll) AND user.name: SYSTEM 
 ```
 > **Pro Tip** Check if the process executable is started from services.exe or as a schedule task. If so - you have a nice persistent local privilege escalation vulnerability.
 
