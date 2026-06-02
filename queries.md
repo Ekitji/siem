@@ -216,7 +216,7 @@ AND event.code: 11 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR 
 
 ## Potential Local Privilege Escalation - Logon scripts as Administrator used
 ##### Logon/Logoff scripts - Check the process command line field. Look for user-writable paths in the binary path or command line, network shares in user-writable locations, and non-existent or broken share paths. Review permissions on the referenced share, file, NETLOGON/SYSVOL location, logon script, and any GPO-linked logon script to identify unsafe access controls. Determine whether privileged or administrator accounts are assigned logon scripts, including cases where those scripts are mapped from non-existent shares. Read the script file itself and look for plaintext credentials, passwords, other embedded sensitive information, and general script misconfigurations.
-
+> **Ref:** https://github.com/techspence/ScriptSentry which gives you ideas of misconfigurations.
 
 #### Generic query - If needed add ProgramData, Users, C-root etc to the query to narrow it down. Could also be interesting to query for none-admin executed scripts. It could be that no admin has still not logged in where that GPO is set and it could be a vulnerability when high privileged user logs in.
 ```
