@@ -119,7 +119,7 @@ event.provider: "Service Control Manager" AND event.code: 7000 AND winlog.event_
 ## Potential Local Privilege Escalation - Scheduled Task Binary missing / The system cannot find the file specified.
 #### You need to identify what user the Schedule task is running as and the binary path. Maybe we can plant our own binary?
 ```
-event.provider: "Microsoft-Windows-TaskScheduler" AND event.code: 101 AND winlog.event_data.ResultCode: (2147942402 OR 2147942667)
+event.provider: "Microsoft-Windows-TaskScheduler" AND event.code: (101 OR 203) AND winlog.event_data.ResultCode: (2147942402 OR 2147942667)
 ```
 > The Task Scheduler tried to launch the binary or script defined in that task and it didn't exist at the path specified. The ResultCode is Microsoft Error Codes.
 
