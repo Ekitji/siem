@@ -86,6 +86,7 @@ event.provider: "Service Control Manager" AND event.code: 7000 AND winlog.event_
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR *C\:\\Users\\* OR *C\:\\Windows\\Temp*) AND message: *HighestAvailable*)
 ```
+> Query for high privileged (Integrity level high) schedule tasks created by Administrator which will be run as high integrity if user is local administrator
 #### User-Writable Paths in the Binary path (Administrator User) - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\*) AND message: *HighestAvailable*)
@@ -94,6 +95,7 @@ event.provider: "Service Control Manager" AND event.code: 7000 AND winlog.event_
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND NOT winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\*) AND NOT winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR *C\:\\Program\ Files* OR C\:\\Users\\* OR C\:\\Windows\\*) AND message: *HighestAvailable*)
 ```
+> Query for high privileged (Integrity level high) schedule tasks created by Administrator which will be run as high integrity if user is local administrator
 
 ## Potential Local Privilege Escalation - Scheduled Task executed in a elevated state (Administrator) - Sysmon
 #### Uses Sysmons event.code 1 to catch High integrity events, checking command_line will catch binary & arguments pointing to user writeable paths. May be also interesting to query and catch events in C:\ roots subfolders.
