@@ -89,6 +89,15 @@ Even when you cannot turn it into code execution, steering a privileged delete o
 - **DACL Unprotected** = allow the DACL to inherit ACEs from parent.
 - **SACL Unprotected** = allow the SACL to inherit ACEs from parent.
 
+## Com-Hijack with focus on LPE
+- **Ref** https://www.packetlabs.net/posts/com-hijacking-proxying/
+Windows always HKCU before HKLM for COM registrations, and any user can write to HKCU — so if a privileged process looks up a CLSID that has no HKCU entry, a low-privilege attacker can plant one and have their code executed in the privileged process's security context.
+The three things that make it work together:
+
+Registry search order — HKCU takes precedence over HKLM, by design, no exceptions.
+HKCU is always writable by the current user at medium integrity — no UAC, no admin prompt, no special permissions.
+Privileged processes use COM — SYSTEM services, Task Scheduler, Explorer all instantiate COM objects constantly, which means the lookup always happens from a high-privilege context.
+
 ## InprocServer32
 
 - **Which value was modified**
