@@ -154,6 +154,18 @@ User: SYSTEM AND Operation: Reg* AND Path: HKLM* AND Path: *Services* AND Path: 
 User: SYSTEM AND Operation: Reg* AND Path: HKLM* AND Path: *Services AND Path: *ServiceDll
 ```
 
+## Potential Privilege escalation - COM-Hijack resulting in LPE
+#### RegOpenKey Operation that looks like HKCU\Software\Classes\CLSID\.....
+#### Where HKCU is writable by current user. InprocServer32 → the COM object is a DLL, loaded directly into the calling process's address space. Same process, same memory, same token. When SYSTEM loads it, your DLL runs as SYSTEM inside that process.
+LocalServer32 → the COM object is an EXE, launched as a separate process. Windows spawns it as a child, your code runs in its own process space.
+> COM-Hijack with focus on LPE
+```
+User: SYSTEM AND Operation: Reg* AND Path: HKCU\\Software\\Classes* AND Path: (*InProcServer32* OR *LocalServer32*) AND Result: ("NAME NOT FOUND" OR "PATH NOT FOUND")
+```
+> InprocServer32 hijack → you write a DLL, plant the path. The privileged process loads it in-process. Classic DLL injection via registry.
+
+>LocalServer32 hijack → you write or replace an EXE. Windows spawns it. You get a standalone process running under the caller's token — often SYSTEM — completely separate from the host process. Noisier, but sometimes more stable.
+
 ## Potential Privilege escalation - Schedule task process in user-writable path.
 #### Check if you can replace binary or write files to the folder
 ```
