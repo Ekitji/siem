@@ -126,7 +126,7 @@ event.provider: "Service Control Manager" AND event.code: 7000 AND winlog.event_
 ```
 event.provider: "Microsoft-Windows-TaskScheduler" AND event.code: (101 OR 203) AND winlog.event_data.ResultCode: (2147942402 OR 2147942667)
 ```
-> The Task Scheduler tried to launch the binary or script defined in that task and it didn't exist at the path specified. The ResultCode is Microsoft Error Codes.
+> The Task Scheduler tried to launch the binary defined in that task and it didn't exist at the path specified. The ResultCode is Microsoft Error Codes.
 
 ## Potential Local Privilege Escalation - Scheduled Task SDDL (ACL) Enumeration
 #### Look in the message field for <SecurityDescriptor> key and convert to human readable and check the permissions for the schedule task. 
