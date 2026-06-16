@@ -194,7 +194,12 @@ process.name: (uninstall.exe OR Uninstall.exe OR unins.exe OR unins000.exe OR un
 event.provider: "Microsoft-Windows-Sysmon" AND event.code: 11 AND user.name: SYSTEM AND file.name: uninstall.exe OR file.name: (Uninstall.exe OR unins.exe OR unins000.exe OR unins001.exe OR unwise.exe OR uninst.exe OR uninstaller.exe OR remove.exe OR *_uninstall.exe OR *_cleanup.exe OR *_remover.exe)
 ```
 
-
+## Potential Local Privilege Escalation - Process Creation by SYSTEM in C:\Windows\Temp folder
+### Query to catch only executions from the root of temp folder and not from the subfolders. The idea is to catch executables and then check with process monitor if the same executable is trying to load any missing DLLs from C:\Windows\Temp that we can drop there.
+```
+(event.provider: Microsoft-Windows-Sysmon AND event.code: (1 OR 7) AND user.name: SYSTEM AND process.executable: C\:\\Windows\\Temp\\* AND NOT process.executable: C\:\\Windows\\Temp\\*\\*) OR ((event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.MandatoryLabel: "S-1-16-16384" AND process.executable: C\:\\Windows\\Temp\\* AND NOT process.executable: C\:\\Windows\\Temp\\*\\*)
+```
+> Make needed whitelisting to only catch example: C:\Windows\temp\process.exe or C:\WINDOWS\TEMP\process.exe
 
 # Scripts
 
