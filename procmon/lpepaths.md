@@ -110,6 +110,7 @@ Privileged processes use COM — SYSTEM services, Task Scheduler, Explorer all i
   - A per-user `HKCU` entry appears to override a safer machine-wide `HKLM` registration
   - Registration changes happen during install, repair, self-update, or service startup
   - A privileged process later loads the written DLL path
+> Source: - https://specterops.io/blog/2025/05/28/revisiting-com-hijacking/
 
 ## Tighter Triage Queries
 
