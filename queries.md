@@ -199,7 +199,7 @@ event.provider: "Microsoft-Windows-Sysmon" AND event.code: 11 AND user.name: SYS
 ```
 (event.provider: Microsoft-Windows-Sysmon AND event.code: (1 OR 7) AND user.name: SYSTEM AND process.executable: C\:\\Windows\\Temp\\* AND NOT process.executable: C\:\\Windows\\Temp\\*\\*) OR ((event.provider: Microsoft-Windows-Security-Auditing AND event.code: 4688 AND winlog.event_data.MandatoryLabel: "S-1-16-16384" AND process.executable: C\:\\Windows\\Temp\\* AND NOT process.executable: C\:\\Windows\\Temp\\*\\*)
 ```
-> Make needed whitelisting to only catch example: C:\Windows\temp\process.exe or C:\WINDOWS\TEMP\process.exe
+> Make needed whitelisting to only catch example: C:\Windows\temp\process.exe or C:\WINDOWS\TEMP\process.exe. You may need to filter out .tmp files if not a abusable NSIS installer. Focus on executables (.exe) in c:\windows\temp
 
 # Scripts
 
