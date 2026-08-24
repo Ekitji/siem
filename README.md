@@ -113,6 +113,9 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 * Linux
 etc.. etc..
 
+### Filip Wozniaks Offensive SIEM Workflow Using ES|QL, OSQuery etc using this mindset for validating vulnerable conditions.  ⭐
+- https://filippwn.github.io/blog/2026/06/hunt-your-vulnerabilities-in-siem-at-scale/
+
 ## Other links ⭐
 - https://www.securit360.com/blog/securing-windows-common-misconfigurations-that-give-attackers-the-advantage/
 - https://offsec.blog/hidden-danger-how-to-identify-and-mitigate-insecure-windows-services/
