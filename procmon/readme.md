@@ -120,5 +120,6 @@ Apply after log capture to refine investigation:
 - **File Operations**  https://troopers.de/downloads/troopers19/TROOPERS19_AD_Abusing_privileged_file_operations.pdf
 - **Abusing Arbitrary File Deletes to Escalate Privilege and Other Great Tricks (Archive)** https://www.trendmicro.com/en/research/24/i/arbitrary-file-deletes-escalate-privilege.html
 - **Windows Security Research: A Practical Guide for Beginners to find 0 days - HackTricks Track 2023** Gives good mindset, look from minute 38.53 --> https://www.youtube.com/watch?v=OuL-7GPhhAQ
+- **Covering .drv which is a driver file, which is just a PE file that also runs DllMain calls on load and .lib which could simply be a creative interpretation of .dll meaning if it’s trying to access it in order to call LoadLibrary** https://blog.paradoxis.nl/escalating-all-the-privileges-with-foxit-pdf-reader-cve-2026-57239-582a78b60492
 
 ✅ This README section provides **everything needed to run boot logging, apply security-research-oriented filters, and export events for analysis**, safely and efficiently.
