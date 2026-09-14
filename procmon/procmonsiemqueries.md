@@ -12,13 +12,13 @@ User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp)
 ```
 
 ## Potential Local Privilege Escalation - NOT FOUND Events ⭐
-#### Look for file extensions like `.dll`, `.exe`, `.sys`, `.drv`, `.ps1`, `.bat`, `.cmd`, `.js`, `.vbs` or config files like XML, json etc.
+#### Look for file extensions like `.dll`, `.exe`, `.sys`, `.drv`, `.lib`, `.ps1`, `.bat`, `.cmd`, `.js`, `.vbs` or config files like XML, json etc.
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: ("NAME NOT FOUND" OR "PATH NOT FOUND")
 ```
 
 ## Potential Local Privilege Escalation - NO SUCH FILE Events 
-#### Look for file extensions like `.dll`, `.exe`, `.sys`, `.drv`, `.ps1`, `.bat`, `.cmd`, `.js`, `.vbs` or config files like XML, json etc.
+#### Look for file extensions like `.dll`, `.exe`, `.sys`, `.drv`, `.lib`, `.ps1`, `.bat`, `.cmd`, `.js`, `.vbs` or config files like XML, json etc.
 ```
 User: SYSTEM AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Result: ("NO SUCH FILE")
 ```
@@ -58,7 +58,7 @@ User: SYSTEM AND Image Path: "C:\Windows\SysWOW64\cmd.exe"
 ## Potential Local Privilege Escalation - Generic query for Command Line
 #### Look for cmd.exe, powershell.exe, pwsh.exe or other script engies executing scripts from User-writable paths.
 ```
-User: SYSTEM AND Command Line: (ProgramData OR Users OR Temp OR Tmp) AND Command Line: (*.dll* OR *.exe* OR *.sys* OR *ps1* OR *.bat* OR *.cmd* OR *.js* OR *.vbs*) 
+User: SYSTEM AND Command Line: (ProgramData OR Users OR Temp OR Tmp) AND Command Line: (*.dll* OR *.exe* OR *.drv* OR  *.lib* OR *.sys* OR *ps1* OR *.bat* OR *.cmd* OR *.js* OR *.vbs*) 
 ```
 
 ## Potential Local Privilege Escalation - SetSecurityFile Events
@@ -99,7 +99,7 @@ User: SYSTEM AND Operation: CreateFile AND Path: (ProgramData OR Users OR Temp O
 
 ## Potential Local Privilege Escalation - WriteFile Of interesting file extensions.
 ```
-User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.dll OR *.exe OR *.sys OR *.ps1 OR *.bat OR *.cmd OR *.js OR *.vbs OR *.ini OR *.config OR *.cfg OR *.xml OR *.json) AND NOT Path: (Microsoft)
+User: SYSTEM AND Operation: WriteFile AND Path: (ProgramData OR Users OR Temp OR Tmp) AND Path: (*.dll OR *.exe OR *.drv OR *.lib OR *.sys OR *.ps1 OR *.bat OR *.cmd OR *.js OR *.vbs OR *.ini OR *.config OR *.cfg OR *.xml OR *.json) AND NOT Path: (Microsoft)
 ```
 ## Potential Local Privilege Escalation - FileDelete Events
 #### `SetDispositionInformationFile` Delete with True occurs when a file deletion happes**. Check ACL and if you can symlink and get LPE. We want to delete a file using a high privileged process so we can create it afterwards our self. Check Referens with Troopers19 File Operators pdf.We 
