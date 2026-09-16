@@ -505,6 +505,30 @@ We want to do this to catch every uninstaller without trusting the process creat
           *_cleanup.exe – Removal tools often have cleanup variants, e.g., driver_cleanup.exe.
           *_remover.exe – Another common AV/vendor naming style.
 
+
+## PE / Binary files with code execution on load
+### Consider query for the ones in the list both in windows/sysmon logs and also procmon logs
+| Extension | PE Type | Code execution on load? | Entry point / mechanism | Notes |
+|-----------|---------|--------------------------|-------------------------|-------|
+| `.exe` | PE executable | Yes | PE `AddressOfEntryPoint` | Code starts when the executable is launched |
+| `.dll` | PE DLL | Yes | `DllMain` / TLS callbacks | Code can execute when DLL is loaded into a process |
+| `.sys` | PE kernel driver | Yes | `DriverEntry` | Driver initialization code executes when the driver is loaded |
+| `.scr` | PE executable | Yes | PE `AddressOfEntryPoint` | Essentially an executable; `.scr` is mainly a convention |
+| `.cpl` | PE DLL | Yes | `DllMain` + `CPlApplet` | Loaded by Control Panel infrastructure |
+| `.ocx` | PE DLL / ActiveX | Yes | `DllMain` + COM/ActiveX entry points | DLL initialization occurs when loaded |
+| `.drv` | PE DLL / legacy driver | Usually | `DllMain` or driver-specific entry point | Depends on the specific `.drv` type |
+| `.efi` | PE/COFF EFI binary | Yes | EFI entry point | Code executes when loaded by UEFI |
+| `.ax` | PE DLL | Yes | `DllMain` + DirectShow interfaces | DLL initialization occurs on load |
+| `.acm` | PE DLL | Yes | `DllMain` + ACM entry points | Loaded as an Audio Compression Manager codec |
+| `.ime` | PE DLL | Yes | `DllMain` + IME entry points | DLL initialization occurs when loaded |
+| `.tsp` | PE DLL | Yes | `DllMain` + TAPI entry points | DLL initialization occurs when loaded |
+| `.pyd` | PE DLL | Yes | `DllMain` + Python module initialization | Native Python extension |
+| `.node` | PE DLL | Yes | `DllMain` + Node.js addon initialization | Native Node.js addon |
+| `.xll` | PE DLL | Yes | `DllMain` + Excel XLL entry points | Loaded by `EXCEL.EXE` |
+| `.wll` | PE DLL | Yes | `DllMain` + Word add-in loading | Loaded by `WINWORD.EXE` |
+
+
+
 ## Script files
 ### Consider query for the ones in the list
 | Extension | Language / Type           | Purpose / Usage                                         | Execution Context                                          |
