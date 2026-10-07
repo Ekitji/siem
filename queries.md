@@ -63,18 +63,18 @@ event.provider: "Service Control Manager" AND event.code: 7000 AND winlog.event_
 ```
 > Covers if a administrator user creates a schedule task running as the SYSTEM user.
 
-#### C-Root Paths in the Arguments (SYSTEM User) -  may also be interesting to query fo D:\, E:\, Network shares etc. - check winlog.event_data.TaskContent for more context
+#### C-Root Paths in the Arguments (SYSTEM User) -  may also be interesting to query fo D:\, E:\, Network shares \\  etc. - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\*) AND NOT winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR *C\:\\Program\ Files* OR C\:\\Users\\* OR C\:\\Windows\\*) AND message: *HighestAvailable*)
 ```
 
-#### C-Root Paths in the Arguments (SYSTEM User covering UserID and GroupID for System user)-  may also be interesting to query fo D:\, E:\, Network shares etc. - check winlog.event_data.TaskContent for more context
+#### C-Root Paths in the Arguments (SYSTEM User covering UserID and GroupID for System user)-  may also be interesting to query fo D:\, E:\, Network shares \\  etc. - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Arguments: (*C\:\\*) AND NOT winlog.event_data.Arguments: (*C\:\\ProgramData\\* OR *C\:\\Program\ Files* OR *C\:\\Users\\* OR C\:\\Windows\\*) AND message: (*HighestAvailable* OR *System* OR *S\-1\-5\-18* OR *NT\ AUTHORITY\\SYSTEM* OR *NT\ instans\\SYSTEM*))
 ```
 > Covers if a administrator user creates a schedule task running as the SYSTEM user.
 
-#### C-Root Paths in the Binary (SYSTEM User covering UserID and GroupID for System user)-  may also be interesting to query fo D:\, E:\, Network shares etc. - check winlog.event_data.TaskContent for more context
+#### C-Root Paths in the Binary (SYSTEM User covering UserID and GroupID for System user)-  may also be interesting to query fo D:\, E:\, Network shares \\ etc. - check winlog.event_data.TaskContent for more context
 ```
 ((event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: 4698 AND winlog.logon.id: "0x3e7") AND winlog.event_data.Command: (*C\:\\*) AND NOT winlog.event_data.Command: (*C\:\\ProgramData\\* OR *C\:\\Program\ Files* OR C\:\\Users\\* OR C\:\\Windows\\*) AND message: (*HighestAvailable* OR *System* OR *S\-1\-5\-18* OR *NT\ AUTHORITY\\SYSTEM* OR *NT\ instans\\SYSTEM*))
 ```
