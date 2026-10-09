@@ -150,7 +150,15 @@ event.provider: "Microsoft-Windows-Security-Auditing" AND event.code: (4700 OR  
 
 ## Potential Local Privilege Escalation - DLL Load from Temp Directory
 ```
-(event.provider: Microsoft-Windows-Sysmon AND event.code: 7 AND user.name: SYSTEM AND file.path: (C\:\\Windows\\Temp\\*) AND file.extension: (dll OR DLL))
+(event.provider: Microsoft-Windows-Sysmon AND event.code: 7 AND user.name: SYSTEM AND file.path: (C\:\\Windows\\Temp\\*) AND file.extension: (dll OR DLL)) OR
+(event.provider: Microsoft-Windows-Sysmon AND event.code: 29 AND user.name: SYSTEM AND file.path: (C\:\\Windows\\Temp\\*) AND file.extension: (dll OR DLL))
+```
+
+## Potential Local Privilege Escalation - Creation of executable files by SYSTEM user.
+## Query also for files in C-root subfolder.
+### Detects executables created by SYSTEM user. Its likely that they are also executed by the SYSTEM user. This query is to catch the file creation it self and not the execution.
+```
+(event.provider: "Microsoft-Windows-Sysmon" AND event.code: 29 AND user.name: SYSTEM AND file.path: (C\:\\ProgramData\\* OR C\:\\Users\\* OR C\:\\Windows\\Temp\\*))
 ```
 
 # PATH
