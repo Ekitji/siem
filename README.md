@@ -103,7 +103,7 @@ Topic 2 (Insecurely installed/conf Software) And Topic 5 (Insecure Services And 
 * weak passwords in registry  - that are not following best practices / policies
 * file creations/deletions of typical files holding sensitive information like passwords.txt, passwords.xslx, unattend.xml etc.
 * AlwaysInstallElevated in Registry, Autologons (look if passwords is set)
-* Windows Privileges - Look at 4672 (logon with special privileges) And 4704/4705 (assignment/removal of rights)
+* Windows Privileges - Look at 4672 (logon with special privileges to map which users has what privileges, look for the typical dangerous privileges, relevant ones are none IT-admins, system/service accounts etc) And 4704/4705 (assignment/removal of rights)
 * Event code 5136 and 5137, AD objects.. look in to the fields: description, info and adminComment, if they have any plaintext passwords.
 * Using process creation events and look for sc.exe setting services security descriptor using sdset or sysmons registry event code 13 and checking the ACL value (in binary format of SDDL) and converting it to readable ACL looking for weak ACL permissions set on the service it self.
 * Do not assume that Program Files and similar admin-protected directories always have correct ACLs (Access Control Lists). It does happen that applications set incorrect default permissions and are far too permissive. CWE-732, CWE-284, CWE-276
